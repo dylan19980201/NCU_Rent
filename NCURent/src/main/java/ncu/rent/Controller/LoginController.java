@@ -8,7 +8,7 @@ import java.io.*;
 
 
 public class LoginController extends HttpServlet {
-	
+	int i =0; 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException, ServletException{
 				//System.out.println("HelloWorld");
