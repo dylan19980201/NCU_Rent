@@ -1,0 +1,11 @@
+package ncu.rent.DAO;
+
+import ncu.rent.Database.Mysql;
+
+public class LoginDAO {
+	public void main(String[] args) {
+		
+		String command = "select * from Student";
+		Mysql.Query(command);
+	}
+}

@@ -1,0 +1,9 @@
+package ncu.rent.DAO;
+
+import ncu.rent.Database.Mysql;
+
+public class LoginDAO {
+	public static void main(String[] args) {
+		String command = "select * from NCU";
+	}
+}

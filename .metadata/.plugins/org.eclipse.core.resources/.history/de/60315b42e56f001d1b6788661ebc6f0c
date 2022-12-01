@@ -1,0 +1,5 @@
+package ncu.rent.database;
+
+public class Mysql {
+
+}

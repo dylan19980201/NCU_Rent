@@ -1,0 +1,51 @@
+package ncu.rent.Database;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class Mysql {
+
+	public static ResultSet Query(String command) {
+		try {			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://20.187.102.32:3306/test", "developer", "developer5");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(command);
+			//ResultSet rs = stmt.executeQuery("select * from NCU");
+			while(rs.next()) {
+				System.out.println(rs.getString("NAME"));
+				//System.out.println(rs.getString("ID")+" "+rs.getString("NAME"));
+				//System.out.println(rs.getString(1)+" "+rs.getString(2));
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	/*
+	public static void main(String[] args) {
+		try 
+		{
+			// MySQL 官方網站下載的 JDBC Driver
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://20.187.102.32:3306/test", "developer", "developer5");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from NCU");
+			while(rs.next()) {
+				System.out.println(rs.getString("NAME"));
+				//System.out.println(rs.getString(1)+" "+rs.getString(2));
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+	*/
+	
+}
+
+

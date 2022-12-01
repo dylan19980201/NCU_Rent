@@ -1,0 +1,5 @@
+package ncu.rent.Controller;
+
+public class LoginController {
+
+}

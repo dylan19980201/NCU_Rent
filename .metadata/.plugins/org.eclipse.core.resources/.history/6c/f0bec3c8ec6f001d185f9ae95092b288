@@ -1,0 +1,5 @@
+package ncu.rent.DAO;
+
+public class LoginDAO {
+
+}

@@ -1,0 +1,20 @@
+package ncu.login.controller;
+
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+
+import java.io.*;
+
+
+public class Login extends HttpServlet {
+	
+public void doGet(HttpServletRequest request, HttpServletResponse response) 
+	throws IOException, ServletException{
+		//System.out.println("HelloWorld");
+		//response.getWriter().write("hello, hello");
+		request.setAttribute("password", "123");
+		RequestDispatcher view = request.getRequestDispatcher("result.jsp");
+		view.forward(request, response);
+	}
+}
