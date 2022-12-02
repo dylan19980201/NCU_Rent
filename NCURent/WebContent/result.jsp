@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div>
-		剛剛打的數字:<%= (request.getAttribute("password")).toString() %>
+		剛剛打的密碼:<%= (request.getAttribute("password")).toString() %>
 	</div>
 </body>
 </html>

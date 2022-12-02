@@ -7,19 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ncu.rent.Database.DBHelper;
-import ncu.rent.Database.Student;
+import ncu.rent.DTO.User;
 public class LoginDAO {
 	public static void main(String[] args) throws SQLException {
-		String command = "select * from Student";
-		List<Student> students = new ArrayList<Student>();
+		String command = """
+				SELECT ID, Password, Name, Birth, Gender, Department, Phone, Email
+				FROM (
+					SELECT SID AS ID, SPassword as Password, SName AS Name, SBirth AS Birth, SGender as Gender, SDepartment AS Department, SPhone as Phone, SEmail as Email
+					FROM student
+					UNION
+					SELECT LID AS ID, LPassword AS Password, LName AS Name, LBirth AS Birth, LGender AS Gender, NULL AS Department, LPhone AS Phone, LEmail AS Email
+					FROM landlord) AS UserTable
+				where ID = ?""";
+		List<User> user = new ArrayList<User>();
 		DBHelper db = new DBHelper();
-		students = db.fetchStudentData(command);
+		user = db.fetchUserData(command);
 		Gson gson = new Gson();
-		String json = gson.toJson(students);
+		String json = gson.toJson(user);
 		System.out.println(json);
-//		for(Student student:students) {
-//			System.out.print(student.SID + " ");
-//			System.out.println(student.SPassword);
-//		}
 	}
 }

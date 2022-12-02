@@ -6,10 +6,10 @@
   </welcome-file-list>
   <servlet>
   	<servlet-name>LoginServlet</servlet-name>
-  	<servlet-class>ncu.rent.Controller.LoginController</servlet-class>
+  	<servlet-class>ncu.rent.Servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/password</url-pattern>
+    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
 </web-app>

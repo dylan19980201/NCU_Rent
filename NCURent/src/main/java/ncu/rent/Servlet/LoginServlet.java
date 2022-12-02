@@ -3,26 +3,44 @@ package ncu.rent.Servlet;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 import java.io.*;
 
+import ncu.rent.Controller.LoginController;
+
 public class LoginServlet extends HttpServlet{
+	private static LoginController loginController= new LoginController();
 	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) 
-		throws IOException, ServletException{
-			//System.out.println("HelloWorld");
-			int number = Integer.parseInt(request.getParameter("digits"));
-			request.setAttribute("password", number+1);
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+			int number = Integer.parseInt(request.getParameter("password"));
+			request.setAttribute("password", number);
+			String methodName= request.getServletPath().replace("/", "");
+			Class<?> classObj = loginController.getClass();
+			try {
+				Method method= classObj.getDeclaredMethod(methodName, String.class);
+				method.invoke(loginController, "hello"); 
+			}
+			catch(Exception e){
+				System.out.println(e.getCause());
+			}
 			RequestDispatcher view = request.getRequestDispatcher("result.jsp");
 			view.forward(request, response);
 	}
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
-		throws IOException, ServletException{
-			//System.out.println("HelloWorld");
-			//response.getWriter().write("hello, hello");
-			int number = Integer.parseInt(request.getParameter("digits"));
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+			int number = Integer.parseInt(request.getParameter("password"));
 			request.setAttribute("password", number);
+			String methodName= request.getServletPath().replace("/", "");
+			Class<?> classObj = loginController.getClass();
+			System.out.println(methodName);
+			try {
+				Method method= classObj.getDeclaredMethod(methodName, String.class);
+				method.invoke(loginController, "hello"); 
+			}
+			catch(Exception e){
+				System.out.println(e.getCause());
+			}
 			RequestDispatcher view = request.getRequestDispatcher("result.jsp");
 			view.forward(request, response);
 	}
