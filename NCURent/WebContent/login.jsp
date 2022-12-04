@@ -10,8 +10,10 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<div>
-		您好，<%= (request.getAttribute("name")).toString() %>
-	</div>
+	<form action ="Login">
+		請輸入帳號:<input type="text" name="id">
+		請輸入密碼:<input type="text" name="password">
+		<input type="submit" value="登入">
+	</form>
 </body>
 </html>

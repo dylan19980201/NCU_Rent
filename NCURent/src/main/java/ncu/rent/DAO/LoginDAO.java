@@ -1,5 +1,6 @@
 package ncu.rent.DAO;
 
+<<<<<<< HEAD
 import java.sql.SQLException;
 
 import com.google.gson.Gson;
@@ -10,10 +11,16 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> 382d7481e99cf17e761ddc9581702ddee87574ff
 import ncu.rent.Database.DBHelper;
 import ncu.rent.DTO.User;
+import org.json.JSONObject;
+
 public class LoginDAO {
-	public static void main(String[] args) throws SQLException {
+	public List<User> getUserData(String id, String password){
 		String command = """
 				SELECT ID, Password, Name, Birth, Gender, Department, Phone, Email
 				FROM (
@@ -21,9 +28,11 @@ public class LoginDAO {
 					FROM student
 					UNION
 					SELECT LID AS ID, LPassword AS Password, LName AS Name, LBirth AS Birth, LGender AS Gender, NULL AS Department, LPhone AS Phone, LEmail AS Email
-					FROM landlord) AS UserTable
-				where ID = ?""";
+					FROM landlord
+					) AS UserTable
+				WHERE ID = ? AND Password = ?""";
 		List<User> user = new ArrayList<User>();
+<<<<<<< HEAD
 		DBHelper db = new DBHelper();
 		user = db.fetchUserData(command);
 		Gson gson = new Gson();
@@ -45,5 +54,18 @@ public class LoginDAO {
 			System.out.println("新增成功");
 		else 
 			System.out.println("新增失敗");
+=======
+		JSONObject condition = new JSONObject();
+		condition.put("id", id);
+		condition.put("password", password);
+		try {
+			DBHelper db = new DBHelper();
+			user = db.QueryUserData(command, new JSONObject(condition.toString()));
+		}
+		catch (Exception e){
+			System.out.println(e);
+		}
+		return user;
+>>>>>>> 382d7481e99cf17e761ddc9581702ddee87574ff
 	}
 }
