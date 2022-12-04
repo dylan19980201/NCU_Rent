@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.cj.result.BooleanValueFactory;
+
 import ncu.rent.DTO.User;
 
 public class DBHelper {
@@ -51,7 +54,29 @@ public class DBHelper {
 		catch(Exception e) {
 			System.out.println(e);
 		}
+		finally {
+			con.close();
+		}
 		return list;
+	}
+	public int addUserData(String command, String []user) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			for(int i=0;i<user.length;i++) {
+				statement.setString(i+1,user[i]);
+			}
+			result  = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {con.close();} catch (SQLException e) {System.out.println(e);}
+		}
+
+		return result;
 	}
 	
 	
