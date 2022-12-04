@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import ncu.rent.DTO.User;
+import org.json.JSONObject;
 
 public class DBHelper {
 	static {
@@ -23,29 +24,30 @@ public class DBHelper {
 		con = DriverManager.getConnection("jdbc:mysql://140.115.82.113:3306/ncu_rent", "ncu_person1", "ncuperson5");
 		return con;
 	}
-
-	public List<User> fetchUserData(String command) throws SQLException {
+	
+	public List<User> QueryUserData(String command, JSONObject condition) throws SQLException {
 		List<User> list = new ArrayList<User>();
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet rs = null;
-
 		try {	
 			con = this.getConnection();
 			statement = con.prepareStatement(command);
 			// setString(第幾個問號, value)
-			statement.setString(1, "L0001");
+			statement.setObject(1, condition.get("id"));
+			statement.setObject(2, condition.get("password"));
 			rs = statement.executeQuery();
 			while(rs.next()) {
-				list.add(new User(
-						rs.getString("ID"),
-						rs.getString("Password"),
-						rs.getString("Name"),
-						rs.getString("Birth"),
-						rs.getString("Gender"),
-						rs.getString("Department"),
-						rs.getString("Phone"),
-						rs.getString("Email")));
+				User user = new User();
+				user.setID(rs.getString("ID"));
+				user.setPassword(rs.getString("Password"));
+				user.setName(rs.getString("Name"));
+				user.setBirth(rs.getString("Birth"));
+				user.setGender(rs.getString("Gender"));
+				user.setDepartment(rs.getString("Department"));
+				user.setPhone(rs.getNString("Phone"));
+				user.setEmail(rs.getString("Email"));
+				list.add(user);
 			}
 		}
 		catch(Exception e) {
