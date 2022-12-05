@@ -10,16 +10,6 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<% if(request.getAttribute("id")!= null) {%>
-			您好，<%= (request.getAttribute("name")).toString() %>
-		<% }else{ %>
-			查無使用者
-		<% } %>
-	</div>
+	<p>Hello!</p>
 </body>
 </html>
-
-<script>
-	
-</script>

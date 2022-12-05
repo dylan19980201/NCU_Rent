@@ -10,10 +10,11 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<form action ="Login">
+	<form action ="Login" method="post">
 		請輸入帳號:<input type="text" name="id">
 		請輸入密碼:<input type="text" name="password">
 		<input type="submit" value="登入">
 	</form>
+	<input type ="button" onclick="javascript:location.href='http://localhost:8080/NCURent/register.jsp'" value="註冊帳號"></input>
 </body>
 </html>

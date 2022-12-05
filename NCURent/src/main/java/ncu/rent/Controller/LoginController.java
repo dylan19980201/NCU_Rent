@@ -19,9 +19,11 @@ public class LoginController{
 		String password = request.getParameter("password");
 		// 取得資料庫的資料
 		User user = LoginBO.getUser(id, password);
-		request.setAttribute("id", user.getID());
-		request.setAttribute("password", user.getPassword());
-		request.setAttribute("name", user.getName());
+		if(user != null) {
+			request.setAttribute("id", user.getID());
+			request.setAttribute("password", user.getPassword());
+			request.setAttribute("name", user.getName());
+		}
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
 		return DataForFrontend(request, response, "result.jsp");
 	}

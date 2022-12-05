@@ -16,6 +16,9 @@ public class LoginDAO {
 					UNION
 					SELECT LID AS ID, LPassword AS Password, LName AS Name, LBirth AS Birth, LGender AS Gender, NULL AS Department, LPhone AS Phone, LEmail AS Email
 					FROM landlord
+					UNION
+					SELECT AID AS ID, APassword AS Password, AName as Name, NULL AS Birth, NULL AS Gender, NULL AS Department, APhone AS Phone, AEmail AS Email
+                    FROM administrator
 					) AS UserTable
 				WHERE ID = ? AND Password = ?""";
 		List<User> user = new ArrayList<User>();
