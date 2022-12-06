@@ -28,7 +28,9 @@ public class LoginController{
 		return DataForFrontend(request, response, "result.jsp");
 	}
 	
-	
+	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {
+		return DataForFrontend(request, response, "register.jsp");
+	}
 
 	// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
 	public JSONObject DataForFrontend(HttpServletRequest request, HttpServletResponse response, String page) {
