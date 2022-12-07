@@ -1,3 +1,6 @@
+
+			
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -12,12 +15,10 @@
 </head>
 <body>
 	<div>
-		<% if(session.getAttribute("id")!= null) {%>
-			您好，<%= (session.getAttribute("name")).toString() %>
-			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='http://localhost/NCURent/logout.jsp'" value="登出">
-		<% }else{ %>
-			查無使用者
-		<% } %>
+		<%
+		session.invalidate();
+		response.sendRedirect("login.jsp");
+		%>
 	</div>
 </body>
 </html>
