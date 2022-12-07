@@ -16,6 +16,6 @@
 		密碼:<input type="text" name="password">
 		<input type="submit" value="登入" class="btn btn-outline-primary">
 	</form>
-	<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='http://localhost:8080/NCURent/register.jsp'" value="註冊帳號"></input>
+	<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='register.jsp'" value="註冊帳號"></input>
 </body>
 </html>

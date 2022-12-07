@@ -11,18 +11,6 @@ public class User {
     private String Department;
     private String Phone;
     private String Email;
-    /*
-    public User(String ID,String Password,String Name,String Birth,String Gender,String Department,String Phone,String Email) {
-        this.ID = ID;
-        this.Password = Password;
-        this.Name = Name;
-        this.Birth = Birth;
-        this.Gender = Gender;
-        this.Department = Department;
-        this.Phone = Phone;
-        this.Email = Email;
-    }
-    */
     // GET method
     public String getID() {return ID;}
     public String getPassword() {return Password;}
