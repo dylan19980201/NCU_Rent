@@ -3,6 +3,7 @@ package ncu.rent.Controller;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import ncu.rent.BO.DeleteUserBO;
 import ncu.rent.BO.LoginBO;
 import ncu.rent.BO.RegisterBO;
 import ncu.rent.DTO.User;
@@ -67,6 +68,26 @@ public class LoginController extends SuperController{
 		} else {
 			request.setAttribute("error","新增失敗");
 			return DataForFrontend(request, response, "register.jsp");
+		}
+	}
+
+	public JSONObject DeleteUser(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+		String sessionId = session.getId();
+		if(!sessionId.equals(id)) {
+			request.setAttribute("error","錯誤");
+			return DataForFrontend(request, response, "deleteUser.jsp");
+		}
+		DeleteUserBO DBO = new DeleteUserBO();
+		boolean success = DBO.deleteUser(id, password);
+		if(success) {
+			System.out.println("delete");
+			return DataForFrontend(request, response, "login.jsp");
+		} else {
+			request.setAttribute("error","帳號或密碼錯誤");
+			return DataForFrontend(request, response, "deleteUser.jsp");
 		}
 	}
 }

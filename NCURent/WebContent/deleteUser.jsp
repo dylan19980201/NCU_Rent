@@ -12,13 +12,18 @@
 </head>
 <body>
 	<div>
-		<% if(session.getAttribute("id")!= null) {%>
+		<form action ="DeleteUser" method="post">
+			使用者帳號:<input type="text" name="id">
+			密碼:<input type="text" name="password">
+			<input type="submit" value="刪除帳號" class="btn btn-outline-primary">
+		</form>
+		<!-- <% if(session.getAttribute("id")!= null) {%>
 			您好，<%= (session.getAttribute("name")).toString() %>
 			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='logout.jsp'" value="登出">
-			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='deleteUser.jsp'" value="刪除帳號">
+			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='logout.jsp'" value="登出">
 		<% }else{ %>
 			查無使用者
-		<% } %>
+		<% } %> -->
 	</div>
 </body>
 </html>

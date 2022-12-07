@@ -80,6 +80,25 @@ public class DBHelper {
 
 		return result;
 	}
+
+	public int DeleteUserData(String command, JSONObject condition) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("id"));
+			statement.setObject(2, condition.get("password"));
+			result  = statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {con.close();} catch (SQLException e) {System.out.println(e);}
+		}
+		
+		return result;
+	}
 	
 	
 }
