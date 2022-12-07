@@ -39,7 +39,7 @@ public class LoginController{
 	
 	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {
 		String []user;
-		if(request.getParameter("type") == "1") {
+		if((request.getParameter("type")).equals("1")) {
 			user = new String[]{
 				request.getParameter("id"),
 				request.getParameter("password"),
@@ -59,7 +59,10 @@ public class LoginController{
 				request.getParameter("phone"),
 				request.getParameter("email")};
 		}
-		if(RegisterBO.addUser(user,request.getParameter("type"))) {
+		RegisterBO RBO = new RegisterBO();
+		boolean success = RBO.addUser(user, request.getParameter("type"));
+		if(success) {
+			System.out.println("test");
 			return DataForFrontend(request, response, "login.jsp");
 		} else {
 			request.setAttribute("error","新增失敗");
