@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import ncu.rent.BO.LoginBO;
+import ncu.rent.BO.RegisterBO;
 import ncu.rent.DTO.User;
 import org.json.JSONObject;
 
@@ -52,7 +53,33 @@ public class LoginController{
 	}
 	
 	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {
-		return DataForFrontend(request, response, "register.jsp");
+		String []user;
+		if(request.getParameter("type") == "1") {
+			user = new String[]{
+				request.getParameter("id"),
+				request.getParameter("password"),
+				request.getParameter("name"),
+				request.getParameter("birth"),
+				request.getParameter("gender"),
+				request.getParameter("department"),
+				request.getParameter("phone"),
+				request.getParameter("email")};
+		} else {
+			user = new String[]{
+				request.getParameter("id"),
+				request.getParameter("password"),
+				request.getParameter("name"),
+				request.getParameter("birth"),
+				request.getParameter("gender"),
+				request.getParameter("phone"),
+				request.getParameter("email")};
+		}
+		if(RegisterBO.addUser(user,request.getParameter("type"))) {
+			return DataForFrontend(request, response, "login.jsp");
+		} else {
+			request.setAttribute("error","新增失敗");
+			return DataForFrontend(request, response, "register.jsp");
+		}
 	}
 
 	// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
