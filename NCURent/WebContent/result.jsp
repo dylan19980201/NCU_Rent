@@ -14,7 +14,7 @@
 	<div>
 		<% if(session.getAttribute("id")!= null) {%>
 			您好，<%= (session.getAttribute("name")).toString() %>
-			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='http://localhost/NCURent/logout.jsp'" value="登出">
+			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='logout.jsp'" value="登出">
 		<% }else{ %>
 			查無使用者
 		<% } %>
