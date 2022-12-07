@@ -24,6 +24,29 @@ public class LoginController{
 			request.setAttribute("password", user.getPassword());
 			request.setAttribute("name", user.getName());
 		}
+		//session  --保持持續登入，儲存使用者資訊--
+		HttpSession session = request.getSession();
+		String sessionId = session.getId();
+		//String sessionName = session.getAttribute(sessionId)
+		
+		//確認是否已經登入
+		/*if (session.isNew()) {
+		    try {
+				response.getWriter().print("session建立成功，session的id是："+sessionId);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+		    try {
+				response.getWriter().print("伺服器已經存在session，session的id是："+sessionId);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		*/
+
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
 		return DataForFrontend(request, response, "result.jsp");
 	}
