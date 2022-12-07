@@ -5,6 +5,7 @@
 
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <head>
 	<meta charset="utf-8">
 	<title>Insert title here</title>
@@ -13,8 +14,8 @@
 	<form action ="Login" method="post">
 		請輸入帳號:<input type="text" name="id">
 		請輸入密碼:<input type="text" name="password">
-		<input type="submit" value="登入">
+		<input type="submit" value="登入" class="btn btn-outline-primary">
 	</form>
-	<input type ="button" onclick="javascript:location.href='http://localhost:8080/NCURent/register.jsp'" value="註冊帳號"></input>
+	<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='http://localhost:8080/NCURent/register.jsp'" value="註冊帳號"></input>
 </body>
 </html>

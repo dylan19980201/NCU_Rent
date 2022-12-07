@@ -11,16 +11,14 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<% if(request.getAttribute("id")!= null) {%>
-			您好，<%= (request.getAttribute("name")).toString() %>
-		<% }else{ %>
-			查無使用者
-		<% } %>
-	</div>
+	<p><input type="file" accept=".png, .jpg, jpeg" onChange="fileUpload" ></p>
+	<button type="submit" class="btn btn-outline-primary">Submit</button>
 </body>
-</html>
+
 
 <script>
-	
+
 </script>
+
+
+</html>
