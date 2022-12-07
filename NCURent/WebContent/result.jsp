@@ -12,8 +12,9 @@
 </head>
 <body>
 	<div>
-		<% if(request.getAttribute("id")!= null) {%>
-			您好，<%= (request.getAttribute("name")).toString() %>
+		<% if(session.getAttribute("id")!= null) {%>
+			您好，<%= (session.getAttribute("name")).toString() %>
+			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='http://localhost/NCURent/logout.jsp'" value="登出">
 		<% }else{ %>
 			查無使用者
 		<% } %>
