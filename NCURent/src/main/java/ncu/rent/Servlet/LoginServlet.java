@@ -28,7 +28,6 @@ public class LoginServlet extends HttpServlet{
 			JSONObject data = null;
 			try {
 				Method method= classObj.getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
-				method.invoke(loginController, request, response);
 				data= (JSONObject) method.invoke(loginController, request, response); 
 			}
 			catch(Exception e){
@@ -45,7 +44,6 @@ public class LoginServlet extends HttpServlet{
 			JSONObject data = null;
 			try {
 				Method method= classObj.getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
-				method.invoke(loginController, request, response);
 				data= (JSONObject) method.invoke(loginController, request, response); 
 			}
 			catch(Exception e){

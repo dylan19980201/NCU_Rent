@@ -11,7 +11,7 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<p><input type="file" accept=".png, .jpg, jpeg" onChange="fileUpload" ></p>
+	<p><input type="file" name="image" class="projectfile" value="${deal.image}"/></p>
 	<button type="submit" class="btn btn-outline-primary">Submit</button>
 </body>
 
