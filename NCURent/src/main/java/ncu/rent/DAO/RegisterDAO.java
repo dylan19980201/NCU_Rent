@@ -6,7 +6,7 @@ public class RegisterDAO {
     public boolean addUserData(String[] user,String type) {
 		DBHelper db = new DBHelper();
 		String command = "";
-		if(type=="1")
+		if(type.equals("1"))
 			command = """
 				insert into student (SID,SPassword,SName,SBirth,SGender,SDepartment,SPhone,SEmail)
 				VALUES (?,?,?,?,?,?,?,?)""";

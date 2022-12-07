@@ -13,14 +13,15 @@
 <body>
 	
 	<form action ="Register" method="post">
-		<div name = "type" value = "1">
-			學生註冊 <%if(request.getAttribute("error")!=null) {%> <%= (request.getAttribute("error")) %> <% } %>
+		<div>
+			<label>學生註冊</label> <%if(request.getAttribute("error")!=null) {%> <%= (request.getAttribute("error")) %> <% } %>
+			<input type="text" name="type" value = "1">
 		</div>
 		帳號:<input type="text" name="id" value = "test1">
 		密碼:<input type="text" name="password" value = "test">
 		姓名:<input type="text" name="name" value = "test">
-		生日:<input type="text" name="birth" value = "test">
-		性別:<input type="text" name="gender" value = "test">
+		生日:<input type="text" name="birth" value = "2000-01-01">
+		性別:<input type="text" name="gender" value = "男">
 		系所:<input type="text" name="department" value = "test">
 		手機:<input type="text" name="phone" value = "test">
 		信箱:<input type="text" name="email" value = "test">
