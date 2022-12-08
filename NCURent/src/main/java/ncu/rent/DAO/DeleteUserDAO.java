@@ -10,7 +10,7 @@ public class DeleteUserDAO {
 	public boolean DeleteUserData(String id, String password){
 		String command = """
 				Delete From student
-				WHERE ID = ? AND Password = ?""";
+				WHERE SID = ? AND SPassword = ?""";
 		JSONObject condition = new JSONObject();
 		condition.put("id", id);
 		condition.put("password", password);

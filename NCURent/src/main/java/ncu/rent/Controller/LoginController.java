@@ -75,7 +75,8 @@ public class LoginController extends SuperController{
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
-		String sessionId = session.getId();
+		String sessionId = (session.getAttribute("id")).toString();
+		System.out.println("sessionId:"+sessionId);
 		if(!sessionId.equals(id)) {
 			request.setAttribute("error","錯誤");
 			return DataForFrontend(request, response, "deleteUser.jsp");
@@ -84,7 +85,7 @@ public class LoginController extends SuperController{
 		boolean success = DBO.deleteUser(id, password);
 		if(success) {
 			System.out.println("delete");
-			return DataForFrontend(request, response, "login.jsp");
+			return DataForFrontend(request, response, "logout.jsp");
 		} else {
 			request.setAttribute("error","帳號或密碼錯誤");
 			return DataForFrontend(request, response, "deleteUser.jsp");
