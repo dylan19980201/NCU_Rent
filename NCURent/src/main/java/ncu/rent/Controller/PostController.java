@@ -6,7 +6,6 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import ncu.rent.BO.LoginBO;
-import ncu.rent.BO.RegisterBO;
 import ncu.rent.DTO.User;
 import org.json.JSONObject;
 import java.io.*;
