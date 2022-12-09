@@ -10,9 +10,8 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/Login</url-pattern>
-    <url-pattern>/Register</url-pattern>
-    <url-pattern>/DeleteUser</url-pattern>
+    <url-pattern>/Login/Login</url-pattern>
+    <url-pattern>/Login/Register</url-pattern>
   </servlet-mapping>
   <servlet>
   	<servlet-name>ActionServlet</servlet-name>

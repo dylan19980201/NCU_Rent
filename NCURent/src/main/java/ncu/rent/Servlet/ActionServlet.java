@@ -22,13 +22,13 @@ public class ActionServlet extends HttpServlet{
 			JSONObject data = data(path, request, response);
 			RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
 			view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			return;
 		}else {
-			System.out.println("post");
 			LoginMessageBox(response);
 		}
 	}
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+	public void doGet(HttpServletRequest request, HttpServletResponse response, String page) throws IOException, ServletException{
 		HttpSession session = request.getSession();
 		if(session.getAttribute("id") != null) {
 			String path = request.getServletPath().substring(1);
@@ -36,7 +36,6 @@ public class ActionServlet extends HttpServlet{
 			RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
 			view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
 		}else {
-			System.out.println("get");
 			LoginMessageBox(response);
 		}
 	}
@@ -64,7 +63,7 @@ public class ActionServlet extends HttpServlet{
 		return data;
 	}
 	private void LoginMessageBox(HttpServletResponse response) throws IOException{
-		String a = URLEncoder.encode("沒有登入還想用阿！", "UTF-8"); 
+		String a = URLEncoder.encode("沒登入還想用阿！", "UTF-8"); 
 		PrintWriter out = response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert(decodeURIComponent('"+a+"'));");

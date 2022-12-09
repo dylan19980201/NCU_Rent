@@ -23,7 +23,9 @@ public class LoginServlet extends HttpServlet{
 	private static LoginController loginController= new LoginController();
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-			String methodName= request.getServletPath().replace("/", "");
+			//String methodName= request.getServletPath().replace("/", "");
+			String path = request.getServletPath().substring(1);
+			String methodName= path.substring(path.indexOf("/")+1, path.length());
 			Class<?> classObj = loginController.getClass();
 			JSONObject data = null;
 			try {
@@ -36,10 +38,12 @@ public class LoginServlet extends HttpServlet{
 	
 			RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
 			view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			return;
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-			String methodName= request.getServletPath().replace("/", "");
+			String path = request.getServletPath().substring(1);
+			String methodName= path.substring(path.indexOf("/")+1, path.length());
 			Class<?> classObj = loginController.getClass();
 			JSONObject data = null;
 			try {
@@ -52,6 +56,7 @@ public class LoginServlet extends HttpServlet{
 
 			RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
 			view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			return;
 	}
 
 }

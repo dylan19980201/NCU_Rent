@@ -35,7 +35,7 @@ public class LoginController extends SuperController{
 			session.setAttribute("sessionID", sessionId);
 		}
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
-		return DataForFrontend(request, response, "result.jsp");
+		return DataForFrontend(request, response, "../result.jsp");
 	}
 	
 	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {
@@ -64,10 +64,10 @@ public class LoginController extends SuperController{
 		boolean success = RBO.addUser(user, request.getParameter("type"));
 		if(success) {
 			System.out.println("test");
-			return DataForFrontend(request, response, "login.jsp");
+			return DataForFrontend(request, response, "../login.jsp");
 		} else {
 			request.setAttribute("error","新增失敗");
-			return DataForFrontend(request, response, "register.jsp");
+			return DataForFrontend(request, response, "../register.jsp");
 		}
 	}
 
@@ -75,13 +75,13 @@ public class LoginController extends SuperController{
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		DeleteUserBO DBO = new DeleteUserBO();
+		request.setAttribute("param", "測試參數");
 		boolean success = DBO.deleteUser(id, password);
 		if(success) {
-			System.out.println("delete");
-			return DataForFrontend(request, response, "logout.jsp");
+			return DataForFrontend(request, response, "../logout.jsp");
 		} else {
 			request.setAttribute("error","帳號或密碼錯誤");
-			return DataForFrontend(request, response, "deleteUser.jsp");
+			return DataForFrontend(request, response, "../deleteUser.jsp");
 		}
 	}
 	public void Hi(String param) {
