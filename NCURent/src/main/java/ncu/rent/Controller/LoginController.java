@@ -1,6 +1,7 @@
 package ncu.rent.Controller;
 
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import ncu.rent.BO.DeleteUserBO;
@@ -10,7 +11,6 @@ import ncu.rent.DTO.User;
 import org.json.JSONObject;
 
 import java.io.*;
-
 
 public class LoginController extends SuperController{
 	public static LoginBO LoginBO = new LoginBO();

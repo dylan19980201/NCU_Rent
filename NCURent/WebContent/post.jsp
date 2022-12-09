@@ -11,11 +11,11 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	 <form name="homePost" enctype="multipart/form-data" method="post" action="/strutsapp/upload.do">
-	    <input type="file" name="file"> <br>
-	    <input type="submit"value="送出">
- 	</form>
-	<button type="submit" class="btn btn-outline-primary">Submit</button>
+	<form method="post" action="/NCURent/Post/Add" enctype="multipart/form-data">
+	    <input type="file" name="file" />
+	    <input type="submit" value="Upload" />
+  	</form>
+	<!-- <button type="submit">Submit</button> -->
 </body>
 
 

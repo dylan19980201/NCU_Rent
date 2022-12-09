@@ -1,6 +1,7 @@
 package ncu.rent.Servlet;
 
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.*;
 import java.lang.reflect.Method;
 import java.net.URLEncoder;
@@ -9,7 +10,7 @@ import org.json.JSONObject;
 
 import ncu.rent.Controller.PostController;
 import ncu.rent.Controller.LoginController;
-
+@MultipartConfig
 
 public class ActionServlet extends HttpServlet{
 	private static LoginController loginController= new LoginController();
@@ -53,7 +54,7 @@ public class ActionServlet extends HttpServlet{
 					break;
 				case "Post":
 					Class<?> postClassObj = postController.getClass();
-					Method postMethod = postClassObj.getDeclaredMethod(methodName, String.class);
+					Method postMethod = postClassObj.getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
 					data = (JSONObject) postMethod.invoke(postController, request, response);
 					break;
 			}
@@ -67,7 +68,7 @@ public class ActionServlet extends HttpServlet{
 		PrintWriter out = response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert(decodeURIComponent('"+a+"'));");
-		out.println("location='../login.jsp';");
+		out.println("location='/NCURent/login.jsp';");
 		out.println("</script>");
 	}
 }
