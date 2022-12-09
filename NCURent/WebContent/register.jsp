@@ -12,7 +12,7 @@
 </head>
 <body>
 	
-	<form action ="Register" method="post">
+	<form action ="/NCURent/Login/Register" method="post">
 		<div>
 			<label>學生註冊</label> <%if(request.getAttribute("error")!=null) {%> <%= (request.getAttribute("error")) %> <% } %>
 			<input type="text" name="type" value = "1">

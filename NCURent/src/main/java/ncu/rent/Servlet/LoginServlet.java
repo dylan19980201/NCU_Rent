@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.lang.reflect.Method;
+import java.net.URLEncoder;
 import java.lang.reflect.InvocationTargetException;
 import java.io.*;
 
@@ -11,7 +12,6 @@ import ncu.rent.Controller.LoginController;
 import org.json.JSONObject;
 import ncu.rent.DTO.User;
 
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -23,7 +23,8 @@ public class LoginServlet extends HttpServlet{
 	private static LoginController loginController= new LoginController();
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-			String methodName= request.getServletPath().replace("/", "");
+			String path = request.getServletPath().substring(1);
+			String methodName= path.substring(path.indexOf("/")+1, path.length());
 			Class<?> classObj = loginController.getClass();
 			JSONObject data = null;
 			try {
@@ -36,10 +37,12 @@ public class LoginServlet extends HttpServlet{
 	
 			RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
 			view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			return;
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-			String methodName= request.getServletPath().replace("/", "");
+			String path = request.getServletPath().substring(1);
+			String methodName= path.substring(path.indexOf("/")+1, path.length());
 			Class<?> classObj = loginController.getClass();
 			JSONObject data = null;
 			try {
@@ -52,6 +55,6 @@ public class LoginServlet extends HttpServlet{
 
 			RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
 			view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			return;
 	}
-
 }

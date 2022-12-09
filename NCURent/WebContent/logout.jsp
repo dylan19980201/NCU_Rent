@@ -17,12 +17,8 @@
 	<div>
 		<%
 		session.invalidate();
-		response.sendRedirect("login.jsp");
+		response.sendRedirect("/NCURent/login.jsp");
 		%>
 	</div>
 </body>
 </html>
-
-<script>
-	
-</script>

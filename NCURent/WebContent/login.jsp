@@ -11,7 +11,7 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<form action ="Login" method="post">
+	<form action ="/NCURent/Login/Login" method="post">
 		使用者帳號:<input type="text" name="id">
 		密碼:<input type="text" name="password">
 		<input type="submit" value="登入" class="btn btn-outline-primary">
