@@ -72,7 +72,6 @@ public class LoginController extends SuperController {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		LoginBO LoginBO = new LoginBO();
-		request.setAttribute("param", "測試參數");
 		boolean success = LoginBO.deleteUser(id, password);
 		if (success) {
 			return DataForFrontend(request, response, "../logout.jsp");
