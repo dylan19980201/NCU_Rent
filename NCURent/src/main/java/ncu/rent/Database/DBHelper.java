@@ -104,5 +104,9 @@ public class DBHelper {
 		}
 		return result;
 	}
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> 95d6d8dcd15035d802c6a7665bf8ab4f5701b743
 }
