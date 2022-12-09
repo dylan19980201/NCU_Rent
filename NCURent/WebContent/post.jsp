@@ -11,7 +11,10 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<p><input type="file" name="image" class="projectfile" value="${deal.image}"/></p>
+	 <form name="homePost" enctype="multipart/form-data" method="post" action="/strutsapp/upload.do">
+	    <input type="file" name="file"> <br>
+	    <input type="submit"value="送出">
+ 	</form>
 	<button type="submit" class="btn btn-outline-primary">Submit</button>
 </body>
 

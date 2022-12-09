@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div>
-		<form action ="DeleteUser" method="post">
+		<form action ="Login/DeleteUser" method="post">
 			使用者帳號:<input type="text" name="id">
 			密碼:<input type="text" name="password">
 			<input type="submit" value="刪除帳號" class="btn btn-outline-primary">

@@ -10,8 +10,17 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/Login</url-pattern>
-    <url-pattern>/Register</url-pattern>
+    <url-pattern>Login/Login</url-pattern>
+    <url-pattern>Login/Register</url-pattern>
     <url-pattern>/DeleteUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>ActionServlet</servlet-name>
+  	<servlet-class>ncu.rent.Servlet.ActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ActionServlet</servlet-name>
+  	<url-pattern>/Post/Add</url-pattern>
+  	<url-pattern>/Login/DeleteUser</url-pattern>
   </servlet-mapping>
 </web-app>
