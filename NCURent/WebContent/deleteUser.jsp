@@ -12,6 +12,9 @@
 </head>
 <body>
 	<div>
+		<div>
+			<label>刪除帳號</label> <%if(request.getAttribute("error")!=null) {%> <%= (request.getAttribute("error")) %> <% } %>
+		</div>
 		<form action ="/NCURent/Login/DeleteUser" method="post">
 			使用者帳號:<input type="text" name="id">
 			密碼:<input type="text" name="password">
