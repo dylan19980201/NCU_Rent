@@ -23,5 +23,5 @@ public class House {
 	public String getPictureName() {return PictureName;}
 	public String getPostDateTime() {return PostDateTime;}
 	//POST method
-	public String 
+	
 }
