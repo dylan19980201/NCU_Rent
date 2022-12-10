@@ -36,11 +36,18 @@ public class PostController extends SuperController{
 		for(Part part : request.getParts()) {
 			part.write(path()+fileName);
 		}
+		FileReader fr = new FileReader(path()+fileName);
+		BufferedReader br = new BufferedReader(fr);
+
+		while (br.ready()) {
+			System.out.println(br.readLine());
+		}
+		fr.close();
 		response.getWriter().print("success");
 	}
 	public String path(){
 		String path = getClass().getResource("/").getPath();
-		path = path.substring(1, path.indexOf(".metadata"))+"\\upload\\houseImage\\";
+		path = path.substring(1, path.indexOf(".metadata"))+"\\NCURent\\WebContent\\upload\\";
 		Path p = Paths.get(path);
 		try {
 			if(!Files.exists(p)) {

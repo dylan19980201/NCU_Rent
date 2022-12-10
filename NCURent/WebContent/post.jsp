@@ -3,6 +3,7 @@
     
 <%@ page import="java.util.*"  %>
 
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -12,10 +13,16 @@
 </head>
 <body>
 	<form method="post" action="/NCURent/Post/Add" enctype="multipart/form-data">
+		房屋地址:<input type="text" name="HAdress" >
+		屋齡:<input type="text" name="HYear" >
+		租金:<input type="text" name="Rent" >
+		坪數:<input type="text" name="Size" >
+		設備:<input type="text" name="Equipment" >
+		性別限制:<input type="text" name="GenderSpecific" >
 	    <input type="file" name="file" />
-	    <input type="submit" value="Upload" />
+	    <input type="submit" value="請求刊登" class="btn btn-outline-primary">
+	    <img src="upload/house.jpg">
   	</form>
-	<!-- <button type="submit">Submit</button> -->
 </body>
 
 
