@@ -35,7 +35,7 @@
               <a class="text-white text-decoration-none d-flex pe-4" href="#"><i class="pe-1 mt-1 fas fa-rss"></i><span class="nav-name d-none d-md-block">查看學生評價</span></a>
             </li>
             <li>
-              <a class="text-white text-decoration-none d-flex pe-4" href="#"><i class="pe-1 mt-1 fas fa-search"></i><span class="nav-name d-none d-md-block"><center>登出</center></span></a>
+              <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/logout.jsp"><i class="pe-1 mt-1 fas fa-search"></i><span class="nav-name d-none d-md-block"><center>登出</center></span></a>
             </li>
           </ul>
         </div>
