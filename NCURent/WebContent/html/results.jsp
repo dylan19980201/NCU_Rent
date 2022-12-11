@@ -32,7 +32,7 @@
                 <div class="card-body">
                   <h5 class="card-title">桃園市中壢區中央路100號</h5>
                   <p class="card-text">房東：柯小哲<br>房屋坪數：7坪<br>房屋租金：5000/月<br>房屋設備：單人床/熱水器/冷氣<br>屋齡：12年<br>其他備註：無</p>
-                  <a href="./check.jsp" class="btn btn-primary">審查</a>
+                  <a href="/NCURent/html/check.jsp" class="btn btn-primary">審查</a>
                 </div>
               </div>
             </div>
