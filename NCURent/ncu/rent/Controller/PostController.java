@@ -14,27 +14,31 @@ import ncu.rent.BO.PostBO;
 
 public class PostController extends SuperController{
 	public JSONObject AddPost(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
-		UploadBO UploadBO = new UploadBO();
-		PostBO  PostBO = new PostBO();
 		HttpSession session = request.getSession();
-		String userId = (session.getAttribute("id")).toString();
-		String[] house = null;
-		Part filePart = request.getPart("file");
-		house = new String[] {
-				request.getParameter("HAddress"),
-				request.getParameter("HYear"),
-				request.getParameter("Rent"),
-				request.getParameter("Size"),
-				request.getParameter("Equipment"),
-				request.getParameter("GenderSpecific"),
-				userId
-		};
-		int id = PostBO.AddPost(house);
-		if(id != 0) {
-			UploadBO.upload(filePart, request.getParts(), "house"+id+".jpg");
+		String type = (session.getAttribute("type")).toString();
+		if(type.equals("landlord")) {
+			UploadBO UploadBO = new UploadBO();
+			PostBO  PostBO = new PostBO();
+			String userId = (session.getAttribute("id")).toString();
+			String[] house = null;
+			Part filePart = request.getPart("file");
+			house = new String[] {
+					request.getParameter("HAddress"),
+					request.getParameter("HYear"),
+					request.getParameter("Rent"),
+					request.getParameter("Size"),
+					request.getParameter("Equipment"),
+					request.getParameter("GenderSpecific"),
+					userId
+			};
+			int id = PostBO.AddPost(house);
+			if(id != 0) {
+				UploadBO.upload(filePart, request.getParts(), "house"+id+".jpg");
+			}
+			request.setAttribute("returnMessage", "刊登成功");
+			return DataForFrontend(request, response, "../post.jsp");
+		}else {
+			return null;
 		}
-		request.setAttribute("returnMessage", "刊登成功");
-		//request.setAttribute("returnPath", "/NCURent/post.jsp");
-		return DataForFrontend(request, response, "../post.jsp");
 	}
 }

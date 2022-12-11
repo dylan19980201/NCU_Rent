@@ -28,7 +28,7 @@
 		性別限制:<input type="text" name="GenderSpecific" >
 	    <input type="file" name="file"/>
 	    <input type="submit" value="請求刊登" class="btn btn-outline-primary">
-	    <img src="upload/house2.jpg">
+	    <img src="/NCURent/upload/house2.jpg">
   	</form>
 </body>
 

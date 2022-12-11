@@ -11,13 +11,13 @@ public class LoginDAO {
 		String command = """
 				SELECT ID, Password, Name, Birth, Gender, Department, Phone, Email, Type
 				FROM (
-					SELECT SID AS ID, SPassword as Password, SName AS Name, SBirth AS Birth, SGender as Gender, SDepartment AS Department, SPhone as Phone, SEmail as Email, 1 AS Type
+					SELECT SID AS ID, SPassword as Password, SName AS Name, SBirth AS Birth, SGender as Gender, SDepartment AS Department, SPhone as Phone, SEmail as Email, 'student' AS Type
 					FROM student
 					UNION
-					SELECT LID AS ID, LPassword AS Password, LName AS Name, LBirth AS Birth, LGender AS Gender, NULL AS Department, LPhone AS Phone, LEmail AS Email, 2 AS Type
+					SELECT LID AS ID, LPassword AS Password, LName AS Name, LBirth AS Birth, LGender AS Gender, NULL AS Department, LPhone AS Phone, LEmail AS Email, 'landlord' AS Type
 					FROM landlord
 					UNION
-					SELECT AID AS ID, APassword AS Password, AName as Name, NULL AS Birth, NULL AS Gender, NULL AS Department, APhone AS Phone, AEmail AS Email, 3 AS Type
+					SELECT AID AS ID, APassword AS Password, AName as Name, NULL AS Birth, NULL AS Gender, NULL AS Department, APhone AS Phone, AEmail AS Email, 'administrator' AS Type
 				                FROM administrator
 					) AS UserTable
 				WHERE ID = ? AND Password = ?""";

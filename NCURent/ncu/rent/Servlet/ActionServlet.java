@@ -25,7 +25,7 @@ public class ActionServlet extends HttpServlet{
 				RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
 				view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
 			}else {
-				response.getWriter().print("帳號沒有此功能權限或請聯絡系統管理員...");
+				response.getWriter().print("The account does not have this function permission or please contact the system administrator...");
 			}
 			return;
 		}else {
@@ -42,7 +42,7 @@ public class ActionServlet extends HttpServlet{
 				RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
 				view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
 			}else {
-				response.getWriter().print("帳號沒有此功能權限或請聯絡系統管理員...");
+				response.getWriter().print("The account does not have this function permission or please contact the system administrator...");
 			}
 		}else {
 			LoginMessageBox(response, "沒登入還想用阿！", "login.jsp");
