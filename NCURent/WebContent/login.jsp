@@ -2,20 +2,24 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="java.util.*"  %>
-
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<head>
-	<meta charset="utf-8">
-	<title>Insert title here</title>
-</head>
-<body>
-	<form action ="/NCURent/Login/Login" method="post">
-		使用者帳號:<input type="text" name="id">
-		密碼:<input type="text" name="password">
-		<input type="submit" value="登入" class="btn btn-outline-primary">
-	</form>
-	<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='/NCURent/register.jsp'" value="註冊帳號"></input>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- <script src="rent.js"></script> -->
+        <title>登入頁面</title>
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="form">
+                <form class="login-form" action ="/NCURent/Login/Login" method="post">
+                    <input type="text" placeholder="username" name="id"/>
+                    <input type="password" placeholder="password" name="password"/>
+                    <button type="submit" value="登入" class="btn btn-outline-primary">login</button>
+                </form>
+                <p class="message"> <a href="registerchose.jsp">Create an account</a></p>
+            </div>
+        </div>
+    </body>
 </html>

@@ -60,7 +60,10 @@ public class LoginController extends SuperController {
 			return DataForFrontend(request, response, "../login.jsp");
 		} else {
 			request.setAttribute("error", "新增失敗");
-			return DataForFrontend(request, response, "../register.jsp");
+			if ((request.getParameter("type")).equals("1"))
+				return DataForFrontend(request, response, "../registerforlandlord.jsp");
+			else 
+				return DataForFrontend(request, response, "../registerforstudent.jsp");
 		}
 	}
 
