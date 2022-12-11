@@ -26,9 +26,11 @@ public class LoginController extends SuperController {
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("type", user.getType());
+			return DataForFrontend(request, response, "../html/index.jsp");
 		}
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
-		return DataForFrontend(request, response, "../html/index.jsp");
+		request.setAttribute("error", "帳號或密碼錯誤");
+		return DataForFrontend(request, response, "../login.jsp");
 	}
 
 	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {

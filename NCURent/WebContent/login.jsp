@@ -12,6 +12,8 @@
     <body>
         <div class="login-page">
             <div class="form">
+                <p><%if(request.getAttribute("error")!=null) {%> <%= (request.getAttribute("error")) %> <% } %></p>
+                <label>登入</label> 
                 <form class="login-form" action ="/NCURent/Login/Login" method="post">
                     <input type="text" placeholder="username" name="id"/>
                     <input type="password" placeholder="password" name="password"/>
