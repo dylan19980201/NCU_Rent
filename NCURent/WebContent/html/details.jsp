@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ page import="java.util.*"  %>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,7 +22,7 @@
       <nav class="nav-top bg-red p-2 d-md-flex align-items-center">
         <div class="d-flex justify-content-center ps-md-2">
             <a href="#"><img class="logo" src="./images/favicon.png" alt=""></a>
-            <h1 class="fs-4"><a class="text-decoration-none text-white" href="./index.html">中央大學預約看房網</a></h1>
+            <h1 class="fs-4"><a class="text-decoration-none text-white" href="./index.jsp">中央大學預約看房網</a></h1>
         </div>
         <div>
           <ul class="nav-link d-flex justify-content-center list-unstyled pt-3">
@@ -55,7 +60,7 @@
                 <li class="row-line"><h5>有無陽台:無<h5></li>
 		<li class="row-line"><h5>其他備註:無<h5></li>
               </ul>
-	      <p class="apply-btn"><a class="bg-primary p-2 px-4 text-white text-decoration-none" a href="./reserve.html">預約看房</a></p>
+	      <p class="apply-btn"><a class="bg-primary p-2 px-4 text-white text-decoration-none" a href="./reserve.jsp">預約看房</a></p>
             </div>
           </div>
         </div>
