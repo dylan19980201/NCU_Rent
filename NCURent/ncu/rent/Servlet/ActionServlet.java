@@ -21,11 +21,15 @@ public class ActionServlet extends HttpServlet{
 		if(session.getAttribute("id") != null) {
 			String path = request.getServletPath().substring(1);
 			JSONObject data = data(path, request, response);
-			RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
-			view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			if(data != null) {
+				RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
+				view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			}else {
+				response.getWriter().print("帳號沒有此功能權限或請聯絡系統管理員...");
+			}
 			return;
 		}else {
-			LoginMessageBox(response);
+			LoginMessageBox(response, "沒登入還想用阿！", "login.jsp");
 		}
 	}
 	
@@ -34,10 +38,14 @@ public class ActionServlet extends HttpServlet{
 		if(session.getAttribute("id") != null) {
 			String path = request.getServletPath().substring(1);
 			JSONObject data = data(path, request, response);
-			RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
-			view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			if(data != null) {
+				RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
+				view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+			}else {
+				response.getWriter().print("帳號沒有此功能權限或請聯絡系統管理員...");
+			}
 		}else {
-			LoginMessageBox(response);
+			LoginMessageBox(response, "沒登入還想用阿！", "login.jsp");
 		}
 	}
 	
@@ -63,12 +71,13 @@ public class ActionServlet extends HttpServlet{
 		}
 		return data;
 	}
-	private void LoginMessageBox(HttpServletResponse response) throws IOException{
-		String a = URLEncoder.encode("沒登入還想用阿！", "UTF-8"); 
+	private void LoginMessageBox(HttpServletResponse response, String message, String path) throws IOException{
+		String a = URLEncoder.encode(message, "UTF-8"); 
 		PrintWriter out = response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert(decodeURIComponent('"+a+"'));");
-		out.println("location='/NCURent/login.jsp';");
+		if(path != null)
+			out.println("location='/NCURent/"+path+"';");
 		out.println("</script>");
 	}
 }

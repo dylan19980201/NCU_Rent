@@ -6,13 +6,14 @@ import jakarta.servlet.http.*;
 import ncu.rent.DTO.House;
 import org.json.JSONObject;
 import java.io.*;
+import java.net.URLEncoder;
 
 import ncu.rent.BO.UploadBO;
 import ncu.rent.BO.PostBO;
 
 
 public class PostController extends SuperController{
-	public void AddPost(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+	public JSONObject AddPost(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		UploadBO UploadBO = new UploadBO();
 		PostBO  PostBO = new PostBO();
 		HttpSession session = request.getSession();
@@ -32,6 +33,8 @@ public class PostController extends SuperController{
 		if(id != 0) {
 			UploadBO.upload(filePart, request.getParts(), "house"+id+".jpg");
 		}
-		response.getWriter().print("success");
+		request.setAttribute("returnMessage", "刊登成功");
+		//request.setAttribute("returnPath", "/NCURent/post.jsp");
+		return DataForFrontend(request, response, "../post.jsp");
 	}
 }

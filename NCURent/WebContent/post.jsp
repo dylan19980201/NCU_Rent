@@ -10,8 +10,15 @@
 <head>
 	<meta charset="utf-8">
 	<title>Insert title here</title>
+	<script>
+		var alertMessage = '<%= request.getAttribute("returnMessage") %>';
+		if(alertMessage != 'null'){
+			alert(alertMessage)
+		}
+	</script>
 </head>
 <body>
+
 	<form method="post" action="/NCURent/Post/AddPost" enctype="multipart/form-data">
 		房屋地址:<input type="text" name="HAddress" >
 		屋齡:<input type="text" name="HYear" >
@@ -19,7 +26,7 @@
 		坪數:<input type="text" name="Size" >
 		設備:<input type="text" name="Equipment" >
 		性別限制:<input type="text" name="GenderSpecific" >
-	    <input type="file" name="file" />
+	    <input type="file" name="file"/>
 	    <input type="submit" value="請求刊登" class="btn btn-outline-primary">
 	    <img src="upload/house2.jpg">
   	</form>
