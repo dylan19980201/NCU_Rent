@@ -19,7 +19,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>ActionServlet</servlet-name>
-  	<url-pattern>/Post/Add</url-pattern>
+  	<url-pattern>/Post/AddPost</url-pattern>
   	<url-pattern>/Login/DeleteUser</url-pattern>
   </servlet-mapping>
 </web-app>

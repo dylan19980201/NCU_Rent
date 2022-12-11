@@ -19,17 +19,13 @@ public class LoginController extends SuperController {
 		// 取得資料庫的資料
 		User user = LoginBO.getUser(id, password);
 		if (user != null) {
-			// request.setAttribute("id", user.getID());
-			// request.setAttribute("password", user.getPassword());
-			// request.setAttribute("name", user.getName());
-
 			// session --保持持續登入，儲存使用者資訊--
 			HttpSession session = request.getSession();
 			String sessionId = session.getId();
 			session.setAttribute("id", user.getID());
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("name", user.getName());
-			session.setAttribute("sessionID", sessionId);
+			session.setAttribute("type", user.getType());
 		}
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
 		return DataForFrontend(request, response, "../result.jsp");

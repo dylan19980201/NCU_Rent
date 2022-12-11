@@ -23,5 +23,14 @@ public class House {
 	public String getPictureName() {return PictureName;}
 	public String getPostDateTime() {return PostDateTime;}
 	//POST method
-	
+	public void setHAddress(String HAddress) {this.HAddress = HAddress;}
+	public void setHYear(String HYear) {this.HYear = HYear;}
+	public void setRent(String Rent) {this.Rent = Rent;}
+	public void setSize(String Size) {this.Size = Size;}
+	public void setEquipment(String Equipment) {this.Equipment = Equipment;}
+	public void setGenderSpecific(String GenderSpecific) {this.GenderSpecific = GenderSpecific;}
+	public void setAID(String AID) {this.AID = AID;}
+	public void setHID(String HID) {this.HID = HID;}
+	public void setPictureName(String PictureName) {this.PictureName = PictureName;}
+	public void setPostDateTime(String PostDateTime) {this.PostDateTime = PostDateTime;}	
 }

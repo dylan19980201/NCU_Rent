@@ -2,64 +2,36 @@ package ncu.rent.Controller;
 
 
 import jakarta.servlet.*;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import ncu.rent.BO.LoginBO;
-import ncu.rent.DTO.User;
+import ncu.rent.DTO.House;
 import org.json.JSONObject;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-import jakarta.servlet.http.Part;
+import ncu.rent.BO.UploadBO;
+import ncu.rent.BO.PostBO;
 
 
 public class PostController extends SuperController{
-	/*
-	public static void main(String arg[]) {
-		System.out.println("Hello");
-	}
-	*/
-	/*
-	public void Hi(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("Hi");
-	}
-	public void Hello(String param) {
-		System.out.println("Hello");
-	}
-	*/
-	public void Add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public void AddPost(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+		UploadBO UploadBO = new UploadBO();
+		PostBO  PostBO = new PostBO();
+		HttpSession session = request.getSession();
+		String userId = (session.getAttribute("id")).toString();
+		String[] house = null;
 		Part filePart = request.getPart("file");
-		String fileName = filePart.getSubmittedFileName();
-		for(Part part : request.getParts()) {
-			part.write(path()+fileName);
+		house = new String[] {
+				request.getParameter("HAddress"),
+				request.getParameter("HYear"),
+				request.getParameter("Rent"),
+				request.getParameter("Size"),
+				request.getParameter("Equipment"),
+				request.getParameter("GenderSpecific"),
+				userId
+		};
+		int id = PostBO.AddPost(house);
+		if(id != 0) {
+			UploadBO.upload(filePart, request.getParts(), "house"+id+".jpg");
 		}
-		FileReader fr = new FileReader(path()+fileName);
-		BufferedReader br = new BufferedReader(fr);
-
-		while (br.ready()) {
-			System.out.println(br.readLine());
-		}
-		fr.close();
 		response.getWriter().print("success");
-	}
-	public String path(){
-		String path = getClass().getResource("/").getPath();
-		path = path.substring(1, path.indexOf(".metadata"))+"\\NCURent\\WebContent\\upload\\";
-		Path p = Paths.get(path);
-		try {
-			if(!Files.exists(p)) {
-				Files.createDirectories(p);
-			}
-		}
-		catch(Exception e){
-			System.out.println(e);
-		}
-		return path;
-	}
-	public static void main(String args[]) {
-		
 	}
 }

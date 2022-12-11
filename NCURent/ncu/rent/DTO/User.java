@@ -11,6 +11,7 @@ public class User {
     private String Department;
     private String Phone;
     private String Email;
+    private String Type;
     // GET method
     public String getID() {return ID;}
     public String getPassword() {return Password;}
@@ -20,6 +21,7 @@ public class User {
     public String getDepartment() {return Department;}
     public String getPhone() {return Phone;}
     public String getEmail() {return Email;}
+    public String getType() {return Type;}
     // SET method
     public void setID(String ID) {this.ID = ID;}
     public void setPassword(String Password) {this.Password = Password;}
@@ -29,4 +31,5 @@ public class User {
     public void setDepartment(String Department) {this.Department = Department;}
     public void setPhone(String Phone) {this.Phone = Phone;}
     public void setEmail(String Email) {this.Email = Email;}
+    public void setType(String Type) {this.Type = Type;}
 }

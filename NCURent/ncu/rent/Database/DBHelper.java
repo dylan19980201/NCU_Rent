@@ -48,8 +48,9 @@ public class DBHelper {
 				user.setBirth(rs.getString("Birth"));
 				user.setGender(rs.getString("Gender"));
 				user.setDepartment(rs.getString("Department"));
-				user.setPhone(rs.getNString("Phone"));
+				user.setPhone(rs.getString("Phone"));
 				user.setEmail(rs.getString("Email"));
+				user.setType(rs.getString("Type"));
 				list.add(user);
 			}
 		} catch (Exception e) {
@@ -103,5 +104,40 @@ public class DBHelper {
 			}
 		}
 		return result;
+	}
+	public int AddPost(String command, String[] house) {
+		Connection con = null;
+		int Id = 0;
+		String insertCommand = command.substring(0,command.indexOf("SELECT"));
+		String queryCommand = command.substring(command.indexOf("SELECT"), command.indexOf("UPDATE"));
+		String updateCommand = command.substring(command.indexOf("UPDATE"), command.length());
+		try {
+			con = this.getConnection();
+			PreparedStatement getLastInsertId = con.prepareStatement(queryCommand);
+			PreparedStatement statement = con.prepareStatement(insertCommand);
+			PreparedStatement updatestatement = con.prepareStatement(updateCommand);
+			for (int i = 0; i < house.length; i++) {
+				statement.setString(i + 1, house[i]);
+			}
+			statement.executeUpdate();
+			getLastInsertId = con.prepareStatement(queryCommand);
+			ResultSet rs = getLastInsertId.executeQuery();
+			if (rs.next())
+			{
+				Id = (rs.getInt("last_insert_id()"));
+			}
+			updatestatement.setString(1, "house"+Integer.toString(Id));
+			updatestatement.setString(2, Integer.toString(Id));
+			updatestatement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return Id;
 	}
 }
