@@ -19,7 +19,7 @@
                     <input type="password" placeholder="password" name="password"/>
                     <button type="submit" value="登入" class="btn btn-outline-primary">login</button>
                 </form>
-                <p class="message"> <a href="registerchose.jsp">Create an account</a></p>
+                <p class="message"> <a href="/NCURent/registerchose.jsp">Create an account</a></p>
             </div>
         </div>
     </body>
