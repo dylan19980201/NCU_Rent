@@ -6,8 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- <script src="rent.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="/NCURent/style.css">
     <title>註冊</title>
 </head>
 <body>
