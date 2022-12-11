@@ -28,7 +28,7 @@ public class LoginController extends SuperController {
 			session.setAttribute("type", user.getType());
 		}
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
-		return DataForFrontend(request, response, "../result.jsp");
+		return DataForFrontend(request, response, "../html/index.jsp");
 	}
 
 	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {

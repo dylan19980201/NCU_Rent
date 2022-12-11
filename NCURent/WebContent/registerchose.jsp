@@ -5,7 +5,6 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="registerchoose.css">
-<!-- <script src="rent.js"></script> -->
 <title>登入頁面</title>
 </head>
 <body>

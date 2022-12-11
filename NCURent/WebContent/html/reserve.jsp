@@ -17,7 +17,7 @@
       <nav class="nav-top bg-red p-2 d-md-flex align-items-center">
         <div class="d-flex justify-content-center ps-md-2">
             <a href="#"><img class="logo" src="./images/favicon.png" alt=""></a>
-            <h1 class="fs-4"><a class="text-decoration-none text-white" href="./index.html">中央大學預約看房網</a></h1>
+            <h1 class="fs-4"><a class="text-decoration-none text-white" href="./index.jsp">中央大學預約看房網</a></h1>
         </div>
         <div>
          <ul class="nav-link d-flex justify-content-center list-unstyled pt-3">
