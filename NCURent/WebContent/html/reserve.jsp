@@ -38,7 +38,7 @@
               <img src="./images/card-img4.jpg" Width="500" height="420">
               <div class="table-column">
                 <ul class="list-unstyled">
-                  <form>
+                  <form action ="/NCURent/Login/Login" method="post">
                     <li class="row-line">
                       <h5><label for="exampleInputtext1">姓名:<h5></label>
                         <input type="text" name="name" class="form-control" id="exampleInputtext1"

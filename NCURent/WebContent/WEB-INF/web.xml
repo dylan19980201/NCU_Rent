@@ -21,5 +21,6 @@
   	<servlet-name>ActionServlet</servlet-name>
   	<url-pattern>/Post/AddPost</url-pattern>
   	<url-pattern>/Login/DeleteUser</url-pattern>
+    <url-pattern>/Post/Reserve</url-pattern>
   </servlet-mapping>
 </web-app>
