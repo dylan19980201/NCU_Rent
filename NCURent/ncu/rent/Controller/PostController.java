@@ -36,9 +36,9 @@ public class PostController extends SuperController{
 				UploadBO.upload(filePart, request.getParts(), "house"+id+".jpg");
 			}
 			request.setAttribute("returnMessage", "刊登成功");
-			return DataForFrontend(request, response, "../post.jsp");
+			return DataForFrontend("success","請求刊登成功", null, "/NCURent/post.jsp");
 		}else {
-			return null;
+			return DataForFrontend("fail", "請求刊登失敗",null, "/NCURent/Login.jsp");
 		}
 	}
 }

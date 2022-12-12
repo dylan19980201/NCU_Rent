@@ -8,6 +8,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/NCURent/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <title>登入頁面</title>
     </head>
     <body>
@@ -16,6 +17,9 @@
                 <p><%if(request.getAttribute("error")!=null) {%> <%= (request.getAttribute("error")) %> <% } %></p>
                 <label>登入</label> 
                 <form class="login-form" action="/NCURent/Login/Login" method="post">
+                	<div class="alert alert-danger" role="alert" style="display:none">
+  						登入失敗!!
+					</div>
                     <input type="text" placeholder="username" name="id"/>
                     <input type="password" placeholder="password" name="password"/>
                     <button type="submit" value="登入" class="btn btn-outline-primary">login</button>
@@ -34,12 +38,10 @@
                 dataType: 'json',
                 data: $('form').serialize(),
                 success: function(res){
-                	console.log(res);
-                    if(res.message == "success"){
-                        alert("成功");
+                    if(res.status == "success"){
                         location.href=res.page;
                     }else{
-                        alert('登入失敗');
+                        $('.alert.alert-danger').css('display','block')
                     }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) { 

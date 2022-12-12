@@ -18,34 +18,43 @@ public class ActionServlet extends HttpServlet{
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("utf8");
 		if(session.getAttribute("id") != null) {
 			String path = request.getServletPath().substring(1);
 			JSONObject data = data(path, request, response);
 			if(data != null) {
-				RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
-				view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+				ReturnJsonData(response, data);
 			}else {
-				response.getWriter().print("The account does not have this function permission or please contact the system administrator...");
+				ReturnJsonData(response, data);
 			}
 			return;
 		}else {
-			LoginMessageBox(response, "沒登入還想用阿！", "login.jsp");
+			JSONObject data = new JSONObject();
+			data.put("message", "請登入身分");
+			data.put("data", (Object)null);
+			data.put("page", "/NCURent/login.jsp");
+			ReturnJsonData(response, data);
 		}
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response, String page) throws IOException, ServletException{
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("utf8");
 		if(session.getAttribute("id") != null) {
 			String path = request.getServletPath().substring(1);
 			JSONObject data = data(path, request, response);
 			if(data != null) {
-				RequestDispatcher view = request.getRequestDispatcher((data.get("page")).toString());
-				view.forward((HttpServletRequest) data.get("request"), (HttpServletResponse) data.get("response"));
+				ReturnJsonData(response, data);
 			}else {
-				response.getWriter().print("The account does not have this function permission or please contact the system administrator...");
+				ReturnJsonData(response, data);
 			}
+			return;
 		}else {
-			LoginMessageBox(response, "沒登入還想用阿！", "login.jsp");
+			JSONObject data = new JSONObject();
+			data.put("message", "請登入身分");
+			data.put("data", (Object)null);
+			data.put("page", "/NCURent/login.jsp");
+			ReturnJsonData(response, data);
 		}
 	}
 	
@@ -71,13 +80,11 @@ public class ActionServlet extends HttpServlet{
 		}
 		return data;
 	}
-	private void LoginMessageBox(HttpServletResponse response, String message, String path) throws IOException{
-		String a = URLEncoder.encode(message, "UTF-8"); 
-		PrintWriter out = response.getWriter();
-		out.println("<script type=\"text/javascript\">");
-		out.println("alert(decodeURIComponent('"+a+"'));");
-		if(path != null)
-			out.println("location='/NCURent/"+path+"';");
-		out.println("</script>");
+	private void ReturnJsonData(HttpServletResponse response, JSONObject data) throws IOException{
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        JSONObject obj = (JSONObject) data;
+        //System.out.println(obj);
+        out.print(obj.toString());
 	}
 }

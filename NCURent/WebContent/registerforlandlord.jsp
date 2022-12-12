@@ -29,4 +29,29 @@
             <p class="message">Already registered? <a href="login.jsp">Sign In</a></p>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+	 $('form').on('submit', function(){
+            $('input[type="submit"]').text('傳送中......');
+            $.ajax({
+                url: '/NCURent/Login/Register',
+                method: 'POST',
+                dataType: 'json',
+                data: $('form').serialize(),
+                success: function(res){
+                    if(res.status == "success"){
+                    	alert(res.message)
+                        location.href=res.page;
+                    }else{
+                        alert(res.message)
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                } 
+            });
+            return false;
+        });
+  	</script>
 </body>
+</html>

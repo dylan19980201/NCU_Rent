@@ -7,8 +7,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class SuperController {
 	// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
-	public JSONObject DataForFrontend(String message, Object data, String page) {
+	public JSONObject DataForFrontend(String status,String message, Object data, String page) {
 		JSONObject json = new JSONObject();
+		json.put("status", status);
 		json.put("message", message);
 		json.put("data", (JSONObject)data);
 		json.put("page", page);

@@ -19,7 +19,7 @@
 </head>
 <body>
 
-	<form method="post" action="/NCURent/Post/AddPost" enctype="multipart/form-data">
+	<form enctype="multipart/form-data">
 		房屋地址:<input type="text" name="HAddress" >
 		屋齡:<input type="text" name="HYear" >
 		租金:<input type="text" name="Rent" >
@@ -33,9 +33,32 @@
 </body>
 
 
-<script>
-
-</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+	 $('form').on('submit', function(){
+            $('input[type="submit"]').text('傳送中......');
+            $.ajax({
+                url: '/NCURent/Post/AddPost',
+                method: 'POST',
+                dataType: 'json',
+                contentType: false, //required
+                processData: false, // required
+                mimeType: 'multipart/form-data',
+                data: new FormData(this),
+                success: function(res){
+                    if(res.status == "success"){
+                        alert(res.message)
+                    }else{
+                        alert(res.message)
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                } 
+            });
+            return false;
+        });
+  </script>
 
 
 </html>
