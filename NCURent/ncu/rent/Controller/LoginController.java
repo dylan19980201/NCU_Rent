@@ -18,6 +18,7 @@ public class LoginController extends SuperController {
 		String password = request.getParameter("password");
 		// 取得資料庫的資料
 		User user = LoginBO.getUser(id, password);
+		JSONObject data = new JSONObject();
 		if (user != null) {
 			// session --保持持續登入，儲存使用者資訊--
 			HttpSession session = request.getSession();
@@ -26,11 +27,13 @@ public class LoginController extends SuperController {
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("type", user.getType());
-			return DataForFrontend(request, response, "../html/index.jsp");
+			data.put("id", user.getID());
+			data.put("name", user.getName());
+			data.put("type", user.getType());
+			return DataForFrontend("success",  data, "/NCURent/html/index.jsp");
 		}
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
-		request.setAttribute("error", "帳號或密碼錯誤");
-		return DataForFrontend(request, response, "../login.jsp");
+		return DataForFrontend("fail",  data, "/NCURent/login.jsp");
 	}
 
 	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {
