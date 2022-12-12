@@ -22,5 +22,6 @@
   	<url-pattern>/Post/AddPost</url-pattern>
   	<url-pattern>/Login/DeleteUser</url-pattern>
     <url-pattern>/Post/Reserve</url-pattern>
+    <url-pattern>/Post/getAllHouse</url-pattern>
   </servlet-mapping>
 </web-app>

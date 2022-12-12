@@ -9,6 +9,7 @@ public class House {
 	private String GenderSpecific;
 	private String AID;
 	private String HID;
+	private String LName;
 	private String PictureName;
 	private String PostDateTime;
 	//GET method
@@ -20,6 +21,7 @@ public class House {
 	public String getGenderSpecific() {return GenderSpecific;}
 	public String getAID() {return AID;}
 	public String getHID() {return HID;}
+	public String getLName() {return LName;}
 	public String getPictureName() {return PictureName;}
 	public String getPostDateTime() {return PostDateTime;}
 	//POST method
@@ -31,6 +33,7 @@ public class House {
 	public void setGenderSpecific(String GenderSpecific) {this.GenderSpecific = GenderSpecific;}
 	public void setAID(String AID) {this.AID = AID;}
 	public void setHID(String HID) {this.HID = HID;}
+	public void setLName(String LName) {this.LName = LName;}
 	public void setPictureName(String PictureName) {this.PictureName = PictureName;}
 	public void setPostDateTime(String PostDateTime) {this.PostDateTime = PostDateTime;}	
 }

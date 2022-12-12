@@ -2,6 +2,15 @@ package ncu.rent.DAO;
 
 import ncu.rent.DTO.HouseDetail;
 import ncu.rent.Database.DBHelper;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+
+import ncu.rent.DTO.House;
 
 public class PostDAO {
 	private int getHouse(String HID) {
@@ -21,5 +30,25 @@ public class PostDAO {
 				SET PictureName = ?
 				WHERE HID = ?""";
 		return db.AddPost(command, house);
+	}
+	public List<House> getAllHouse(){
+		String command = """
+				SELECT HID, HAddress, LName, Size, Rent, Equipment, HYear, GenderSpecific
+				FROM house inner join landlord on house.LID = landlord.LID
+				ORDER BY PostDatetime DESC""";
+		List<House> house = new ArrayList<House>();
+		try {
+			DBHelper db= new DBHelper();
+			house = db.getAllHouse(command);
+			//Gson gson = new Gson();
+			//String json = gson.toJson(house);
+			//String listJson = (JSONArray.fromObject(house)).toString();
+			//System.out.println(listJson);
+			//JSONArray houseData = JSONArray.fromObject(house);
+			//System.out.println(houseData);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return house;
 	}
 }

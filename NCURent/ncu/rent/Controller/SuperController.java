@@ -11,7 +11,7 @@ public class SuperController {
 		JSONObject json = new JSONObject();
 		json.put("status", status);
 		json.put("message", message);
-		json.put("data", (JSONObject)data);
+		json.put("data", data);
 		json.put("page", page);
 		return json;
 	}
