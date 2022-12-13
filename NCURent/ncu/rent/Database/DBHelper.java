@@ -11,6 +11,7 @@ import java.util.List;
 import com.mysql.cj.result.BooleanValueFactory;
 
 import ncu.rent.DTO.User;
+import ncu.rent.DTO.House;
 import org.json.JSONObject;
 
 public class DBHelper {
@@ -139,5 +140,34 @@ public class DBHelper {
 			}
 		}
 		return Id;
+	}
+
+	public List<House> getAllHouse(String command) throws SQLException{
+		List<House> list = new ArrayList<House>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			rs = statement.executeQuery();
+			while(rs.next()) {
+				House house = new House();
+				house.setHID(rs.getString("HID"));
+				house.setHAddress(rs.getString("HAddress"));
+				house.setLName(rs.getString("LName"));
+				house.setSize(rs.getString("Size"));
+				house.setRent(rs.getString("Rent"));
+				house.setEquipment(rs.getString("Equipment"));
+				house.setHYear(rs.getString("HYear"));
+				house.setGenderSpecific(rs.getString("GenderSpecific"));
+				list.add(house);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			con.close();
+		}
+		return list;
 	}
 }

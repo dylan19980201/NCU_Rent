@@ -4,9 +4,12 @@ package ncu.rent.Controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import ncu.rent.DTO.House;
+import net.sf.json.JSONArray;
+
 import org.json.JSONObject;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.List;
 
 import ncu.rent.BO.UploadBO;
 import ncu.rent.BO.PostBO;
@@ -38,7 +41,13 @@ public class PostController extends SuperController{
 			request.setAttribute("returnMessage", "刊登成功");
 			return DataForFrontend("success","請求刊登成功", null, "/NCURent/post.jsp");
 		}else {
-			return DataForFrontend("fail", "請求刊登失敗",null, "/NCURent/Login.jsp");
+			return DataForFrontend("fail", "請求刊登失敗", null, "/NCURent/Login.jsp");
 		}
+	}
+	public JSONObject getAllHouse(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+		PostBO PostBO = new PostBO();
+		List<House> house = PostBO.getAllHouse();
+		JSONArray houseData = JSONArray.fromObject(house);
+		return DataForFrontend("success", "", houseData, "/NCURent/result.jsp");
 	}
 }

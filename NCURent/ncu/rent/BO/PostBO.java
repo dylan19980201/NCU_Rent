@@ -9,10 +9,9 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.AddPost(house);
 	}
-	/*
 	public List<House> getAllHouse(){
 		PostDAO PostDAO = new PostDAO();
-		return PostDAO.add
+		return PostDAO.getAllHouse();
 	}
-	*/
+	
 }

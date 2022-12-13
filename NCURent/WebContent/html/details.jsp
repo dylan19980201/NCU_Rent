@@ -63,6 +63,21 @@
             </div>
           </div>
         </section>
+            </section>
+ 	  		<h4 class="text-center my-2">評價一覽</h4>
+	      <section>
+	        <div class="map bg-whitesmoke">
+	          <h5 class="mb-3"><a href="../studentMainPage.jsp" class="text-decoration-none text-dark"><u>111423054</u></a></h5>
+			  <h6>⭐⭐⭐⭐⭐　　　　　　　2天前</h6>
+			  <p>Good!</p>
+			  <hr>	
+			   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>111421001</u></a></h5>
+			  <h6>⭐⭐⭐⭐⭐　　　　　　　3天前</h6>
+			  <p>Nice!</p>
+			  <hr>	
+	        </div>
+	      </section>
+        
       </main>
       <jsp:include page="./footer.jsp" />
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
