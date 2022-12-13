@@ -56,7 +56,7 @@ public class PostDAO {
 
 	public boolean addReserveData(String[] reserve) {
 		String command = """
-				insert into student (HID,SID,RDate,CheckType)
+				insert into reserve (HID,SID,RDate,CheckType)
 				VALUES (?,?,?,?)""";
 		DBHelper db = new DBHelper();
 		if (db.addReserveData(command, reserve) == 1)
