@@ -38,7 +38,7 @@
               <img src="./images/card-img4.jpg" Width="500" height="420">
               <div class="table-column">
                 <ul class="list-unstyled">
-                  <form action ="/NCURent/Login/Login" method="post">
+                  <form action="/NCURent/Login/Login" method="post">
                     <li class="row-line">
                       <h5><label for="exampleInputtext1">姓名:<h5></label>
                         <input type="text" name="name" class="form-control" id="exampleInputtext1"
@@ -46,14 +46,14 @@
                     </li>
                     <li class="row-line">
                       <h5><label for="exampleInputtext1">性別<h5></label>
-                        <select name="sex">
-                          <option value="male">男性</option>
-                          <option value="female" selected>女性</option>
+                        <select name="gender">
+                          <option value="男">男性</option>
+                          <option value="女" selected>女性</option>
                         </select>
                     </li>
                     <li class="row-line">
                       <h5><label for="exampleInputnumber1">電話</label>
-                        <input type="tel" name="telephone" class="form-control" id="exampleInputnumber1"
+                        <input type="tel" name="phone" class="form-control" id="exampleInputnumber1"
                           aria-describedby="textHelp" placeholder="請輸入電話">
                         <h5>
                     </li>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*" %>
+    <link href="/NCURent/html/style.css" rel="stylesheet" type="text/css">
     <header>
         <nav class="nav-top bg-red p-2 d-md-flex align-items-center">
             <div class="d-flex justify-content-center ps-md-2">
@@ -27,6 +28,12 @@
                                     class="nav-name d-none d-md-block">查看學生評價</span></a>
                         </li>
                     <% } else if((session.getAttribute("type")).equals("landlord")) { %>
+                        <li>
+                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/housepost.jsp"><i
+                                    class="pe-1 mt-1 fas fa-user"></i><span
+                                    class="nav-name d-none d-md-block">刊登房屋</span></a>
+                            </li>
+                        <li>
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
                                     class="pe-1 mt-1 fas fa-user"></i><span

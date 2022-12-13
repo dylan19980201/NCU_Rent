@@ -15,6 +15,7 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.getAllHouse();
 	}
+<<<<<<< HEAD
 	public House getHouseData(int Hid){
 		HouseDAO HouseDAO = new HouseDAO();
 		List<House> houseList =HouseDAO.getHouseData(Hid);
@@ -24,4 +25,11 @@ public class PostBO {
 		}
 		return house;
 	}
+=======
+	public boolean addReserve(String[] reserve){
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.addReserveData();
+	}
+	
+>>>>>>> 69177dfc3445548d7864ae8f385b2dcc52ce0530
 }

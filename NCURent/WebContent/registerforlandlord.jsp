@@ -16,14 +16,14 @@
                 <label>房東註冊</label> <%if(request.getAttribute("error")!=null) {%> <%= (request.getAttribute("error")) %> <% } %>
             </div>
             <form class="register-form" action ="/NCURent/Login/Register" method="post">
-                <input type="hidden" name="type" value="2" />
-                <input type="text" name="id" placeholder="帳號"/>
-                <input type="password" name="password" placeholder="密碼"/>
-                <input type="text" name="name" placeholder="姓名"/>
-                <input type="text" name="gender" placeholder="性別"/>
-                <input type="text" name="birth" placeholder="生日"/>
-                <input type="text" name="phone" placeholder="手機號碼"/>
-                <input type="text" name="email" placeholder="Email"/>
+                <input type="hidden" name="type" value="2" required="required"/>
+                <input type="text" name="id" placeholder="帳號" required="required"/>
+                <input type="password" name="password" placeholder="密碼" required="required"/>
+                <input type="text" name="name" placeholder="姓名" required="required"/>
+                <input type="text" name="gender" placeholder="性別" required="required"/>
+                <input type="date" name="birth" placeholder="生日" required="required"/>
+                <input type="text" name="phone" placeholder="手機號碼(請輸入09XXXXXXXX)" required="required" pattern="09\d{8}"/>
+                <input type="text" name="email" placeholder="Email" required="required"/>
                 <button type="submit" value="註冊" class="btn btn-outline-primary">create</button>      
             </form>
             <p class="message">Already registered? <a href="login.jsp">Sign In</a></p>
