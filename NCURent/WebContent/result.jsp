@@ -16,7 +16,8 @@
 			您好，<%= (session.getAttribute("name")).toString()+(session.getAttribute("type")).toString() %>
 			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='../logout.jsp'" value="登出">
 			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='../deleteUser.jsp'" value="刪除帳號">
-			<input type ="button" class="btn btn-outline-success" onclick="javascript:location.href='../house.jsp'" value="查看詳細房屋資訊">
+			
+			<input type ="submit" class="btn btn-outline-success" onclick="javascript:location.href='../house_ver2.jsp'" value="查看詳細房屋資訊">
 		<% }else{ %>
 			查無使用者
 		<% } %>
