@@ -28,6 +28,12 @@
                         </li>
                     <% } else if((session.getAttribute("type")).equals("landlord")) { %>
                         <li>
+                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/housepost.html"><i
+                                    class="pe-1 mt-1 fas fa-user"></i><span
+                                    class="nav-name d-none d-md-block">刊登房屋</span></a>
+                            </li>
+                        <li>
+                        <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
                                     class="pe-1 mt-1 fas fa-user"></i><span
                                     class="nav-name d-none d-md-block">刊登學生評價</span></a>
