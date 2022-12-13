@@ -13,5 +13,9 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.getAllHouse();
 	}
+	public boolean addReserve(String[] reserve){
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.addAllHouse();
+	}
 	
 }

@@ -50,4 +50,15 @@ public class PostController extends SuperController{
 		JSONArray houseData = JSONArray.fromObject(house);
 		return DataForFrontend("success", "", houseData, "/NCURent/result.jsp");
 	}
+	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+		String[] reserve;
+		reserve = new String[] {
+					request.getParameter("name"),
+					request.getParameter("gender"),
+					request.getParameter("phone"),
+					request.getParameter("reservetime")
+		};
+
+		return DataForFrontend("success", "", null, "/NCURent/html/reserve.jsp");
+	}
 }
