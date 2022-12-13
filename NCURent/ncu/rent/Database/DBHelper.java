@@ -12,7 +12,6 @@ import com.mysql.cj.result.BooleanValueFactory;
 
 import ncu.rent.DTO.User;
 import ncu.rent.DTO.House;
-import ncu.rent.DTO.Int;
 
 import org.json.JSONObject;
 

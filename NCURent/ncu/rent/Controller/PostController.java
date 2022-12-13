@@ -4,7 +4,6 @@ package ncu.rent.Controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import ncu.rent.DTO.House;
-import ncu.rent.DTO.User;
 import net.sf.json.JSONArray;
 
 import org.json.JSONObject;
@@ -12,11 +11,9 @@ import org.json.JSONObject;
 import com.google.gson.Gson;
 
 import java.io.*;
-import java.net.URLEncoder;
 import java.util.List;
 
 import ncu.rent.BO.UploadBO;
-import ncu.rent.BO.LoginBO;
 import ncu.rent.BO.PostBO;
 
 

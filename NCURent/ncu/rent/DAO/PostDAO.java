@@ -2,13 +2,10 @@ package ncu.rent.DAO;
 
 import ncu.rent.DTO.HouseDetail;
 import ncu.rent.Database.DBHelper;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
 
 import ncu.rent.DTO.House;
 
