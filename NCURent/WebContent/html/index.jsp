@@ -109,21 +109,15 @@
                 data: $('form').serialize(),
                 success: function(res){
                     if(res.status == "success"){
-                    	//alert(res.data);
                     	var typeData = $.parseJSON(res.data); // create an object with the key of the array
-                    	//var typeData = (res.data).Module;
-                    	//alert((typeData).toString())
-                    	alert(res.data);
                     	var divBody = "";
                     	$.each(typeData, function(i, n) {
-                    		 alert(n.PictureName)
 							 divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
 							 divBody += "<div class='card'>";
-							 divBody += "<img src='/NCURent/upload/"+n.PictureName+"' class='card-img-top' alt='...'>"
-							 //divBody += "<img src='./images/card-img3.jpg' class='card-img-top' alt='...'>";
+							 divBody += "<img src='/NCURent/upload/"+n.PictureName+"' class='card-img-top'  height='285.61' alt='...'>"
 							 divBody += "<div class='card-body'>";
-							 divBody += "<h5 class='card-title'>桃園市中壢區中央路312號</h5>";
-							 divBody += "<p class='card-text'>房東：侯小宜<br>房屋坪數：8坪<br>房屋租金：5400/月<br>房屋設備：雙人床/熱水器/冷氣/冰箱<br>屋齡:7年<br>其他備註：無</p>"
+							 divBody += "<h5 class='card-title'>"+n.HAddress+"</h5>";
+							 divBody += "<p class='card-text'>房東："+n.LName+"<br>房屋坪數："+n.Size+"<br>房屋租金："+n.Rent+"/月<br>房屋設備："+n.Equipment+"<br>屋齡:"+n.HYear+"<br>其他備註："+n.GenderSpecific+"</p>"
 							 divBody +=	"<a href='../html/details.jsp' class='btn btn-primary'>瀏覽</a>";
 							 divBody +=	"</div>";
 							 divBody +=	"</div>";

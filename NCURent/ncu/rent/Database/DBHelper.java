@@ -160,7 +160,7 @@ public class DBHelper {
 			{
 				Id = (rs.getInt("last_insert_id()"));
 			}
-			updatestatement.setString(1, "house"+Integer.toString(Id));
+			updatestatement.setString(1, "house"+Integer.toString(Id)+".jpg");
 			updatestatement.setString(2, Integer.toString(Id));
 			updatestatement.executeUpdate();
 		} catch (SQLException e) {
@@ -189,11 +189,12 @@ public class DBHelper {
 				house.setHID(rs.getString("HID"));
 				house.setHAddress(rs.getString("HAddress"));
 				house.setLName(rs.getString("LName"));
-				house.setSize(rs.getString("Size"));
-				house.setRent(rs.getString("Rent"));
+				house.setSize(rs.getInt("Size"));
+				house.setRent(rs.getInt("Rent"));
 				house.setEquipment(rs.getString("Equipment"));
 				house.setHYear(rs.getString("HYear"));
 				house.setGenderSpecific(rs.getString("GenderSpecific"));
+				house.setPictureName(rs.getString("PictureName"));
 				list.add(house);
 			}
 		} catch (Exception e) {
