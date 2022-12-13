@@ -21,7 +21,7 @@
   	<servlet-name>ActionServlet</servlet-name>
   	<url-pattern>/Post/AddPost</url-pattern>
   	<url-pattern>/Login/DeleteUser</url-pattern>
-    <url-pattern>/Post/Reserve</url-pattern>
+    <url-pattern>/Post/addReserve</url-pattern>
     <url-pattern>/Post/getAllHouse</url-pattern>
     <url-pattern>/Post/GetHouseData</url-pattern>
   </servlet-mapping>

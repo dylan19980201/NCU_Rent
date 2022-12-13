@@ -38,7 +38,7 @@
               <img src="./images/card-img4.jpg" Width="500" height="420">
               <div class="table-column">
                 <ul class="list-unstyled">
-                  <form action="/NCURent/Login/Login" method="post">
+                  <form action="/NCURent/Post/addReserve" method="post">
                     <input type="hidden" name="hid" value="11101"/>
                     <li class="row-line">
                       <h5><label for="checkIn" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">看房時間</label>
