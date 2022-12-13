@@ -7,6 +7,9 @@ import ncu.rent.DTO.House;
 import net.sf.json.JSONArray;
 
 import org.json.JSONObject;
+
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.List;
@@ -47,7 +50,9 @@ public class PostController extends SuperController{
 	public JSONObject getAllHouse(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		PostBO PostBO = new PostBO();
 		List<House> house = PostBO.getAllHouse();
-		JSONArray houseData = JSONArray.fromObject(house);
+		Gson gson = new Gson();
+		String listJson = gson.toJson(house);
+		JSONArray houseData = JSONArray.fromObject(listJson);
 		return DataForFrontend("success", "", houseData, "/NCURent/result.jsp");
 	}
 }

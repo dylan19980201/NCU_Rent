@@ -41,10 +41,10 @@ public class PostDAO {
 			DBHelper db= new DBHelper();
 			house = db.getAllHouse(command);
 			//Gson gson = new Gson();
-			//String json = gson.toJson(house);
+			//String listJson = gson.toJson(house);
 			//String listJson = (JSONArray.fromObject(house)).toString();
-			//System.out.println(listJson);
-			//JSONArray houseData = JSONArray.fromObject(house);
+			//JSONArray houseData = JSONArray.fromObject(listJson);
+			//System.out.println(houseData);
 			//System.out.println(houseData);
 		}catch(Exception e) {
 			System.out.println(e);
