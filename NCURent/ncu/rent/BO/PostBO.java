@@ -28,7 +28,7 @@ public class PostBO {
 
 	public boolean addReserve(String[] reserve){
 		PostDAO PostDAO = new PostDAO();
-		return PostDAO.addReserveData();
+		return PostDAO.addReserveData(reserve);
 	}
 	
 }

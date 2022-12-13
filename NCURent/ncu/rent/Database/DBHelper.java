@@ -203,4 +203,27 @@ public class DBHelper {
 		}
 		return list;
 	}
+
+	public int addReserveData(String command, String[] reserve) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			for (int i = 0; i < reserve.length; i++) {
+				statement.setString(i + 1, reserve[i]);
+			}
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+	}
 }

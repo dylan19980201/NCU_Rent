@@ -81,14 +81,19 @@ public class PostController extends SuperController{
 	}
 	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		String[] reserve;
+		HttpSession session = request.getSession();
 		reserve = new String[] {
-					request.getParameter("name"),
-					request.getParameter("gender"),
-					request.getParameter("phone"),
-					request.getParameter("reservetime")
+					request.getParameter("hid"),
+					(session.getAttribute("id")).toString(),
+					request.getParameter("reservetime"),
+					"0",
 		};
-
-		return DataForFrontend("success", "", null, "/NCURent/html/reserve.jsp");
-
+		PostBO PostBO = new PostBO();
+		if(PostBO.addReserve(reserve))
+			return DataForFrontend("success", "預約成功", null, "/NCURent/html/index.jsp");
+		else {
+			request.setAttribute("error", "預約失敗");
+			return DataForFrontend("fail","預約失敗", null, "/NCURent/html/reserve.jsp");
+		}
 	}
 }

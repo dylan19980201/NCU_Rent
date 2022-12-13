@@ -39,29 +39,12 @@
               <div class="table-column">
                 <ul class="list-unstyled">
                   <form action="/NCURent/Login/Login" method="post">
-                    <li class="row-line">
-                      <h5><label for="exampleInputtext1">姓名:<h5></label>
-                        <input type="text" name="name" class="form-control" id="exampleInputtext1"
-                          aria-describedby="textHelp" placeholder="請輸入大名">
-                    </li>
-                    <li class="row-line">
-                      <h5><label for="exampleInputtext1">性別<h5></label>
-                        <select name="gender">
-                          <option value="男">男性</option>
-                          <option value="女" selected>女性</option>
-                        </select>
-                    </li>
-                    <li class="row-line">
-                      <h5><label for="exampleInputnumber1">電話</label>
-                        <input type="tel" name="phone" class="form-control" id="exampleInputnumber1"
-                          aria-describedby="textHelp" placeholder="請輸入電話">
-                        <h5>
-                    </li>
+                    <input type="hidden" name="hid" value="11101"/>
                     <li class="row-line">
                       <h5><label for="checkIn" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">看房時間</label>
                         <input type="datetime-local" name="reservetime" class="form-control" id="checkIn"
                           aria-describedby="textHelp">
-                        <h5>
+                      </h5>
                     </li>
                 </ul>
                 <p><input type="submit" value="確認送出"></p>

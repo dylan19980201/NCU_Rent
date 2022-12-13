@@ -54,17 +54,14 @@ public class PostDAO {
 		return house;
 	}
 
-	public boolean addReserveData() {
+	public boolean addReserveData(String[] reserve) {
 		String command = """
-				insert into student (SID,SPassword,SName,SBirth,SGender,SDepartment,SPhone,SEmail)
-				VALUES (?,?,?,?,?,?,?,?)""";
-		List<House> house = new ArrayList<House>();
-		try {
-			DBHelper db = new DBHelper();
-			house = db.getAllHouse(command);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return house;
+				insert into student (HID,SID,RDate,CheckType)
+				VALUES (?,?,?,?)""";
+		DBHelper db = new DBHelper();
+		if (db.addReserveData(command, reserve) == 1)
+			return true;
+		else
+			return false;
 	}
 }
