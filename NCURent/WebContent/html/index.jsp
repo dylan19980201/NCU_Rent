@@ -21,76 +21,9 @@
     <body>
       <jsp:include page="./header.jsp" />
       <main>
-        </div>
         <!-- ........search results......... -->
-        <form>
-        <input type ="submit" value="查看詳細房屋資訊">
         <section>
           <div class="row mx-1 my-4" id="Housediv">
-          <!-- 
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card">
-                <img src="./images/card-img4.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">桃園市中壢區中央路100號</h5>
-                  <p class="card-text">房東：柯小哲<br>房屋坪數：7坪<br>房屋租金：5000/月<br>房屋設備：單人床/熱水器/冷氣<br>屋齡：12年<br>其他備註：無</p>
-                  <a href="../html/details.jsp" class="btn btn-primary">瀏覽</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card">
-                <img src="./images/card-img4.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">桃園市中壢區中央路152號</h5>
-                  <p class="card-text">房東：蔣小安<br>房屋坪數：6.5坪<br>房屋租金：4800/月<br>房屋設備：單人床/熱水器/冷氣/冰箱<br>屋齡：9年<br>其他備註：無</p>
-                  <a href="../html/details.jsp" class="btn btn-primary">瀏覽</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card">
-                <img src="./images/card-img4.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">桃園市中壢區中央路212號</h5>
-                  <p class="card-text">房東：王小明<br>房屋坪數：6.5坪<br>房屋租金：4800/月<br>房屋設備：單人床/熱水器/冷氣/冰箱<br>屋齡：15年<br>其他備註：不能養寵物
-                  </p>
-                  <a href="../html/details.jsp" class="btn btn-primary">瀏覽</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card">
-                <img src="./images/card-img4.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">桃園市中壢區中央路216號</h5>
-                  <p class="card-text">房東：蔡小文<br>房屋坪數：7.5坪<br>房屋租金：5200/月<br>房屋設備：雙人床/熱水器/冷氣/冰箱<br>屋齡：8年<br>其他備註：不能養寵物
-                  </p>
-                  <a href="../html/details.jsp" class="btn btn-primary">瀏覽</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card mb-md-4">
-                <img src="./images/card-img2.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">桃園市中壢區中央路232號</h5>
-                  <p class="card-text">房東：陳小邁<br>房屋坪數：8坪<br>房屋租金：5600/月<br>房屋設備：雙人床/熱水器/冷氣/冰箱<br>屋齡:15年<br>其他備註：無</p>
-                  <a href="../html/details.jsp" class="btn btn-primary">瀏覽</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card">
-                <img src="./images/card-img3.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">桃園市中壢區中央路312號</h5>
-                  <p class="card-text">房東：侯小宜<br>房屋坪數：8坪<br>房屋租金：5400/月<br>房屋設備：雙人床/熱水器/冷氣/冰箱<br>屋齡:7年<br>其他備註：無</p>
-                  <a href="../html/details.jsp" class="btn btn-primary">瀏覽</a>
-                </div>
-              </div>
-            </div> 
-            -->
           </div>
         </section>
       </main>
