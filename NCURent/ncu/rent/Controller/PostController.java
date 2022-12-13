@@ -53,7 +53,6 @@ public class PostController extends SuperController{
 		JSONArray houseData = JSONArray.fromObject(house);
 		return DataForFrontend("success", "", houseData, "/NCURent/result.jsp");
 	}
-<<<<<<< HEAD
 	
 	public JSONObject GetHouseData(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("hello");
@@ -74,8 +73,7 @@ public class PostController extends SuperController{
 			request.setAttribute("PictureName", house.getPictureName());
 			request.setAttribute("PostDateTime", house.getPostDateTime());
 			return DataForFrontend("success", "", data, "/NCURent/house_ver2.jsp");
-
-=======
+	}
 	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		String[] reserve;
 		reserve = new String[] {
@@ -86,6 +84,6 @@ public class PostController extends SuperController{
 		};
 
 		return DataForFrontend("success", "", null, "/NCURent/html/reserve.jsp");
->>>>>>> 69177dfc3445548d7864ae8f385b2dcc52ce0530
+
 	}
 }
