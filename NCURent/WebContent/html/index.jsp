@@ -23,6 +23,8 @@
       <main>
         </div>
         <!-- ........search results......... -->
+        <form method = "post" action = "/NCURent/Post/GetHouseData" enctype="multipart/form-data">
+        <input type ="submit" class="btn btn-outline-success" onclick="javascript:location.href='/NCURent/house_ver2.jsp'" value="查看詳細房屋資訊">
         <section>
           <div class="row mx-1 my-4">
             <div class="col-sm-12 col-md-6 col-lg-4">

@@ -12,6 +12,8 @@ import com.mysql.cj.result.BooleanValueFactory;
 
 import ncu.rent.DTO.User;
 import ncu.rent.DTO.House;
+import ncu.rent.DTO.Int;
+
 import org.json.JSONObject;
 
 public class DBHelper {
@@ -61,7 +63,38 @@ public class DBHelper {
 		}
 		return list;
 	}
-
+	public List<House> QueryHouseData(String command, JSONObject condition) throws SQLException {
+		List<House> list = new ArrayList<House>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			rs = statement.executeQuery();
+			while (rs.next()) {
+				House house = new House();
+				house.setHAddress(rs.getString("hAddress"));
+				house.setHYear(rs.getString("hYear"));
+				house.setRent(rs.getInt("rent"));
+				house.setSize(rs.getInt("size"));
+				house.setEquipment(rs.getString("equipment"));
+				house.setGenderSpecific(rs.getString("genderSpecific"));
+				house.setAID(rs.getString("aID"));
+				house.setHID(rs.getString("hID"));
+				house.setLID(rs.getString("lID"));
+				house.setPictureName(rs.getString("pictureName"));
+				house.setPostDateTime(rs.getString("postDatetime"));
+				list.add(house);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			con.close();
+		}
+		return list;
+	}
+	
 	public int addUserData(String command, String[] user) {
 		Connection con = null;
 		PreparedStatement statement = null;

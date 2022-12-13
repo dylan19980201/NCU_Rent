@@ -4,6 +4,8 @@ package ncu.rent.Controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import ncu.rent.DTO.House;
+import ncu.rent.DTO.Int;
+import ncu.rent.DTO.User;
 import net.sf.json.JSONArray;
 
 import org.json.JSONObject;
@@ -12,6 +14,7 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import ncu.rent.BO.UploadBO;
+import ncu.rent.BO.LoginBO;
 import ncu.rent.BO.PostBO;
 
 
@@ -49,5 +52,27 @@ public class PostController extends SuperController{
 		List<House> house = PostBO.getAllHouse();
 		JSONArray houseData = JSONArray.fromObject(house);
 		return DataForFrontend("success", "", houseData, "/NCURent/result.jsp");
+	}
+	
+	public JSONObject GetHouseData(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("hello");
+		PostBO PostBO = new PostBO();
+		// 取得資料庫的資料
+		
+		House house = PostBO.getHouseData(11103);
+		JSONObject data = new JSONObject(house);
+			request.setAttribute("HAddress", house.getHAddress());
+			request.setAttribute("HYear", house.getHYear());
+			request.setAttribute("Rent", house.getRent());
+			request.setAttribute("Size", house.getSize());
+			request.setAttribute("Equipment", house.getEquipment());
+			request.setAttribute("GenderSpecific", house.getGenderSpecific());
+			request.setAttribute("AID", house.getAID());
+			request.setAttribute("HID", house.getHID());
+			request.setAttribute("LID", house.getLID());
+			request.setAttribute("PictureName", house.getPictureName());
+			request.setAttribute("PostDateTime", house.getPostDateTime());
+			return DataForFrontend("success", "", data, "/NCURent/house_ver2.jsp");
+
 	}
 }
