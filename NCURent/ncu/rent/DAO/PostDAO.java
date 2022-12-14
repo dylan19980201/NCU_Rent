@@ -74,10 +74,10 @@ public class PostDAO {
 		else 
 			command = """
 				select Name,Phone,Rdate,HAddress,HYear,Rent,Size,PictureName
-				from (select HID,SName as Name,SPhone as Phone,RDate from ncu_rent.reserve,ncu_rent.student
-				where ncu_rent.reserve.SID = ncu_rent.student.SID) as r,
-				(select ncu_rent.house.LID,ncu_rent.house.HID,HAddress,HYear,Rent,Size,PictureName from ncu_rent.house,ncu_rent.landlord
-				where ncu_rent.house.LID = ncu_rent.landlord.LID) as h
+				from (select HID,SName as Name,SPhone as Phone,RDate from reserve,student
+				where reserve.SID = student.SID) as r,
+				(select house.LID,house.HID,HAddress,HYear,Rent,Size,PictureName from house,landlord
+				where house.LID = landlord.LID) as h
 				where h.LID = ? and r.HID = h.HID""";
 		List<JSONObject> reserve = new ArrayList<JSONObject>();
 		DBHelper db = new DBHelper();
