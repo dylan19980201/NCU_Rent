@@ -5,7 +5,8 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/NCURent/registerchoose.css">
-<title>登入頁面</title>
+<title>中央大學預約看房網</title>
+<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif" sizes="16x16">
 </head>
 <body>
     <div class="login-page">  
