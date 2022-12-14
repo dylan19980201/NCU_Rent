@@ -35,11 +35,11 @@
           <div class="table-box bg-whitesmoke">
             <h2 class="t-h-text mt-3">預約看房</h2>
             <div class="details-table">
-              <img src="./images/card-img4.jpg" Width="500" height="420">
+              <img src="" Width="500" height="420" id="housePicture">
               <div class="table-column">
                 <ul class="list-unstyled">
                   <form action="/NCURent/Post/addReserve" method="post">
-                    <input type="hidden" name="hid" value="11101"/>
+                    <input type="hidden" name="hid" value="" id="HID"/>
                     <li class="row-line">
                       <h5><label for="checkIn" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">看房時間</label>
                         <input type="datetime-local" name="reservetime" class="form-control" id="checkIn"
@@ -56,5 +56,53 @@
       </main>
       <jsp:include page="./footer.jsp" />
     </body>
-
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script>
+		$(document).ready(function(){  
+	    	var getUrlString = location.href;
+	    	var url = new URL(getUrlString);
+	    	var id = url.searchParams.get('id'); 
+	    	$.ajax({
+	            url: '/NCURent/Post/GetHouseData',
+	            method: 'post',
+	            dataType: 'json',
+	            data: {HID : id},
+	            success: function(res){
+	                if(res.status == "success"){
+	                	var typeData = $.parseJSON(res.data);
+	                	console.log(res.data)
+	               		$("#housePicture").attr("src","/NCURent/upload/"+typeData.pictureName);
+	                }else{
+	                    $('.alert.alert-danger').css('display','block')
+	                }
+	            },
+	            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+	                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+	            } 
+	        });
+	     });
+		$('form').on('submit', function(){
+			var getUrlString = location.href;
+	    	var url = new URL(getUrlString);
+	    	var id = url.searchParams.get('id'); 
+	    	$('#HID').attr("value", id);
+            $.ajax({
+                url: '/NCURent/Post/addReserve',
+                method: 'POST',
+                dataType: 'json',
+                data: $('form').serialize(),
+                success: function(res){
+                    if(res.status == "success"){
+                        location.href=res.page;
+                    }else{
+                        $('.alert.alert-danger').css('display','block')
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                } 
+            });
+            return false;
+        });
+     </script>
     </html>
