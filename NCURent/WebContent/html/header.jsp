@@ -26,7 +26,7 @@
                             <a class="text-white text-decoration-none d-flex pe-4" href="#">
                             <form  action ='/NCURent/Post/GetStudentReview' method="post"><i
                                     class="pe-1 mt-1 fas fa-eye"></i><span
-                                    onclick="javascript:location.href='../studentMainPage.jsp'" class="nav-name d-none d-md-block">查看學生評價</span></a>
+                                    class="nav-name d-none d-md-block">查看學生評價</span></a>
                                     <input type ="submit" class="btn btn-outline-success" onclick="javascript:location.href='../studentMainPage.jsp'" value="查看學生評價">
                         </li>
                         <li>
