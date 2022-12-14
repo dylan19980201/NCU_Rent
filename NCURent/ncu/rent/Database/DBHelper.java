@@ -12,6 +12,7 @@ import com.mysql.cj.result.BooleanValueFactory;
 
 import ncu.rent.DTO.User;
 import ncu.rent.DTO.House;
+import ncu.rent.DTO.StudentReview;
 
 import org.json.JSONObject;
 
@@ -226,5 +227,32 @@ public class DBHelper {
 			}
 		}
 		return result;
+	}
+	//讀取留言資料
+	public List<StudentReview> QueryStudentReview(String command, JSONObject condition) throws SQLException {
+		List<StudentReview> list = new ArrayList<StudentReview>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("Sid"));
+			rs = statement.executeQuery();
+			while (rs.next()) {
+				StudentReview studentReview = new StudentReview();
+				studentReview.setSID(rs.getString("Sid"));
+				studentReview.setLID(rs.getString("Lid"));
+				studentReview.setRsStar(rs.getInt("rsStar"));
+				studentReview.setRsContent(rs.getString("rsContent"));
+				studentReview.setRsDateTime(rs.getString("rsDateTime"));
+				list.add(studentReview);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			con.close();
+		}
+		return list;
 	}
 }

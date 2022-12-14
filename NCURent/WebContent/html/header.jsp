@@ -22,10 +22,12 @@
                                     class="pe-1 mt-1 fas fa-user"></i><span
                                     class="nav-name d-none d-md-block">刊登房東與房屋評價</span></a>
                         </li>
+                        <form  action ='/NCURent/Post/GetStudentReview' method="post">
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
                                     class="pe-1 mt-1 fas fa-rss"></i><span
                                     class="nav-name d-none d-md-block">查看學生評價</span></a>
+                            <input type ="submit" class="btn btn-outline-success" onclick="javascript:location.href='../studentMainPage.jsp'" value="查看學生評價">
                         </li>
                     <% } else if((session.getAttribute("type")).equals("landlord")) { %>
                         <li>

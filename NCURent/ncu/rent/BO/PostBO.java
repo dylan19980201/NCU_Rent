@@ -4,6 +4,7 @@ import ncu.rent.DAO.HouseDAO;
 import ncu.rent.DAO.PostDAO;
 import java.util.List;
 import ncu.rent.DTO.House;
+import ncu.rent.DTO.StudentReview;
 import ncu.rent.DTO.User;
 
 public class PostBO {
@@ -29,6 +30,15 @@ public class PostBO {
 	public boolean addReserve(String[] reserve){
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.addReserveData(reserve);
+	}
+	public StudentReview getStudentReview(String SID) {
+		PostDAO PostDAO = new PostDAO();
+		List<StudentReview> studentReviewList = PostDAO.getStudentReview(SID);
+		StudentReview studentReview = null;
+		if (!studentReviewList.isEmpty()) {
+			studentReview = studentReviewList.get(0);
+		}
+		return studentReview;
 	}
 	
 }

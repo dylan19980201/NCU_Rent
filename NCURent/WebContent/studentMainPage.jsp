@@ -37,6 +37,7 @@
 
       </section>
   		<h4 class="text-center my-2">評價一覽</h4>
+  		<h5>留言:<label id='RsContent'></label><h5>
       <section>
         <div class="map bg-whitesmoke">
           <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00001</u></a></h5>

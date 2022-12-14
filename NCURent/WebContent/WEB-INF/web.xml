@@ -24,5 +24,6 @@
     <url-pattern>/Post/addReserve</url-pattern>
     <url-pattern>/Post/getAllHouse</url-pattern>
     <url-pattern>/Post/GetHouseData</url-pattern>
+    <url-pattern>/Post/GetStudentReview</url-pattern>
   </servlet-mapping>
 </web-app>

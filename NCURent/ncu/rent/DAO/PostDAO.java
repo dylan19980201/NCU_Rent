@@ -1,11 +1,13 @@
 package ncu.rent.DAO;
 
 import ncu.rent.DTO.HouseDetail;
+import ncu.rent.DTO.StudentReview;
 import ncu.rent.Database.DBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 
 import ncu.rent.DTO.House;
 
@@ -61,4 +63,21 @@ public class PostDAO {
 		else
 			return false;
 	}
+	
+	public List<StudentReview> getStudentReview(String Sid) {
+		String command = """
+		SELECT SID as Sid, LID as Lid, RsStar as rsStar, RsContent as rsContent ,
+		RsDateTime as rsDateTime FROM reviewstudent  WHERE Sid = ?
+		""";
+		List<StudentReview> studentReview = new ArrayList<StudentReview>();
+		JSONObject condition = new JSONObject();
+		condition.put("Sid", Sid);
+		try {
+		DBHelper db = new DBHelper();
+		studentReview = db.QueryStudentReview(command, new JSONObject(condition.toString()));
+		} catch (Exception e) {
+		System.out.println(e);
+		}
+		return studentReview;
+		}
 }

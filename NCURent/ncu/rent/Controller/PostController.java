@@ -4,6 +4,7 @@ package ncu.rent.Controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import ncu.rent.DTO.House;
+import ncu.rent.DTO.StudentReview;
 import net.sf.json.JSONArray;
 
 import org.json.JSONObject;
@@ -63,6 +64,17 @@ public class PostController extends SuperController{
 		JSONObject json = new JSONObject(house);
 		String data = json.toString();
 		return DataForFrontend("success", "", data, "/NCURent/html/detail.jsp");
+	}
+	//取得留言板資訊
+	public JSONObject GetStudentReview(HttpServletRequest request, HttpServletResponse response) {
+		//String SID = request.getParameter("SID");
+		String SID= "20221211";
+		PostBO PostBO = new PostBO();
+		// 取得資料庫的資料
+		StudentReview studentReview = PostBO.getStudentReview(SID);
+		JSONObject json = new JSONObject(studentReview);
+		String data = json.toString();
+		return DataForFrontend("success", "", data, "/NCURent/studentMainPage.jsp");
 	}
 	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		String[] reserve;
