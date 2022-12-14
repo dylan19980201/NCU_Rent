@@ -54,7 +54,9 @@
                     <h5>刊登時間:<label id='PostDatetime'></label><h5>
                   </li>
                 </ul>
+                <% if((session.getAttribute("type")).equals("student")) {%>
                 <p class="apply-btn"><a class="bg-primary p-2 px-4 text-white text-decoration-none" id="reservebutton">預約看房</a></p>
+                <% }%>
               </div>
             </div>
           </div>
