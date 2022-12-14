@@ -55,24 +55,14 @@ public class PostController extends SuperController{
 	}
 	
 	public JSONObject GetHouseData(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("hello");
+		int HID = Integer.parseInt(request.getParameter("HID"));
 		PostBO PostBO = new PostBO();
 		// 取得資料庫的資料
 		
-		House house = PostBO.getHouseData(11103);
-		JSONObject data = new JSONObject(house);
-			request.setAttribute("HAddress", house.getHAddress());
-			request.setAttribute("HYear", house.getHYear());
-			request.setAttribute("Rent", house.getRent());
-			request.setAttribute("Size", house.getSize());
-			request.setAttribute("Equipment", house.getEquipment());
-			request.setAttribute("GenderSpecific", house.getGenderSpecific());
-			request.setAttribute("AID", house.getAID());
-			request.setAttribute("HID", house.getHID());
-			request.setAttribute("LID", house.getLID());
-			request.setAttribute("PictureName", house.getPictureName());
-			request.setAttribute("PostDateTime", house.getPostDateTime());
-			return DataForFrontend("success", "", data, "/NCURent/house_ver2.jsp");
+		House house = PostBO.getHouseData(HID);
+		JSONObject json = new JSONObject(house);
+		String data = json.toString();
+		return DataForFrontend("success", "", data, "/NCURent/html/detail.jsp");
 	}
 	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		String[] reserve;

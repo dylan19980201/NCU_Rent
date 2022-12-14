@@ -26,39 +26,35 @@
           <div class="table-box bg-whitesmoke">
             <h2 class="t-h-text mt-3">房屋細節</h2>
             <div class="details-table">
-              <img src="./images/card-img4.jpg" Width="500" height="485">
+              <img src="" Width="500" height="485" id="housePicture">
               <div class="table-column">
                 <ul class="list-unstyled">
                   <li class="row-line">
-                    <h5>房屋地址:桃園市中壢區中央路100號<h5>
+                    <h5>房屋地址:<label id='HAddress'></label><h5>
                   </li>
                   <li class="row-line">
-                    <h5>房東:柯小哲<h5>
+                    <h5>房東:<label id='LName'></label><h5>
                   </li>
                   <li class="row-line">
-                    <h5>房屋租金(每月):$5000<h5>
+                    <h5>房屋租金(每月):<label id='Rent'></label><h5>
                   </li>
                   <li class="row-line">
-                    <h5>房屋坪數：7坪<h5>
+                    <h5>房屋坪數：<label id='Size'></label><h5>
                   </li>
                   <li class="row-line">
-                    <h5>房屋年齡: 12年<h5>
+                    <h5>房屋年齡:<label id='HYear'></label><h5>
                   </li>
                   <li class="row-line">
-                    <h5>電費:4.5元/度<h5>
+                    <h5>設備:<label id='Equipment'></label><h5>
                   </li>
                   <li class="row-line">
-                    <h5>水費(每月):$200<h5>
+                    <h5>男/女限制:<label id='GenderSpecific'></label><h5>
                   </li>
                   <li class="row-line">
-                    <h5>有無陽台:無<h5>
-                  </li>
-                  <li class="row-line">
-                    <h5>其他備註:無<h5>
+                    <h5>刊登時間:<label id='PostDatetime'></label><h5>
                   </li>
                 </ul>
-                <p class="apply-btn"><a class="bg-primary p-2 px-4 text-white text-decoration-none" a
-                    href="./reserve.jsp">預約看房</a></p>
+                <p class="apply-btn"><a class="bg-primary p-2 px-4 text-white text-decoration-none" id="reservebutton">預約看房</a></p>
               </div>
             </div>
           </div>
@@ -80,9 +76,40 @@
         
       </main>
       <jsp:include page="./footer.jsp" />
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){  
+    	var getUrlString = location.href;
+    	var url = new URL(getUrlString);
+    	var id = url.searchParams.get('id'); 
+    	$.ajax({
+            url: '/NCURent/Post/GetHouseData',
+            method: 'post',
+            dataType: 'json',
+            data: {HID : id},
+            success: function(res){
+                if(res.status == "success"){
+                	var typeData = $.parseJSON(res.data);
+               		$("#housePicture").attr("src","/NCURent/upload/"+typeData.pictureName);
+                	$('#HAddress').text(typeData.HAddress);
+                	$('#LName').text(typeData.LName);
+                	$('#Rent').text(typeData.rent);
+                	$('#Size').text(typeData.size);
+                	$('#HYear').text(typeData.HYear);
+                	$('#Equipment').text(typeData.equipment);
+                	$('#GenderSpecific').text(typeData.genderSpecific);
+                	$('#PostDatetime').text(typeData.postDateTime);
+                	$('#reservebutton').attr('href', "./reserve.jsp?id="+id)
+                }else{
+                    $('.alert.alert-danger').css('display','block')
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            } 
+        });
+     });
 
+	</script>
     </html>

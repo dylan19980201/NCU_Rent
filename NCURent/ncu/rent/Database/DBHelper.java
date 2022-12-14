@@ -70,6 +70,7 @@ public class DBHelper {
 		try {
 			con = this.getConnection();
 			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("Hid"));
 			rs = statement.executeQuery();
 			while (rs.next()) {
 				House house = new House();
@@ -81,7 +82,7 @@ public class DBHelper {
 				house.setGenderSpecific(rs.getString("genderSpecific"));
 				house.setAID(rs.getString("aID"));
 				house.setHID(rs.getString("hID"));
-				house.setLID(rs.getString("lID"));
+				house.setLName(rs.getString("LName"));
 				house.setPictureName(rs.getString("pictureName"));
 				house.setPostDateTime(rs.getString("postDatetime"));
 				list.add(house);
