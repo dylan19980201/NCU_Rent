@@ -228,6 +228,7 @@ public class DBHelper {
 		}
 		return result;
 	}
+
 	//讀取留言資料
 	public List<StudentReview> QueryStudentReview(String command, JSONObject condition) throws SQLException {
 		List<StudentReview> list = new ArrayList<StudentReview>();
@@ -237,21 +238,55 @@ public class DBHelper {
 		try {
 			con = this.getConnection();
 			statement = con.prepareStatement(command);
-			statement.setObject(1, condition.get("Sid"));
-			rs = statement.executeQuery();
-			while (rs.next()) {
-				StudentReview studentReview = new StudentReview();
-				studentReview.setSID(rs.getString("Sid"));
-				studentReview.setLID(rs.getString("Lid"));
-				studentReview.setRsStar(rs.getInt("rsStar"));
-				studentReview.setRsContent(rs.getString("rsContent"));
-				studentReview.setRsDateTime(rs.getString("rsDateTime"));
-				list.add(studentReview);
+		statement.setObject(1, condition.get("Sid"));
+		rs = statement.executeQuery();
+		while (rs.next()) {
+			StudentReview studentReview = new StudentReview();
+			studentReview.setSID(rs.getString("Sid"));
+			studentReview.setLID(rs.getString("Lid"));
+			studentReview.setRsStar(rs.getInt("rsStar"));
+			studentReview.setRsContent(rs.getString("rsContent"));
+			studentReview.setRsDateTime(rs.getString("rsDateTime"));
+			list.add(studentReview);
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
 			con.close();
+		}
+		return list;
+	}
+
+	public List<JSONObject> getAllReserve(String command,String id) {
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setString(1, id);
+			rs = statement.executeQuery();
+			while(rs.next()) {
+				JSONObject data = new JSONObject();
+				data.put("Name", rs.getString("Name"));
+				data.put("Phone", rs.getString("Phone"));
+				data.put("RDate", rs.getString("HDate"));
+				data.put("HAddress", rs.getString("HAddress"));
+				data.put("HYear", rs.getString("HYear"));
+				data.put("Rent", rs.getString("Rent"));
+				data.put("Size", rs.getString("Size"));
+				data.put("PictureName", rs.getString("PictureName"));
+				list.add(data);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return list;
 	}

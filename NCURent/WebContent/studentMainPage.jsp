@@ -36,16 +36,54 @@
             </div>
 
       </section>
+      
+           <h4 class="text-center my-2">我要評論</h4>
+     <div class="map bg-whitesmoke">
+  <p class="text-center my-2">評分</p>
+  <center><jsp:include page="./stars.jsp" /></center>
+  <p class="text-center my-2">評論</p>
+  <center><textarea id="content"style="resize:none;width:800px;height:100px;" ></textarea></center><br>
+   <center><input type="button" value="發布"/></center><br>
+     </div>
+     <!--引用jQuery-->
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+     <!--引用SweetAlert2.js-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+     <script type="text/javascript">
+         swal.setDefaults({
+             confirmButtonText: "確定",
+             cancelButtonText: "取消"
+         });
+  
+         $(function () {
+             $("input:button").click(function () {
+                 swal({
+                     title: "確定發布？",
+                     type: "question",
+                     showCancelButton: true//顯示取消按鈕
+                 }).then(
+                     function (result) {
+                         if (result.value) {
+                           swal("完成!", "評論已發布", "success");
+                         } 
+                         else if (result.dismiss === "cancel"){
+                             swal("取消", "評論尚未發布", "error");
+                         }
+                     });
+             });
+         });
+     </script><br>
+
   		<h4 class="text-center my-2">評價一覽</h4>
   		<h5>留言:<label id='RsContent'></label><h5>
       <section>
         <div class="map bg-whitesmoke">
           <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00001</u></a></h5>
-		  <h6>⭐⭐⭐⭐⭐　　　　　　　2天前</h6>
+		  <h6>⭐⭐⭐⭐⭐　　　　　　　2022/12/14 13:00:00</h6>
 		  <p>Good!</p>
 		  <hr>	
 		   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00002</u></a></h5>
-		  <h6>⭐⭐⭐⭐⭐　　　　　　　3天前</h6>
+		  <h6>⭐⭐⭐⭐⭐　　　　　　　2022/12/13 17:34:56</h6>
 		  <p>Nice!</p>
 		  <hr>	
         </div>

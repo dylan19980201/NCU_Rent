@@ -26,8 +26,13 @@
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
                                     class="pe-1 mt-1 fas fa-rss"></i><span
-                                    class="nav-name d-none d-md-block">查看學生評價</span></a>
+                                   onclick="javascript:location.href='../studentMainPage.jsp'"  class="nav-name d-none d-md-block">查看學生評價</span></a>
                             <input type ="submit" class="btn btn-outline-success" onclick="javascript:location.href='../studentMainPage.jsp'" value="查看學生評價">
+                        </li>
+                        <li>
+                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/sreservestate.jsp"><i
+                                    class="pe-1 mt-1 fas fa-rss"></i><span
+                                    class="nav-name d-none d-md-block">查看預約資訊</span></a>
                         </li>
                     <% } else if((session.getAttribute("type")).equals("landlord")) { %>
                         <li>
@@ -45,6 +50,11 @@
                             <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
                                     class="pe-1 mt-1 fas fa-rss"></i><span
                                     class="nav-name d-none d-md-block">查看房東與房屋評價</span></a>
+                        </li>
+                        <li>
+                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/lreservestate.jsp"><i
+                                    class="pe-1 mt-1 fas fa-rss"></i><span
+                                    class="nav-name d-none d-md-block">查看預約資訊</span></a>
                         </li>
                     <% } else { %>
                         <li>

@@ -80,4 +80,26 @@ public class PostDAO {
 		}
 		return studentReview;
 		}
+	public List<JSONObject> getAllReserve(String id, String type) {
+		String command = "";
+		if(type.equals("student"))
+			command = """
+				select Name,Phone,Rdate,HAddress,HYear,Rent,Size,PictureName
+				from reserve,
+				(select house.HID,LName Name,LPhone as Phone,HAddress,HYear,Rent,Size,PictureName from house,landlord
+				where house.LID = landlord.LID) as h
+				where reserve.SID = ? and reserve.HID = h.HID""";
+		else 
+			command = """
+				select Name,Phone,Rdate,HAddress,HYear,Rent,Size,PictureName
+				from (select HID,SName as Name,SPhone as Phone,RDate from reserve,student
+				where reserve.SID = student.SID) as r,
+				(select house.LID,house.HID,HAddress,HYear,Rent,Size,PictureName from house,landlord
+				where house.LID = landlord.LID) as h
+				where h.LID = ? and r.HID = h.HID""";
+		List<JSONObject> reserve = new ArrayList<JSONObject>();
+		DBHelper db = new DBHelper();
+		reserve = db.getAllReserve(command,id);
+		return reserve;
+	}
 }
