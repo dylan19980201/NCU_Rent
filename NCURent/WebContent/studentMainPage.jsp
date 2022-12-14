@@ -78,11 +78,11 @@
       <section>
         <div class="map bg-whitesmoke">
           <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00001</u></a></h5>
-		  <h6>⭐⭐⭐⭐⭐　　　　　　　2天前</h6>
+		  <h6>⭐⭐⭐⭐⭐　　　　　　　2022/12/14 13:00:00</h6>
 		  <p>Good!</p>
 		  <hr>	
 		   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00002</u></a></h5>
-		  <h6>⭐⭐⭐⭐⭐　　　　　　　3天前</h6>
+		  <h6>⭐⭐⭐⭐⭐　　　　　　　2022/12/13 17:34:56</h6>
 		  <p>Nice!</p>
 		  <hr>	
         </div>
