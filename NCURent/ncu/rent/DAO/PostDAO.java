@@ -6,6 +6,7 @@ import ncu.rent.Database.DBHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 
 import ncu.rent.DTO.House;
 
@@ -60,5 +61,27 @@ public class PostDAO {
 			return true;
 		else
 			return false;
+	}
+	public List<JSONObject> getAllReserve(String id, String type) {
+		String command = "";
+		if(type.equals("student"))
+			command = """
+				select Name,Phone,Rdate,HAddress,HYear,Rent,Size,PictureName
+				from reserve,
+				(select house.HID,LName Name,LPhone as Phone,HAddress,HYear,Rent,Size,PictureName from house,landlord
+				where house.LID = landlord.LID) as h
+				where reserve.SID = ? and reserve.HID = h.HID""";
+		else 
+			command = """
+				select Name,Phone,Rdate,HAddress,HYear,Rent,Size,PictureName
+				from (select HID,SName as Name,SPhone as Phone,RDate from ncu_rent.reserve,ncu_rent.student
+				where ncu_rent.reserve.SID = ncu_rent.student.SID) as r,
+				(select ncu_rent.house.LID,ncu_rent.house.HID,HAddress,HYear,Rent,Size,PictureName from ncu_rent.house,ncu_rent.landlord
+				where ncu_rent.house.LID = ncu_rent.landlord.LID) as h
+				where h.LID = ? and r.HID = h.HID""";
+		List<JSONObject> reserve = new ArrayList<JSONObject>();
+		DBHelper db = new DBHelper();
+		reserve = db.getAllReserve(command,id);
+		return reserve;
 	}
 }

@@ -227,4 +227,38 @@ public class DBHelper {
 		}
 		return result;
 	}
+
+	public List<JSONObject> getAllReserve(String command,String id) {
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setString(1, id);
+			rs = statement.executeQuery();
+			while(rs.next()) {
+				JSONObject data = new JSONObject();
+				data.put("Name", rs.getString("Name"));
+				data.put("Phone", rs.getString("Phone"));
+				data.put("RDate", rs.getString("HDate"));
+				data.put("HAddress", rs.getString("HAddress"));
+				data.put("HYear", rs.getString("HYear"));
+				data.put("Rent", rs.getString("Rent"));
+				data.put("Size", rs.getString("Size"));
+				data.put("PictureName", rs.getString("PictureName"));
+				list.add(data);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 }

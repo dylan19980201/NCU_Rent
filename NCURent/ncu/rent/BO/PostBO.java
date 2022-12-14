@@ -3,6 +3,9 @@ package ncu.rent.BO;
 import ncu.rent.DAO.HouseDAO;
 import ncu.rent.DAO.PostDAO;
 import java.util.List;
+
+import org.json.JSONObject;
+
 import ncu.rent.DTO.House;
 import ncu.rent.DTO.User;
 
@@ -30,5 +33,8 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.addReserveData(reserve);
 	}
-	
+	public List<JSONObject> getAllReserve(String id,String type) {
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.getAllReserve(id, type);
+	}
 }
