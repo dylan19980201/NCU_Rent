@@ -84,17 +84,17 @@ public class PostDAO {
 		String command = "";
 		if(type.equals("student"))
 			command = """
-				select Name,Phone,Rdate,HAddress,HYear,Rent,Size,PictureName
+				select reserve.HID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName
 				from reserve,
-				(select house.HID,LName Name,LPhone as Phone,HAddress,HYear,Rent,Size,PictureName from house,landlord
+				(select house.HID,LName Name,LPhone as Phone,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName from house,landlord
 				where house.LID = landlord.LID) as h
 				where reserve.SID = ? and reserve.HID = h.HID""";
 		else 
 			command = """
-				select Name,Phone,Rdate,HAddress,HYear,Rent,Size,PictureName
+				select r.HID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName
 				from (select HID,SName as Name,SPhone as Phone,RDate from reserve,student
 				where reserve.SID = student.SID) as r,
-				(select house.LID,house.HID,HAddress,HYear,Rent,Size,PictureName from house,landlord
+				(select house.LID,house.HID,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName from house,landlord
 				where house.LID = landlord.LID) as h
 				where h.LID = ? and r.HID = h.HID""";
 		List<JSONObject> reserve = new ArrayList<JSONObject>();
