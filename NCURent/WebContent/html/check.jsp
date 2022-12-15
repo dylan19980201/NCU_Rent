@@ -57,8 +57,9 @@
                     <h5>其他備註:無<h5>
                   </li>
                 </ul>
-                <p class="apply-btn"><a class="bg-primary p-2 px-4 text-white text-decoration-none" href="#">確認</a></p>
-                <p class="apply-btn"><a class="bg-primary p-2 px-4 text-white text-decoration-none" href="#">刪除</a></p>
+                <div>
+                <p class="apply-btn"><a class="bg-primary p-2 px-4 text-white text-decoration-none" href="#">確認</a>
+                <a class="bg-primary p-2 px-4 text-white text-decoration-none" href="#">刪除</a><br></p>
               </div>
             </div>
           </div>
