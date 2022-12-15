@@ -20,7 +20,13 @@
                 <input type="text" name="id" placeholder="帳號" required="required"/>
                 <input type="password" name="password" placeholder="密碼" required="required"/>
                 <input type="text" name="name" placeholder="姓名" required="required"/>
-                <input type="text" name="gender" placeholder="性別" required="required"/>
+                <select class="form-select" name="gender" >
+                <option selected>性別</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+              </select>
+              <input type="text" name="gender" placeholder="性別" required="required"/>
+  
                 <input type="date" name="birth" placeholder="生日" required="required"/>   
                 <input type="text" name="phone" placeholder="手機號碼(請輸入09XXXXXXXX)" required="required" pattern="09\d{8}"/>   
                 <input type="text" name="department" placeholder="系級" required="required"/>       
