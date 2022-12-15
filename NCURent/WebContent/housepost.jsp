@@ -7,13 +7,14 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="house.css">
-<title>刊登</title>
+<title>中央大學預約看房網</title>
+<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif" sizes="16x16">
 <div class="wrapper">
 
   
 </head>
 <body>
-    <jsp:include page= "/html/header.jsp" />
+    <jsp:include page="./html/header.jsp" />
     <div class="form"  action="/NCURent/Post/Add" method="post" enctype="multipart/form-data">
       <p align="left" style="font-size:20px;font-weight:bold;">上傳照片：</P>
       <input type="file" name="file" multiple="multipart" id="pic" />

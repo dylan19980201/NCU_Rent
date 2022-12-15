@@ -93,4 +93,13 @@ public class PostController extends SuperController{
 			return DataForFrontend("fail","預約失敗", null, "/NCURent/html/reserve.jsp");
 		}
 	}
+	public JSONObject getAllReserve(HttpServletRequest request, HttpServletResponse response) {
+		PostBO PostBO = new PostBO();
+		HttpSession session = request.getSession();
+		List<JSONObject> reserve = PostBO.getAllReserve((session.getAttribute("id")).toString(),(session.getAttribute("type")).toString());
+		Gson gson = new Gson();
+		String listJson = gson.toJson(reserve);
+		JSONArray reserveData = JSONArray.fromObject(listJson);
+		return DataForFrontend("success", "", reserveData, "/NCURent/???.jsp");
+	}
 }

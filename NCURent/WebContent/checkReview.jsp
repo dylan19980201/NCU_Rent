@@ -15,10 +15,7 @@
 	<body>
 		 <jsp:include page="./html/header.jsp" />
       <main>
-      <section>
- 
 
-      </section>
   		<h3 class="text-center my-2">所有評價</h3>
   		 <div>
   		  <div class="apply-btn">

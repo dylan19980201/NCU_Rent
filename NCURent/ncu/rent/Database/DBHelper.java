@@ -269,13 +269,16 @@ public class DBHelper {
 			rs = statement.executeQuery();
 			while(rs.next()) {
 				JSONObject data = new JSONObject();
+				data.put("HID", rs.getString("HID"));
 				data.put("Name", rs.getString("Name"));
 				data.put("Phone", rs.getString("Phone"));
-				data.put("RDate", rs.getString("HDate"));
+				data.put("RDate", rs.getString("RDate"));
 				data.put("HAddress", rs.getString("HAddress"));
 				data.put("HYear", rs.getString("HYear"));
 				data.put("Rent", rs.getString("Rent"));
 				data.put("Size", rs.getString("Size"));
+				data.put("Equipment", rs.getString("Equipment"));
+				data.put("GenderSpecific", rs.getString("GenderSpecific"));
 				data.put("PictureName", rs.getString("PictureName"));
 				list.add(data);
 			}
