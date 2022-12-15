@@ -14,7 +14,15 @@ public class LoginBO {
 		}
 		return user;
 	}
-
+	public User getUser(String id) {
+		LoginDAO LoginDAO = new LoginDAO();
+		List<User> userList = LoginDAO.getUserData(id);
+		User user = null;
+		if(!userList.isEmpty()) {
+			user = userList.get(0);
+		}
+		return user;
+	}
 	public boolean addUser(String[] user, String type) {
 		LoginDAO LoginDAO = new LoginDAO();
 		return LoginDAO.addUserData(user, type);

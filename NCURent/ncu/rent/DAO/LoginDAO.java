@@ -33,7 +33,25 @@ public class LoginDAO {
 		}
 		return user;
 	}
-
+	public List<User> getUserData(String id) {
+		String command = """
+				Select s.SID AS ID, SName AS Name, SBirth AS Birth, SGender as Gender, SDepartment AS Department, SPhone as Phone, SEmail as Email, Amount, Star
+				FROM student as s LEFT JOIN 
+				(SELECT s.SID AS SID, COUNT(*) AS Amount, AVG(RsStar) AS Star
+				FROM student as s inner join reviewstudent as r on s.SID = r.SID
+				GROUP BY SID) AS r ON s.SID = r.SID 
+				WHERE s.SID = ? """;
+		List<User> user = new ArrayList<User>();
+		JSONObject condition = new JSONObject();
+		condition.put("id", id);
+		try {
+			DBHelper db = new DBHelper();
+			user = db.QueryUser(command, new JSONObject(condition.toString()));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return user;
+	}
 	public boolean addUserData(String[] user, String type) {
 		DBHelper db = new DBHelper();
 		String command = "";

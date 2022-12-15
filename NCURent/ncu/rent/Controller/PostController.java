@@ -5,6 +5,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import ncu.rent.DTO.House;
 import ncu.rent.DTO.StudentReview;
+import ncu.rent.DTO.User;
 import net.sf.json.JSONArray;
 
 import org.json.JSONObject;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import ncu.rent.BO.UploadBO;
 import ncu.rent.BO.PostBO;
+import ncu.rent.BO.LoginBO;
 
 
 public class PostController extends SuperController{
@@ -70,11 +72,19 @@ public class PostController extends SuperController{
 		//String SID = request.getParameter("SID");
 		String SID= "20221211";
 		PostBO PostBO = new PostBO();
+		LoginBO LoginBO = new LoginBO();
 		// 取得資料庫的資料
-		StudentReview studentReview = PostBO.getStudentReview(SID);
-		JSONObject json = new JSONObject(studentReview);
-		String data = json.toString();
-		return DataForFrontend("success", "", data, "/NCURent/studentMainPage.jsp");
+		List<StudentReview> studentReview = PostBO.getStudentReview(SID);
+		User user = LoginBO.getUser(SID);
+		JSONObject json = new JSONObject(user);
+		String studentData = json.toString();
+		Gson gson = new Gson();
+		String listJson = gson.toJson(studentReview);
+		JSONArray studentReviewData = JSONArray.fromObject(listJson);
+		JSONObject jsonData = new JSONObject();
+		jsonData.put("studentData", studentData);
+		jsonData.put("studentReviewData", studentReviewData);
+		return DataForFrontend("success", "", jsonData, "/NCURent/studentMainPage.jsp");
 	}
 	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		String[] reserve;

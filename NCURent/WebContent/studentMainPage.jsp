@@ -93,5 +93,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   </body>
 	</body>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+	$(document).ready(function(){  
+    	var getUrlString = location.href;
+    	var url = new URL(getUrlString);
+    	var id = url.searchParams.get('id'); 
+    	$.ajax({
+            url: '/NCURent/Post/GetStudentReview',
+            method: 'post',
+            dataType: 'json',
+            data: {SID : id},
+            success: function(res){
+                if(res.status == "success"){
+                	var reviewData = $.parseJSON(res.data.studentReviewData);
+                	var studentData = $.parseJSON(res.data.studentData);
+                }else{
+                    $('.alert.alert-danger').css('display','block')
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            } 
+        });
+     });
+	</script>
 </html>

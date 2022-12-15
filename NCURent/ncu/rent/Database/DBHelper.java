@@ -63,6 +63,37 @@ public class DBHelper {
 		}
 		return list;
 	}
+	public List<User> QueryUser(String command, JSONObject condition) throws SQLException{
+		List<User> list = new ArrayList<User>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			// setString(第幾個問號, value)
+			statement.setObject(1, condition.get("id"));
+			rs = statement.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setID(rs.getString("ID"));
+				user.setName(rs.getString("Name"));
+				user.setBirth(rs.getString("Birth"));
+				user.setGender(rs.getString("Gender"));
+				user.setDepartment(rs.getString("Department"));
+				user.setPhone(rs.getString("Phone"));
+				user.setEmail(rs.getString("Email"));
+				user.setAmount(rs.getInt("Amount"));
+				user.setStar(rs.getInt("Star"));
+				list.add(user);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			con.close();
+		}
+		return list;
+	}
 	public List<House> QueryHouseData(String command, JSONObject condition) throws SQLException {
 		List<House> list = new ArrayList<House>();
 		Connection con = null;
