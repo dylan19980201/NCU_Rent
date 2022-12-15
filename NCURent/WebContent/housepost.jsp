@@ -32,9 +32,7 @@
       <input type="text" name="Rent"placeholder="租金：">
       <input type="text" name="Size"placeholder="坪數：">
       <input type="text" name="Hyear"placeholder="屋齡：">
-      <input type="text" name="address"placeholder="電費：">
-      <input type="text" name="address"placeholder="水費：">
-      <input type="text" name="address"placeholder="有無陽台：">
+      
       <input type="text" name="address"placeholder="備註：">
       <button type="submit" class="btn btn-outline-primary">請求刊登</button>
     </div>
