@@ -17,11 +17,53 @@
       <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif" sizes="16x16">
       <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
     </head>
-
+	<jsp:include page="./header.jsp" />
     <body>
-      <jsp:include page="./header.jsp" />
-      <main>
+    <main>
+
+       <div class="bg-whitesmoke my-4 mx-3 p-4">
+      <h5 class="text-center mb-4"><i class="pe-1 mt-1 fas fa-filter"></i>條件篩選</h5> 
+      <div class="d-md-flex justify-content-center">
+          <ul class="select-box list-unstyled d-md-flex">
+            <li>
+                <select name="size" id="size" style="height:40px; width:120px">
+                <option value="size">坪數</option>
+                <option value="size1">0-5</option>
+                <option value="size2">6-10</option>
+                <option value="size3">11-15</option>
+                <option value="size4">16-20</option>
+                <option value="size5">20坪以上</option>
+              </select>
+            </li>
+            <li> 
+              <select name="year" id="year" style="height:40px; width:120px">
+                <option value="year">屋齡</option>
+                <option value="year1">0-5</option>
+                <option value="year2">6-10</option>
+                <option value="year3">11-15</option>
+                <option value="year4">16-20</option>
+                <option value="year5">20年以上</option>
+              </select>
+            </li>
+            <li>
+              <nobr>　　租金</nobr>
+              <input type="search" style="height:40px; width:85px" placeholder="$ 最小值">
+              <nobr>——</nobr>
+              <input type="search" style="height:40px; width:85px" placeholder="$ 最大值">
+            </li>
+            <nobr>　　</nobr>
+           <input type="search" style="height:40px; width:150px" placeholder="請輸入關鍵字">
+          </ul>
+          <div class="result-btn">          	
+              <a href="#" class="text-white p-1 btn btn-primary text-decoration-none" style="height:35px; width:65px"><i class="fas fa-search"></i>搜尋</a>
+              <nobr> </nobr>
+              <a href="#" class="text-dark p-1 btn btn-warning text-decoration-none" style="height:35px; width:65px"><i class="fas fa-trash-alt"></i>清除</a>
+          </div>
+
+      </div>
+      </div>
         <!-- ........search results......... -->
+        
         <section>
           <div class="row mx-1 my-4" id="Housediv">
           </div>
