@@ -327,7 +327,8 @@ ul a {
     padding: 10px 100px 10px 10px;
   }
 
-  .apply-btn {
-    text-align: center;
+  .rent {
+    vertical-align： middle;
   }
+  
 }
