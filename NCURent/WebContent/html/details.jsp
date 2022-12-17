@@ -102,7 +102,7 @@
  	  		<h4 class="text-center my-2">評價一覽</h4>
 	      <section>
 	        <div class="map bg-whitesmoke">
-	          <h5 class="mb-3"><a href="../studentMainPage.jsp" class="text-decoration-none text-dark"><u>111423054</u></a></h5>
+	          <h5 class="mb-3"><a href="../studentMainPage.jsp?id=20221211" class="text-decoration-none text-dark"><u>111423054</u></a></h5>
 			  <h6>⭐⭐⭐⭐⭐　　　　　　　2022/12/14 13:00:00</h6>
 			  <p>Good!</p>
 			  <hr>	

@@ -84,7 +84,7 @@ public class DBHelper {
 				user.setPhone(rs.getString("Phone"));
 				user.setEmail(rs.getString("Email"));
 				user.setAmount(rs.getInt("Amount"));
-				user.setStar(rs.getInt("Star"));
+				user.setStar(rs.getString("Star"));
 				list.add(user);
 			}
 		} catch (Exception e) {

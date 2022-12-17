@@ -69,8 +69,7 @@ public class PostController extends SuperController{
 	}
 	//取得留言板資訊
 	public JSONObject GetStudentReview(HttpServletRequest request, HttpServletResponse response) {
-		//String SID = request.getParameter("SID");
-		String SID= "20221211";
+		String SID = request.getParameter("SID");
 		PostBO PostBO = new PostBO();
 		LoginBO LoginBO = new LoginBO();
 		// 取得資料庫的資料

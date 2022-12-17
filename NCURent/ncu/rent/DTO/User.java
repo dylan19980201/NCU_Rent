@@ -13,7 +13,7 @@ public class User {
     private String Email;
     private String Type;
     private int Amount;
-    private int Star;
+    private String Star;
     // GET method
     public String getID() {return ID;}
     public String getPassword() {return Password;}
@@ -25,7 +25,7 @@ public class User {
     public String getEmail() {return Email;}
     public String getType() {return Type;}
     public int getAmount() {return Amount;}
-    public int getStar() {return Star;}
+    public String getStar() {return Star.substring(0, Star.indexOf(".")+2);} //Math.round(a*100)
     // SET method
     public void setID(String ID) {this.ID = ID;}
     public void setPassword(String Password) {this.Password = Password;}
@@ -37,5 +37,5 @@ public class User {
     public void setEmail(String Email) {this.Email = Email;}
     public void setType(String Type) {this.Type = Type;}
     public void setAmount(int Amount) {this.Amount = Amount;}
-    public void setStar(int Star) {this.Star = Star;}
+    public void setStar(String Star) {this.Star = Star;}
 }
