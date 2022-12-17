@@ -29,36 +29,36 @@
             <ul class="select-box list-unstyled d-md-flex">
               <li>
                 <select name="size" id="size" style="height:40px; width:120px">
-                  <option value="size">坪數</option>
-                  <option value="size1">0-5</option>
-                  <option value="size2">6-10</option>
-                  <option value="size3">11-15</option>
-                  <option value="size4">16-20</option>
-                  <option value="size5">20坪以上</option>
+                  <option value="0-2147483647">坪數</option>
+                  <option value="0-5">0-5</option>
+                  <option value="6-10">6-10</option>
+                  <option value="11-15">11-15</option>
+                  <option value="16-20">16-20</option>
+                  <option value="20-2147483647">20坪以上</option>
                 </select>
               </li>
               <li>
                 <select name="year" id="year" style="height:40px; width:120px">
-                  <option value="year">屋齡</option>
-                  <option value="year1">0-5</option>
-                  <option value="year2">6-10</option>
-                  <option value="year3">11-15</option>
-                  <option value="year4">16-20</option>
-                  <option value="year5">20年以上</option>
+                  <option value="0-2147483647">屋齡</option>
+                  <option value="0-5">0-5</option>
+                  <option value="6-10">6-10</option>
+                  <option value="11-15">11-15</option>
+                  <option value="16-20">16-20</option>
+                  <option value="20-2147483647">20年以上</option>
                 </select>
               </li>
               <li>
                 <nobr>　　租金</nobr>
-                <input type="search" style="height:40px; width:85px" placeholder="$ 最小值">
+                <input type="search" style="height:40px; width:85px" id="minPrice" value="" placeholder="$ 最小值">
                 <nobr>——</nobr>
-                <input type="search" style="height:40px; width:85px" placeholder="$ 最大值">
+                <input type="search" style="height:40px; width:85px" id="maxPrice" value="" placeholder="$ 最大值">
               </li>
               <nobr>　　</nobr>
-              <input type="search" style="height:40px; width:150px" placeholder="請輸入關鍵字">
+              <input type="search" style="height:40px; width:150px" id="keyword" value="" placeholder="請輸入關鍵字">
             </ul>
             <div class="result-btn">
-              <a id = "search" class="text-white p-1 btn btn-primary text-decoration-none" style="height:35px; width:65px"><i
-                  class="fas fa-search"></i>搜尋</a>
+              <a id="search" class="text-white p-1 btn btn-primary text-decoration-none"
+                style="height:35px; width:65px"><i class="fas fa-search"></i>搜尋</a>
               <nobr> </nobr>
               <a class="text-dark p-1 btn btn-warning text-decoration-none" style="height:35px; width:65px"><i
                   class="fas fa-trash-alt"></i>清除</a>
@@ -79,87 +79,71 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-      $(document).ready(function () {
+      $(function () {
         var result;
         GetData();
         update(result);
-        console.log("res:",result);
-        document.querySelector('#search').addEventListener('click',()=>update(result));
+        document.querySelector('#search').addEventListener('click', () => update(result));
         function GetData() {
-        $.ajax({
-          url: '/NCURent/Post/getAllHouse',
-          method: 'POST',
-          dataType: 'json',
-          data: $('form').serialize(),
-          async: false,
-          success: function (res) {
-            if (res.status == "success") {
-              result = $.parseJSON(res.data);
-            } else {
-              $('.alert.alert-danger').css('display', 'block');
+          console.log("do");
+          $.ajax({
+            url: '/NCURent/Post/getAllHouse',
+            method: 'POST',
+            dataType: 'json',
+            data: $('form').serialize(),
+            async: false,
+            success: function (res) {
+              if (res.status == "success") {
+                result = $.parseJSON(res.data);
+              } else {
+                $('.alert.alert-danger').css('display', 'block');
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert("Status: " + textStatus); alert("Error: " + errorThrown);
             }
-          },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-          }
-        });
+          });
         }
+
         function update(data) {
-          console.log("data",data);
           var divBody = "";
+          var size = document.getElementById("size").value.split('-');
+          var year = document.getElementById("year").value.split('-');
+          var minPrice = document.getElementById("minPrice").value != "" ? document.getElementById("minPrice").value : 0;
+          var maxPrice = document.getElementById("maxPrice").value != "" ? document.getElementById("maxPrice").value : 2147483647;
+          var keyword = document.getElementById("keyword").value;
           $.each(data, function (i, n) {
-            divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
-            divBody += "<div class='card'>";
-            divBody += "<img src='/NCURent/upload/" + n.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
-            divBody += "<div class='card-body'>";
-            divBody += "<h5 class='card-title'>" + n.HAddress + "</h5>";
-            divBody += "<p class='card-text'>房東：" + n.LName + "<br>房屋坪數：" + n.Size + "<br>房屋租金：" + n.Rent + "/月<br>房屋設備：" + n.Equipment + "<br>屋齡:" + n.HYear + "<br>其他備註：" + n.GenderSpecific + "</p>"
-            divBody += "<a href='../html/details.jsp?id=" + n.HID + "' class='btn btn-primary'>瀏覽</a>";
-            divBody += "</div>";
-            divBody += "</div>";
-            divBody += "</div>";
+            if (match(n, size, year, minPrice, maxPrice, keyword)) {
+              divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
+              divBody += "<div class='card'>";
+              divBody += "<img src='/NCURent/upload/" + n.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
+              divBody += "<div class='card-body'>";
+              divBody += "<h5 class='card-title'>" + n.HAddress + "</h5>";
+              divBody += "<p class='card-text'>房東：" + n.LName + "<br>房屋坪數：" + n.Size + "<br>房屋租金：" + n.Rent + "/月<br>房屋設備：" + n.Equipment + "<br>屋齡:" + n.HYear + "<br>其他備註：" + n.GenderSpecific + "</p>"
+              divBody += "<a href='../html/details.jsp?id=" + n.HID + "' class='btn btn-primary'>瀏覽</a>";
+              divBody += "</div>";
+              divBody += "</div>";
+              divBody += "</div>";
+            }
           });
           $("#Housediv").html(divBody);
         }
-      })
-      
-      
-      // function GetData() {
-      //   $.ajax({
-      //     url: '/NCURent/Post/getAllHouse',
-      //     method: 'POST',
-      //     dataType: 'json',
-      //     data: $('form').serialize(),
-      //     success: function (res) {
-      //       if (res.status == "success") {
-      //         // var typeData = $.parseJSON(res.data); // create an object with the key of the array
-      //         // var divBody = "";
-      //         // $.each(typeData, function (i, n) {
-      //         //   divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
-      //         //   divBody += "<div class='card'>";
-      //         //   divBody += "<img src='/NCURent/upload/" + n.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
-      //         //   divBody += "<div class='card-body'>";
-      //         //   divBody += "<h5 class='card-title'>" + n.HAddress + "</h5>";
-      //         //   divBody += "<p class='card-text'>房東：" + n.LName + "<br>房屋坪數：" + n.Size + "<br>房屋租金：" + n.Rent + "/月<br>房屋設備：" + n.Equipment + "<br>屋齡:" + n.HYear + "<br>其他備註：" + n.GenderSpecific + "</p>"
-      //         //   divBody += "<a href='../html/details.jsp?id=" + n.HID + "' class='btn btn-primary'>瀏覽</a>";
-      //         //   divBody += "</div>";
-      //         //   divBody += "</div>";
-      //         //   divBody += "</div>";
-      //         // });
-      //         // $("#Housediv").append(divBody);
-      //         return $.parseJSON(res.data);
-      //       } else {
-      //         $('.alert.alert-danger').css('display', 'block')
-      //       }
-      //     },
-      //     error: function (XMLHttpRequest, textStatus, errorThrown) {
-      //       alert("Status: " + textStatus); alert("Error: " + errorThrown);
-      //     }
-      //   });
-      //   return null;
-      // }
-     
 
+        function match(item, size, year, minPrice, maxPrice, keyword) {
+          if (item.Size >= parseInt(size[0]) && item.Size <= parseInt(size[1]) && item.HYear >= parseInt(year[0]) && item.HYear <= parseInt(year[1]) && item.Rent >= parseInt(minPrice) && item.Rent <= parseInt(maxPrice)) {
+            if (keyword=="") {
+              return true;
+            } else {
+              for (const c of keyword) {
+                if (item.HAddress.includes(c) > 0) {
+                  return true;
+                }
+              }
+            }
+          }
+          return false;
+        }
+      });
     </script>
 
     </html>
