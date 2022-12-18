@@ -24,10 +24,10 @@
                         </li>
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="#">
-                            <form  action ='/NCURent/Post/GetStudentReview' method="post"><i
+                           <i
                                     class="pe-1 mt-1 fas fa-eye"></i><span
                                     class="nav-name d-none d-md-block">查看學生評價</span></a>
-                                    <input type ="submit" class="btn btn-outline-success" onclick="javascript:location.href='../studentMainPage.jsp'" value="查看學生評價">
+                                    <input type ="submit" class="btn btn-outline-success" onclick="javascript:location.href='../house_ver2.jsp'" value="查看學生評價">
                         </li>
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/sreservestate.jsp"><i

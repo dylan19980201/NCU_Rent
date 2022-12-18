@@ -64,6 +64,28 @@ public class PostDAO {
 			return false;
 	}
 	
+	public boolean addStudentReview(String[] studentReview) {
+		String command = """
+				insert into reviewstudent (RsStar,RsContent,RsDateTime,SID,LID)
+				VALUES (?,?,?,?,?)""";
+		DBHelper db = new DBHelper();
+		if (db.addStudentReview(command, studentReview) == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean DeleteStudentReview(int RsID) {
+		String command = """
+				delete from reviewstudent where RsID=1""";
+		//有錯誤
+		DBHelper db = new DBHelper();
+		if (db.deleteStudentReview(command, RsID) == 1)
+			return true;
+		else
+			return false;
+	}
+	
 	public List<StudentReview> getStudentReview(String Sid) {
 		String command = """
 		SELECT SID as Sid, LID as Lid, RsStar as rsStar, RsContent as rsContent ,
