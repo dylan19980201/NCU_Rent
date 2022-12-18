@@ -28,8 +28,14 @@ public class LoginBO {
 		return LoginDAO.addUserData(user, type);
 	}
 
-	public boolean deleteUser(String id, String password) {
+	public boolean deleteUser(String id) {
 		LoginDAO LoginDAO = new LoginDAO();
-		return LoginDAO.DeleteUserData(id, password);
+		return LoginDAO.deleteUserData(id);
 	}
+
+	public List<User> getAllUser() {
+		LoginDAO LoginDAO = new LoginDAO();
+		return LoginDAO.getAllUser();
+	}
+
 }

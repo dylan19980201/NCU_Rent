@@ -34,7 +34,7 @@ public class PostDAO {
 
 	public List<House> getAllHouse() {
 		String command = """
-				SELECT HID, HAddress, LName, Size, Rent, Equipment, HYear, GenderSpecific, PictureName
+				SELECT HID, HAddress, LName, Size, Rent, Equipment, HYear, GenderSpecific, PictureName, AID
 				FROM house left join landlord on house.LID = landlord.LID
 				ORDER BY PostDatetime DESC""";
 		List<House> house = new ArrayList<House>();

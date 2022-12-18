@@ -79,7 +79,7 @@
                                     class="nav-name d-none d-md-block">審查刊登</span></a>
                             </li>
                         <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
+                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/manageAccount.jsp"><i
                                     class="pe-1 mt-1 fas fa-user-check"></i><span
                                     class="nav-name d-none d-md-block">管理會員帳號</span></a>
                             </li>
