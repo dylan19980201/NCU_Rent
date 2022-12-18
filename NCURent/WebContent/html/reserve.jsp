@@ -69,8 +69,7 @@
 	            data: {HID : id},
 	            success: function(res){
 	                if(res.status == "success"){
-	                	var typeData = $.parseJSON(res.data);
-	                	console.log(res.data)
+	                	var typeData = $.parseJSON(res.data.houseData);
 	               		$("#housePicture").attr("src","/NCURent/upload/"+typeData.pictureName);
 	                }else{
 	                    $('.alert.alert-danger').css('display','block')
