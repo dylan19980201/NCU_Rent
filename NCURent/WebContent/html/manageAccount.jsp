@@ -77,6 +77,7 @@
             data: "delID=" + id,
             success: function () {
               alert("刪除成功");
+              window.location.reload()
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
               alert("Status: " + textStatus); alert("Error: " + errorThrown);
