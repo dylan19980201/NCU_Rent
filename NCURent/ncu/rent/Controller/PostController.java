@@ -139,10 +139,11 @@ public class PostController extends SuperController{
 	}
 	public JSONObject DeleteStudentReview(HttpServletRequest request, HttpServletResponse response) {
 		//被刪除的流水號 RsID
-		//String id = request.getParameter("id");
+		//String Rsid = request.getParameter("id");
 		PostBO PostBO = new PostBO();
-		boolean success = PostBO.deleteStudentReview(1);
-			return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
+		//這邊的12應該要寫流水號RsID
+		boolean success = PostBO.deleteStudentReview(12);
+		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
 	}
 	
 	

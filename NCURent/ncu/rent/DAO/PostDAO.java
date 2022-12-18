@@ -77,7 +77,7 @@ public class PostDAO {
 	
 	public boolean DeleteStudentReview(int RsID) {
 		String command = """
-				delete from reviewstudent where RsID=1""";
+				delete from reviewstudent where RsID=  ? """;
 		//有錯誤
 		DBHelper db = new DBHelper();
 		if (db.deleteStudentReview(command, RsID) == 1)

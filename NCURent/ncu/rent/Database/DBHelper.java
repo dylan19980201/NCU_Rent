@@ -311,14 +311,14 @@ public class DBHelper {
 		return result;
 	}
 	
-	public int deleteStudentReview(String command, JSONObject condition) {
+	public int deleteStudentReview(String command, int RsID) {
 		Connection con = null;
 		PreparedStatement statement = null;
 		int result = 0;
 		try {
 			con = this.getConnection();
 			statement = con.prepareStatement(command);
-			statement.setObject(1, condition.get("RsID"));
+			statement.setObject(1, RsID);
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

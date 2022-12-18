@@ -30,7 +30,9 @@
           <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00001</u></a></h5>
 		  <h6>⭐⭐⭐⭐⭐　　　　　　　2天前</h6>
 		  <p>Good!</p>
-          <p class="apply-btn"><a class="bg-primary p-1 px-3 text-white text-decoration-none" href="#">刪除</a></p>
+		  <form  method="post" action ='/NCURent/Post/DeleteStudentReview' >
+          <p class="apply-btn"><a type ="submit" class="nav-name d-none d-md-block" href="/NCURent/checkReview.jsp"">刪除</a></p>
+          </form>
 		  <hr>	
 		   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00002</u></a></h5>
 		  <h6>⭐⭐⭐⭐⭐　　　　　　　3天前</h6>
