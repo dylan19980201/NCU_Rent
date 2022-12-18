@@ -100,8 +100,6 @@
                 if(res.status == "success"){
                 	var reviewData = $.parseJSON(res.data.studentReviewData);
                 	var studentData = $.parseJSON(res.data.studentData);
-                	console.log(reviewData);
-                	console.log(studentData);
                 	$("#name").text(studentData.name);
                 	$("#sid").text(studentData.ID);
                 	$("#department").text(studentData.department);
@@ -119,7 +117,7 @@
                 		}
                 		divBody += "</h5>";
                 		divBody += "<p>"+n.RsContent+"</p>";
-                		divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>2022/12/14 13:00:00</I></div></h5>"
+                		divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>"+n.RsDateTime+"</I></div></h5>"
                 		divBody += "<hr>"
                 	});
                 	$("#studentCommentTable").append(divBody);

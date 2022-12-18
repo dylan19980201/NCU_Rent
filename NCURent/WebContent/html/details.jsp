@@ -101,15 +101,7 @@
 
  	  		<h4 class="text-center my-2">評價一覽</h4>
 	      <section>
-	        <div class="map bg-whitesmoke">
-	          <h5 class="mb-3"><a href="../studentMainPage.jsp?id=20221211" class="text-decoration-none text-dark"><u>111423054</u></a></h5>
-			  <h6>⭐⭐⭐⭐⭐　　　　　　　2022/12/14 13:00:00</h6>
-			  <p>Good!</p>
-			  <hr>	
-			   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>111421001</u></a></h5>
-			  <h6>⭐⭐⭐⭐⭐　　　　　　　2022/12/13 17:34:56</h6>
-			  <p>Nice!</p>
-			  <hr>	
+	        <div class="map bg-whitesmoke" id="houseReview">	
 	        </div>
 	      </section>
         
@@ -130,7 +122,8 @@
             data: {HID : id},
             success: function(res){
                 if(res.status == "success"){
-                	var typeData = $.parseJSON(res.data);
+                	var typeData = $.parseJSON(res.data.houseData);
+                	var reviewData = $.parseJSON(res.data.houseReviewData);
                		$("#housePicture").attr("src","/NCURent/upload/"+typeData.pictureName);
                 	$('#HAddress').text(typeData.HAddress);
                 	$('#LName').text(typeData.LName);
@@ -141,6 +134,19 @@
                 	$('#GenderSpecific').text(typeData.genderSpecific);
                 	$('#PostDatetime').text(typeData.postDateTime);
                 	$('#reservebutton').attr('href', "./reserve.jsp?id="+id)
+                	var divBody="";
+                	$.each(reviewData, function(i,n){
+                		divBody += "<h5 class='mb-3'><a class='text-decoration-none text-dark' href='../studentMainPage.jsp?id="+n.SID+"'><u>"+n.SID+"</u></a></h5>";
+                		divBody += "<h5>";
+                		for(let i=0; i < n.RlhStar; i++){
+                			divBody += "⭐";
+                		}
+                		divBody += "</h5>";
+                		divBody += "<p>"+n.RlContent+"</p>";
+                		divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>"+n.RlhDatetime+"</I></div></h5>"
+                		divBody += "<hr>"
+                	});
+                	$("#houseReview").append(divBody);
                 }else{
                     $('.alert.alert-danger').css('display','block')
                 }

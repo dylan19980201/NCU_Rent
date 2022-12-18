@@ -13,6 +13,7 @@ import com.mysql.cj.result.BooleanValueFactory;
 import ncu.rent.DTO.User;
 import ncu.rent.DTO.House;
 import ncu.rent.DTO.StudentReview;
+import ncu.rent.DTO.HouseReview;
 
 import org.json.JSONObject;
 
@@ -287,7 +288,31 @@ public class DBHelper {
 		}
 		return list;
 	}
-
+	public List<HouseReview> QueryHouseReview(String command, JSONObject condition) throws SQLException {
+		List<HouseReview> list = new ArrayList<HouseReview>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("HID"));
+			rs = statement.executeQuery();
+			while (rs.next()) {
+				HouseReview houseReview = new HouseReview();
+				houseReview.setSID(rs.getString("SID"));
+				houseReview.setRlContent(rs.getString("RlContent"));
+				houseReview.setRlhStar(rs.getInt("RlhStar"));
+				houseReview.setRlhDatetime(rs.getString("RlhDatetime"));
+				list.add(houseReview);
+			} 
+		}catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			con.close();
+		}
+		return list;
+	}
 	public List<JSONObject> getAllReserve(String command,String id) {
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		Connection con = null;

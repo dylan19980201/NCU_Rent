@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import ncu.rent.DTO.House;
 import ncu.rent.DTO.StudentReview;
+import ncu.rent.DTO.HouseReview;
 import ncu.rent.DTO.User;
 
 public class PostBO {
@@ -38,7 +39,10 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.getStudentReview(SID);
 	}
-	
+	public List<HouseReview> getHouseReview(int HID){
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.getHouseReview(HID);
+	}
 	public List<JSONObject> getAllReserve(String id,String type) {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.getAllReserve(id, type);

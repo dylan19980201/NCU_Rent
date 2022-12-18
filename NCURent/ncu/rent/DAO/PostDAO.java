@@ -10,6 +10,7 @@ import java.util.List;
 import org.json.JSONObject;
 
 import ncu.rent.DTO.House;
+import ncu.rent.DTO.HouseReview;
 
 public class PostDAO {
 	private int getHouse(String HID) {
@@ -80,6 +81,25 @@ public class PostDAO {
 		}
 		return studentReview;
 		}
+	
+	public List<HouseReview> getHouseReview(int HID){
+		String command = """
+				SELECT RlhStar, RlContent, RlhDatetime, SID
+				FROM reviewlandlordandhouse
+				WHERE HID = ?
+				""";
+		List<HouseReview> houseReview = new ArrayList<HouseReview>();
+		JSONObject condition = new JSONObject();
+		condition.put("HID", HID);
+		try {
+			DBHelper db = new DBHelper();
+			houseReview = db.QueryHouseReview(command, new JSONObject(condition.toString()));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return houseReview;
+	}
+	
 	public List<JSONObject> getAllReserve(String id, String type) {
 		String command = "";
 		if(type.equals("student"))
