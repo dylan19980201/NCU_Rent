@@ -12,6 +12,8 @@ public class User {
     private String Phone;
     private String Email;
     private String Type;
+    private int Amount;
+    private String Star;
     // GET method
     public String getID() {return ID;}
     public String getPassword() {return Password;}
@@ -22,6 +24,8 @@ public class User {
     public String getPhone() {return Phone;}
     public String getEmail() {return Email;}
     public String getType() {return Type;}
+    public int getAmount() {return Amount;}
+    public String getStar() {return Star.substring(0, Star.indexOf(".")+2);} //Math.round(a*100)
     // SET method
     public void setID(String ID) {this.ID = ID;}
     public void setPassword(String Password) {this.Password = Password;}
@@ -32,4 +36,6 @@ public class User {
     public void setPhone(String Phone) {this.Phone = Phone;}
     public void setEmail(String Email) {this.Email = Email;}
     public void setType(String Type) {this.Type = Type;}
+    public void setAmount(int Amount) {this.Amount = Amount;}
+    public void setStar(String Star) {this.Star = Star;}
 }

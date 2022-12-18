@@ -43,14 +43,13 @@
                     	var typeData = $.parseJSON(res.data); // create an object with the key of the array
                     	var divBody = "";
                     	$.each(typeData, function(i, n) {
-                        console.log(n);
 							 divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
 							 divBody += "<div class='card'>";
-							 divBody += "<img src='/NCURent/upload/"+n.PictureName+"' class='card-img-top'  height='285.61' alt='...'>"
+							 divBody += "<img src='/NCURent/upload/"+n.map.PictureName+"' class='card-img-top'  height='285.61' alt='...'>"
 							 divBody += "<div class='card-body'>";
-							 divBody += "<h5 class='card-title'>"+n.HAddress+"</h5>";
-							 divBody += "<p class='card-text'>學生："+n.Name+"<br>電話："+n.Phone+"<br>預約時間："+n.RDate+"<br>房屋坪數："+n.Size+"<br>房屋租金："+n.Rent+"/月<br>房屋設備："+n.Equipment+"<br>屋齡:"+n.HYear+"<br>其他備註："+n.GenderSpecific+"</p>"
-							 divBody +=	"<a href='../html/details.jsp?id="+n.HID+"' class='btn btn-primary'>瀏覽</a>";
+							 divBody += "<h5 class='card-title'>"+n.map.HAddress+"</h5>";
+							 divBody += "<p class='card-text'>學生："+n.map.Name+"<br>電話："+n.map.Phone+"<br>預約時間："+n.map.RDate+"<br>房屋坪數："+n.map.Size+"<br>房屋租金："+n.map.Rent+"/月<br>房屋設備："+n.map.Equipment+"<br>屋齡:"+n.map.HYear+"<br>其他備註："+n.map.GenderSpecific+"</p>"
+							 divBody +=	"<a href='../html/details.jsp?id="+n.map.HID+"' class='btn btn-primary'>瀏覽</a>";
 							 divBody +=	"</div>";
 							 divBody +=	"</div>";
 							 divBody +=	"</div>";

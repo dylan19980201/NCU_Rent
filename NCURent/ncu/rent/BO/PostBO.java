@@ -35,14 +35,9 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.addReserveData(reserve);
 	}
-	public StudentReview getStudentReview(String SID) {
+	public List<StudentReview> getStudentReview(String SID) {
 		PostDAO PostDAO = new PostDAO();
-		List<StudentReview> studentReviewList = PostDAO.getStudentReview(SID);
-		StudentReview studentReview = null;
-		if (!studentReviewList.isEmpty()) {
-			studentReview = studentReviewList.get(0);
-		}
-		return studentReview;
+		return PostDAO.getStudentReview(SID);
 	}
 	
 	public boolean addStudentReview(String[] studentReview){
