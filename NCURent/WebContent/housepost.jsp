@@ -19,25 +19,61 @@
   
 <body>
     <jsp:include page="./html/header.jsp" />
-    <div class="form"  action="/NCURent/Post/Add" method="post" enctype="multipart/form-data">
-      <p align="left" style="font-size:20px;font-weight:bold;">上傳照片：</P>
-      <input type="file" name="file" multiple="multipart" id="pic" />
-      <img />
+    <form class="form" enctype="multipart/form-data">
+      <input type="text" name="HAddress" id="HAddress" placeholder="地址:">
+   
+      <input type="text" name="Rent" id="Rent" placeholder="租金：">
+      <input type="text" name="Size" id="Size" placeholder="坪數：">
+      <input type="text" name="HYear" id="HYear" placeholder="屋齡：">
+      <input type="text" name="GenderSpecific" id="GenderSpecific" placeholder="性別限制:男/女/無">
+      <input type="text" name="Equipment"  id="Equipment" placeholder="設備：">
+      <p align="left" style="font-size:20px;font-weight:bold;">上傳照片：</p>
+      <input type="file" name="file" id="file"/>
+      <p align="center"><img style='display:none'/></p>
       <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
       <script>
         $('input').on('change', function(e){      
           const file = this.files[0];
           const objectURL = URL.createObjectURL(file);
+          $('img').attr('style','display:inline')
           $('img').attr('src', objectURL);
         });
       </script>
-      <input type="text" name="HAdress"placeholder="地址:">
-   
-      <input type="text" name="Rent"placeholder="租金：">
-      <input type="text" name="Size"placeholder="坪數：">
-      <input type="text" name="Hyear"placeholder="屋齡：">
-      
-      <input type="text" name="address"placeholder="備註：">
       <button type="submit" class="btn btn-outline-primary">請求刊登</button>
-    </div>
+    </form>
 </body>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+	 $('form').on('submit', function(){
+            $('input[type="submit"]').text('傳送中......');
+            $.ajax({
+                url: '/NCURent/Post/AddPost',
+                method: 'POST',
+                dataType: 'json',
+                contentType: false, //required
+                processData: false, // required
+                mimeType: 'multipart/form-data',
+                data: new FormData(this),
+                success: function(res){
+                    if(res.status == "success"){
+                    	$("#HAddress").val('');
+                        $("#Rent").val('');
+                        $("#Size").val('');
+                        $("#HYear").val('');
+                        $("#GenderSpecific").val('');
+                        $("#Equipment").val('');
+                        $("#file").val('');
+                        $('img').attr('style',"display:none")
+                        alert(res.message)
+                    }else{
+                        alert(res.message)
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                } 
+            });
+            return false;
+        });
+  </script>
+</html>
