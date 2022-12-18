@@ -158,6 +158,7 @@ public class DBHelper {
 			con = this.getConnection();
 			statement = con.prepareStatement(command);
 			statement.setObject(1, condition.get("id"));
+			System.out.println(condition.get("id"));
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

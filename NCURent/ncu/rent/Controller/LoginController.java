@@ -88,6 +88,14 @@ public class LoginController extends SuperController {
 		}
 	}
 
+	public JSONObject getAllUser(HttpServletRequest request, HttpServletResponse response) {
+		LoginBO LoginBO = new LoginBO();
+		Gson gson = new Gson();
+		String listJson = gson.toJson(LoginBO.getAllUser());
+		JSONArray userData = JSONArray.fromObject(listJson);
+		return DataForFrontend("success", "", userData, "/NCURent/html/manageAccount.jsp");
+	}
+
 	public void Hi(String param) {
 		System.out.println("Hi");
 	}

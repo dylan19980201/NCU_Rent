@@ -39,20 +39,6 @@
           var id = $(this).attr("del_id");
           del(id);
         });
-        $("#del").click(function () {
-          var id = $(this).attr("del_id");
-          $.ajax({
-            url: '/NCURent/Login/deleteUser',
-            method: 'POST',
-            data: "delID=" + id,
-            success: function () {
-              alert("刪除成功");
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-              alert("Status: " + textStatus); alert("Error: " + errorThrown);
-            }
-          });
-        });
         $.ajax({
           url: '/NCURent/Login/getAllUser',
           method: 'POST',
