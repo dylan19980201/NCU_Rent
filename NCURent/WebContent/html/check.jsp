@@ -85,7 +85,7 @@
         var id = url.searchParams.get('id');
         var result;
         getData();
-        console.log(result);
+        update(result);
         function getData() {
           $.ajax({
             url: '/NCURent/Post/GetHouseData',
@@ -95,7 +95,7 @@
             async: false,
             success: function (res) {
               if (res.status == "success") {
-                result = $.parseJSON(res.data);
+                result = $.parseJSON(res.data.houseData);
               } else {
                 $('.alert.alert-danger').css('display', 'block');
               }
@@ -105,16 +105,21 @@
             }
           });
         }
-        // $("#housePicture").attr("src", "/NCURent/upload/" + typeData.pictureName);
-        // $('#HAddress').text(typeData.HAddress);
-        // $('#LName').text(typeData.LName);
-        // $('#Rent').text(typeData.rent);
-        // $('#Size').text(typeData.size);
-        // $('#HYear').text(typeData.HYear);
-        // $('#Equipment').text(typeData.equipment);
-        // $('#GenderSpecific').text(typeData.genderSpecific);
-        // $('#PostDatetime').text(typeData.postDateTime);
-        // $("#confirm").attr("hid", id);
+
+        function update(data) {
+          console.log(data);
+          $("#housePicture").attr("src", "/NCURent/upload/" + data.pictureName);
+          $('#HAddress').text(data.HAddress);
+          $('#LName').text(data.LName);
+          $('#Rent').text(data.rent);
+          $('#Size').text(data.size);
+          $('#HYear').text(data.HYear);
+          $('#Equipment').text(data.equipment);
+          $('#GenderSpecific').text(data.genderSpecific);
+          $('#PostDatetime').text(data.postDateTime);
+          $("#confirm").attr("hid", data.HID);
+        }
+        
       });
     </script>
 
