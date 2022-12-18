@@ -1,6 +1,7 @@
 package ncu.rent.BO;
 
 import ncu.rent.DAO.HouseDAO;
+import ncu.rent.DAO.LoginDAO;
 import ncu.rent.DAO.PostDAO;
 import java.util.List;
 
@@ -44,8 +45,18 @@ public class PostBO {
 		return studentReview;
 	}
 	
+	public boolean addStudentReview(String[] studentReview){
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.addStudentReview(studentReview);
+	}
+	
 	public List<JSONObject> getAllReserve(String id,String type) {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.getAllReserve(id, type);
+	}
+	
+	public boolean deleteStudentReview(int RsID) {
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.DeleteStudentReview(RsID);
 	}
 }

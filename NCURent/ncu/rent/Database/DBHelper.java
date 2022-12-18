@@ -256,6 +256,50 @@ public class DBHelper {
 		}
 		return list;
 	}
+	
+	public int addStudentReview(String command, String[] studentReview) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			for (int i = 0; i < studentReview.length; i++) {
+				statement.setString(i + 1, studentReview[i]);
+			}
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+	}
+	
+	public int deleteStudentReview(String command, JSONObject condition) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("RsID"));
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+	}
 
 	public List<JSONObject> getAllReserve(String command,String id) {
 		List<JSONObject> list = new ArrayList<JSONObject>();
