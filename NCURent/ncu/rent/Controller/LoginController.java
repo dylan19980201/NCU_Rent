@@ -6,7 +6,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import ncu.rent.BO.LoginBO;
 import ncu.rent.DTO.User;
+import net.sf.json.JSONArray;
+
 import org.json.JSONObject;
+
+import com.google.gson.Gson;
 
 import java.io.*;
 
@@ -72,17 +76,24 @@ public class LoginController extends SuperController {
 		}
 	}
 
-	public JSONObject DeleteUser(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
+	public JSONObject deleteUser(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("delID");
 		LoginBO LoginBO = new LoginBO();
-		boolean success = LoginBO.deleteUser(id, password);
+		boolean success = LoginBO.deleteUser(id);
 		if (success) {
-			return DataForFrontend("success","刪除成功", null, "/NCURent/logout.jsp");
+			return DataForFrontend("success","刪除成功", null, "/NCURent/html/manageAccount.jsp");
 		} else {
-			request.setAttribute("error", "帳號或密碼錯誤");
-			return DataForFrontend("fail", "刪除失敗", null, "/NCURent/deleteUser.jsp");
+			request.setAttribute("error", "錯誤");
+			return DataForFrontend("fail", "刪除失敗", null, "/NCURent/html/manageAccount.jsp");
 		}
+	}
+
+	public JSONObject getAllUser(HttpServletRequest request, HttpServletResponse response) {
+		LoginBO LoginBO = new LoginBO();
+		Gson gson = new Gson();
+		String listJson = gson.toJson(LoginBO.getAllUser());
+		JSONArray userData = JSONArray.fromObject(listJson);
+		return DataForFrontend("success", "", userData, "/NCURent/html/manageAccount.jsp");
 	}
 
 	public void Hi(String param) {

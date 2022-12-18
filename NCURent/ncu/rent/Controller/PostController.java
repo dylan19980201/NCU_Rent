@@ -14,9 +14,11 @@ import org.json.JSONObject;
 import com.google.gson.Gson;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import ncu.rent.BO.UploadBO;
+import ncu.rent.BO.LoginBO;
 import ncu.rent.BO.PostBO;
 import ncu.rent.BO.LoginBO;
 
@@ -93,18 +95,31 @@ public class PostController extends SuperController{
 		jsonData.put("studentReviewData", studentReviewData);
 		return DataForFrontend("success", "", jsonData, "/NCURent/studentMainPage.jsp");
 	}
-	/*
-	public JSONObject GetHouseReview(HttpServletRequest request, HttpServletResponse response) {
-		//String HID = request.getParameter("HID");
-		int HID = 1;
+	//學生留言要存入資料庫
+	public JSONObject AddStudentReview(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+		String[] studentReviewContext;
+		String  ReviewTime;
+		ReviewTime =LocalDateTime.now().toString();
+		HttpSession session = request.getSession();
+		studentReviewContext = new String[] {
+					//這邊要寫真的星星
+					//request.getParameter("rsStar"),
+					"5",
+					request.getParameter("rsContent"),
+					ReviewTime,
+					//這邊要寫真的學生ID，到該學生頁面時抓到的ID
+					"aaa871126",
+					//下面這行僅限房東登入時抓取
+					//(session.getAttribute("id")).toString(),
+					"aaa",
+		};
 		PostBO PostBO = new PostBO();
-		List<HouseReview> houseReview = PostBO.getHouseReview(HID);
-		Gson gson = new Gson();
-		String listJson = gson.toJson(houseReview);
-		JSONArray houseReviewData = JSONArray.fromObject(listJson);
-		return DataForFrontend("success", "", houseReviewData, "/NCURent/detail.jsp");
+		if(PostBO.addStudentReview(studentReviewContext))
+			return DataForFrontend("success", "發布成功", studentReviewContext, "/NCURent/studentMainPage.jsp");
+		else
+			return DataForFrontend("fail","發布失敗", null, "/NCURent/html/reserve.jsp");
 	}
-	*/
+
 	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		String[] reserve;
 		HttpSession session = request.getSession();
@@ -131,4 +146,13 @@ public class PostController extends SuperController{
 		JSONArray reserveData = JSONArray.fromObject(listJson);
 		return DataForFrontend("success", "", reserveData, "/NCURent/???.jsp");
 	}
+	public JSONObject DeleteStudentReview(HttpServletRequest request, HttpServletResponse response) {
+		//被刪除的流水號 RsID
+		//String id = request.getParameter("id");
+		PostBO PostBO = new PostBO();
+		boolean success = PostBO.deleteStudentReview(1);
+			return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
+	}
+	
+	
 }

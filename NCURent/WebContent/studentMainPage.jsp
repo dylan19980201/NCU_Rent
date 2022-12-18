@@ -42,8 +42,11 @@
   <p class="text-center my-2">評分</p>
   <center><jsp:include page="./stars.jsp" /></center>
   <p class="text-center my-2">評論</p>
-  <center><textarea id="content"style="resize:none;width:800px;height:100px;" ></textarea></center><br>
-   <center><input type="button" value="發布"/></center><br>
+  <form  method="post" action ='/NCURent/Post/AddStudentReview' >
+  <center><textarea name="rsContent" id="content"style="resize:none;width:800px;height:100px;" ></textarea></center><br>
+   <center><input type="submit" value="發布"/></center><br>
+   </form>
+   
      </div>
      <!--引用jQuery-->
      <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>

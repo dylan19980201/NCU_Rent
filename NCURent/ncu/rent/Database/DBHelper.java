@@ -151,7 +151,7 @@ public class DBHelper {
 		return result;
 	}
 
-	public int DeleteUserData(String command, JSONObject condition) {
+	public int deleteUserData(String command, JSONObject condition) {
 		Connection con = null;
 		PreparedStatement statement = null;
 		int result = 0;
@@ -159,7 +159,6 @@ public class DBHelper {
 			con = this.getConnection();
 			statement = con.prepareStatement(command);
 			statement.setObject(1, condition.get("id"));
-			statement.setObject(2, condition.get("password"));
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -172,6 +171,7 @@ public class DBHelper {
 		}
 		return result;
 	}
+	
 	public int AddPost(String command, String[] house) {
 		Connection con = null;
 		int Id = 0;
@@ -228,6 +228,7 @@ public class DBHelper {
 				house.setHYear(rs.getString("HYear"));
 				house.setGenderSpecific(rs.getString("GenderSpecific"));
 				house.setPictureName(rs.getString("PictureName"));
+				house.setAID(rs.getString("AID"));
 				list.add(house);
 			}
 		} catch (Exception e) {
@@ -288,6 +289,7 @@ public class DBHelper {
 		}
 		return list;
 	}
+	
 	public List<HouseReview> QueryHouseReview(String command, JSONObject condition) throws SQLException {
 		List<HouseReview> list = new ArrayList<HouseReview>();
 		Connection con = null;
@@ -313,6 +315,52 @@ public class DBHelper {
 		}
 		return list;
 	}
+	
+	public int addStudentReview(String command, String[] studentReview) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			for (int i = 0; i < studentReview.length; i++) {
+				statement.setString(i + 1, studentReview[i]);
+			}
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+	}
+	
+	public int deleteStudentReview(String command, JSONObject condition) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("RsID"));
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+	}
+
+
 	public List<JSONObject> getAllReserve(String command,String id) {
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		Connection con = null;
@@ -349,4 +397,40 @@ public class DBHelper {
 		}
 		return list;
 	}
+
+	public List<User> getAllUser(String command) {
+		List<User> list = new ArrayList<User>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			// setString(第幾個問號, value)
+			rs = statement.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setID(rs.getString("ID"));
+				user.setPassword(rs.getString("Password"));
+				user.setName(rs.getString("Name"));
+				user.setBirth(rs.getString("Birth"));
+				user.setGender(rs.getString("Gender"));
+				user.setDepartment(rs.getString("Department"));
+				user.setPhone(rs.getString("Phone"));
+				user.setEmail(rs.getString("Email"));
+				user.setType(rs.getString("Type"));
+				list.add(user);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return list;
+    }
+
 }

@@ -69,22 +69,37 @@ public class LoginDAO {
 			return false;
 	}
 
-	public boolean DeleteUserData(String id, String password) {
+	public boolean deleteUserData(String id) {
 		String command1 = """
 				Delete From student
-				WHERE SID = ? AND SPassword = ?""";
+				WHERE SID = ?""";
 		String command2 = """
 				Delete From landlord
-				WHERE LID = ? AND LPassword = ?""";
+				WHERE LID = ?""";
 		JSONObject condition = new JSONObject();
 		condition.put("id", id);
-		condition.put("password", password);
 		DBHelper db = new DBHelper();
-		if (db.DeleteUserData(command1, new JSONObject(condition.toString())) == 1)
+		if (db.deleteUserData(command1, new JSONObject(condition.toString())) == 1)
 			return true;
-		else if (db.DeleteUserData(command2, new JSONObject(condition.toString())) == 1)
+		else if (db.deleteUserData(command2, new JSONObject(condition.toString())) == 1)
 			return true;
 		else
 			return false;
+	}
+	
+	public List<User> getAllUser() {
+		String command = """
+				SELECT ID, Password, Name, Birth, Gender, Department, Phone, Email, Type
+				FROM (
+					SELECT SID AS ID, SPassword as Password, SName AS Name, SBirth AS Birth, SGender as Gender, SDepartment AS Department, SPhone as Phone, SEmail as Email, 'student' AS Type
+					FROM student
+					UNION
+					SELECT LID AS ID, LPassword AS Password, LName AS Name, LBirth AS Birth, LGender AS Gender, NULL AS Department, LPhone AS Phone, LEmail AS Email, 'landlord' AS Type
+					FROM landlord
+					) AS UserTable""";
+		DBHelper db = new DBHelper();
+		List<User> user = new ArrayList<User>();
+		user = db.getAllUser(command);
+		return user;
 	}
 }

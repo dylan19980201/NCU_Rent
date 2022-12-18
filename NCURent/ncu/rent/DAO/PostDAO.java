@@ -35,7 +35,7 @@ public class PostDAO {
 
 	public List<House> getAllHouse() {
 		String command = """
-				SELECT HID, HAddress, LName, Size, Rent, Equipment, HYear, GenderSpecific, PictureName
+				SELECT HID, HAddress, LName, Size, Rent, Equipment, HYear, GenderSpecific, PictureName, AID
 				FROM house left join landlord on house.LID = landlord.LID
 				ORDER BY PostDatetime DESC""";
 		List<House> house = new ArrayList<House>();
@@ -60,6 +60,28 @@ public class PostDAO {
 				VALUES (?,?,?,?)""";
 		DBHelper db = new DBHelper();
 		if (db.addReserveData(command, reserve) == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean addStudentReview(String[] studentReview) {
+		String command = """
+				insert into reviewstudent (RsStar,RsContent,RsDateTime,SID,LID)
+				VALUES (?,?,?,?,?)""";
+		DBHelper db = new DBHelper();
+		if (db.addStudentReview(command, studentReview) == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean DeleteStudentReview(int RsID) {
+		String command = """
+				delete from reviewstudent where RsID=1""";
+		//有錯誤
+		DBHelper db = new DBHelper();
+		if (db.deleteStudentReview(command, RsID) == 1)
 			return true;
 		else
 			return false;
