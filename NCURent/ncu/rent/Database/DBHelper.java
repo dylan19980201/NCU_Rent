@@ -227,6 +227,7 @@ public class DBHelper {
 				house.setHYear(rs.getString("HYear"));
 				house.setGenderSpecific(rs.getString("GenderSpecific"));
 				house.setPictureName(rs.getString("PictureName"));
+				house.setAID(rs.getString("AID"));
 				list.add(house);
 			}
 		} catch (Exception e) {

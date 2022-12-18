@@ -130,8 +130,9 @@
         }
 
         function match(item, size, year, minPrice, maxPrice, keyword) {
+          if(!item.AID) return false;
           if (item.Size >= parseInt(size[0]) && item.Size <= parseInt(size[1]) && item.HYear >= parseInt(year[0]) && item.HYear <= parseInt(year[1]) && item.Rent >= parseInt(minPrice) && item.Rent <= parseInt(maxPrice)) {
-            if (keyword=="") {
+            if (keyword == "") {
               return true;
             } else {
               for (const c of keyword) {
