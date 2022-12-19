@@ -64,8 +64,10 @@
                   </li>
                 </ul>
                 <div>
-                  <p class="btn apply-btn"><a id = "confirm" hid="" class="bg-primary p-2 px-4 text-white text-decoration-none">確認</a>
-                    <a class="bg-primary p-2 px-4 text-white text-decoration-none">刪除</a><br>
+                  <p class="btn apply-btn">
+                    <a id="confirm_btn" class="bg-primary p-2 px-4 text-white text-decoration-none">確認</a>
+                    <a id="reject_btn" class="bg-primary p-2 px-4 text-white text-decoration-none">刪除</a>
+                    <br>
                   </p>
                 </div>
               </div>
@@ -86,12 +88,21 @@
         var result;
         getData();
         update(result);
+
+
+        $("#confirm_btn").click(function () {
+          confirm(id);
+        });
+        $("#reject_btn").click(function () {
+          reject(id);
+        });
+
         function getData() {
           $.ajax({
             url: '/NCURent/Post/GetHouseData',
             method: 'POST',
             dataType: 'json',
-            data:"HID="+id,
+            data: "HID=" + id,
             async: false,
             success: function (res) {
               if (res.status == "success") {
@@ -117,9 +128,40 @@
           $('#Equipment').text(data.equipment);
           $('#GenderSpecific').text(data.genderSpecific);
           $('#PostDatetime').text(data.postDateTime);
-          $("#confirm").attr("hid", data.HID);
         }
-        
+
+        function confirm(hid) {
+          $.ajax({
+            url: '/NCURent/Post/checkHouse',
+            method: 'POST',
+            data: "HID=" + hid,
+            success: function () {
+              alert("審核成功");
+              window.location.href = '/NCURent/html/results.jsp';
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert("Status: " + textStatus); alert("Error: " + errorThrown);
+              window.location.href = '/NCURent/html/results.jsp';
+            }
+          });
+        }
+
+        function reject(hid) {
+          $.ajax({
+            url: '/NCURent/Post/rejectHouse',
+            method: 'POST',
+            data: "HID=" + hid,
+            success: function () {
+              alert("刪除成功");
+              window.location.href = '/NCURent/html/results.jsp';
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert("Status: " + textStatus); alert("Error: " + errorThrown);
+              window.location.href = '/NCURent/html/results.jsp';
+            }
+          });
+        }
+
       });
     </script>
 

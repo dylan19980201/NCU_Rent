@@ -18,8 +18,8 @@
             </div>
             <form class="register-form">
                 <input type="hidden" name="type" value="1" required="required"/>
-                <input type="text" name="id" placeholder="帳號" required="required"/>
-                <input type="password" name="password" placeholder="密碼" required="required"/>
+                <input type="text" name="id" placeholder="帳號(請輸入3~12位英數字)" pattern="[0-9||A-z]{3,12}" required="required"/>
+                <input type="password" name="password" placeholder="密碼(請輸入3~16位英數字)" pattern="[0-9||A-z]{3,16}" required="required"/>
                 <input type="text" name="name" placeholder="姓名" required="required"/>
                 <select class="form-select" name="gender"  style="width:100%;height:40px; margin: 0 0 15px; ;" required="required"  >
                 <option selected>性別</option>
@@ -33,7 +33,7 @@
                 <input type="date" name="birth" placeholder="生日" required="required"/>   
                 <input type="text" name="phone" placeholder="手機號碼(請輸入09XXXXXXXX)" required="required" pattern="09\d{8}"/>   
                 <input type="text" name="department" placeholder="系級" required="required"/>       
-                <input type="text" name="email" placeholder="Email" required="required"/>
+                <input type="email" name="email" placeholder="Email" required="required"/>
                 <button type="submit" class="btn btn-outline-primary">create</button>
             </form>
             <p class="message">Already registered? <a href="login.jsp">Sign In</a></p>

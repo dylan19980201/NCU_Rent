@@ -25,6 +25,8 @@
     <url-pattern>/Post/addReserve</url-pattern>
     <url-pattern>/Post/getAllHouse</url-pattern>
     <url-pattern>/Post/GetHouseData</url-pattern>
+    <url-pattern>/Post/checkHouse</url-pattern>
+    <url-pattern>/Post/rejectHouse</url-pattern>
     <url-pattern>/Post/GetStudentReview</url-pattern>
     <url-pattern>/Post/AddStudentReview</url-pattern>
     <url-pattern>/Post/DeleteStudentReview</url-pattern>
