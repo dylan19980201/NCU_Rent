@@ -150,35 +150,6 @@ public class PostController extends SuperController {
 	}
 
 	public JSONObject DeleteStudentReview(HttpServletRequest request, HttpServletResponse response) {
-<<<<<<< HEAD
-		// 被刪除的流水號 RsID
-		String RsID = request.getParameter("RsID");
-		System.out.println(RsID);
-		PostBO PostBO = new PostBO();
-		// 這邊的12應該要寫流水號RsID
-		boolean success = PostBO.deleteStudentReview(40);
-		return DataForFrontend("success", "刪除成功", null, "/NCURent/checkReview.jsp");
-
-	}
-
-	/*
-	 * public JSONObject GetHouseReview(HttpServletRequest request,
-	 * HttpServletResponse response) {
-	 * //String SID = request.getParameter("RlhID");
-	 * PostBO PostBO = new PostBO();
-	 * // 取得資料庫的資料
-	 * List<HouseReview> houseReview = PostBO.getStudentReview(6);
-	 * Gson gson = new Gson();
-	 * String listJson = gson.toJson(houseReview);
-	 * JSONArray studentReviewData = JSONArray.fromObject(listJson);
-	 * JSONObject jsonData = new JSONObject();
-	 * //jsonData.put("studentData", studentData);
-	 * jsonData.put("studentReviewData", studentReviewData);
-	 * return DataForFrontend("success", "", jsonData, "/NCURent/html/details.jsp");
-	 * }
-	 */
-
-=======
 		//被刪除的流水號 RsID
 		int RsID = Integer.parseInt(request.getParameter("RsID"));
 		PostBO PostBO = new PostBO();
@@ -188,7 +159,6 @@ public class PostController extends SuperController {
 
 	}
 	
->>>>>>> bf6e94b59c19594b63118adecb3f0b1ff5e4d569
 	public JSONObject DeleteHouseReview(HttpServletRequest request, HttpServletResponse response) {
 		// 被刪除的流水號 RlhID
 		// String Rsid = request.getParameter("id");
