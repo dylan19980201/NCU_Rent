@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="java.util.*"  %>
+ <%
+ 	if (session.getAttribute("id")!=null){
+    	String redirectURL = "/NCURent/html/index.jsp";
+    	response.sendRedirect(redirectURL);
+ 	}
+  %>
 
 <!DOCTYPE html>
 <html>
