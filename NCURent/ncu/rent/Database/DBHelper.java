@@ -360,6 +360,49 @@ public class DBHelper {
 		return result;
 	}
 
+	public int addHouseReview(String command, String[] houseReview) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			for (int i = 0; i < houseReview.length; i++) {
+				statement.setString(i + 1, houseReview[i]);
+			}
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+	}	
+	
+	public int deleteHouseReview(String command, int RsID) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, RsID);
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+	}
 	public List<JSONObject> getAllReserve(String command, String id) {
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		Connection con = null;

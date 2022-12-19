@@ -76,6 +76,27 @@ public class PostDAO {
 			return false;
 	}
 	
+	public boolean addHouseReview(String[] studentReview) {
+		String command = """
+				insert into reviewlandlordandhouse (RlhStar,RlContent,RlhDateTime,SID,HID)
+				VALUES (?,?,NOW(),?,?)""";
+		DBHelper db = new DBHelper();
+		if (db.addHouseReview(command, studentReview) == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean DeleteHouseReview(int RlhID) {
+		String command = """
+				delete from reviewlandlordandhouse where RlhID=  ? """;
+		DBHelper db = new DBHelper();
+		if (db.deleteHouseReview(command, RlhID) == 1)
+			return true;
+		else
+			return false;
+	}
+	
 	public boolean DeleteStudentReview(int RsID) {
 		String command = """
 				delete from reviewstudent where RsID=  ? """;
@@ -85,6 +106,7 @@ public class PostDAO {
 		else
 			return false;
 	}
+	
 	
 	public List<StudentReview> getStudentReview(String Sid) {
 		String command = """

@@ -38,7 +38,9 @@
 		   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00002</u></a></h5>
 		  <h6>⭐⭐⭐⭐⭐　　　　　　　3天前</h6>
 		  <p>Nice!</p>
-		   <p class="apply-btn"><a class="bg-primary p-1 px-3 text-white text-decoration-none" href="#">刪除</a></p>
+		  <form  method="post" action ='/NCURent/Post/DeleteHouseReview' >
+		   <p class="apply-btn"><input type ="submit" value = "刪除房屋評論" class="bg-primary p-1 px-3 text-white text-decoration-none" href="#"></p>
+		   </form>
 		  <hr>	
         </div>
       </section>
