@@ -31,7 +31,8 @@
 		  <h6>⭐⭐⭐⭐⭐　　　　　　　2天前</h6>
 		  <p>Good!</p>
 		  <form  method="post" action ='/NCURent/Post/DeleteStudentReview' >
-          <p class="apply-btn"><a type ="submit" class="nav-name d-none d-md-block" href="/NCURent/checkReview.jsp"">刪除</a></p>
+          <p class="apply-btn">
+          <input  type ="submit" class="nav-name d-none d-md-block" value = "刪除" href="/NCURent/checkReview.jsp""></p>
           </form>
 		  <hr>	
 		   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00002</u></a></h5>

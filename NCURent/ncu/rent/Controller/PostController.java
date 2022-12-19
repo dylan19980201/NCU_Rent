@@ -142,7 +142,7 @@ public class PostController extends SuperController{
 		//String Rsid = request.getParameter("id");
 		PostBO PostBO = new PostBO();
 		//這邊的12應該要寫流水號RsID
-		boolean success = PostBO.deleteStudentReview(12);
+		boolean success = PostBO.deleteStudentReview(40);
 		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
 	}
 	
