@@ -62,4 +62,14 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.DeleteStudentReview(RsID);
 	}
+
+	public boolean checkHouse(int hid,String aid) {
+		HouseDAO HouseDAO = new HouseDAO();
+		return HouseDAO.checkHouse(hid,aid);
+	}
+	public boolean rejectHouse(int hid) {
+		HouseDAO HouseDAO = new HouseDAO();
+		return HouseDAO.rejectHouse(hid);
+	}
+
 }
