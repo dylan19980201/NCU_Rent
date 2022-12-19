@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+
   <%@ page import="java.util.*" %>
   	<div class="star-mark">
 		<ul class="star">
@@ -14,6 +15,7 @@
 			<span class="mark"></span>&nbsp;<span class="decri"></span><br>
 			<span class="detail"></span>
 		</div>
+		<label id="starAmount" style="display:none"></label>
 	</div>
 	
 	<style>	ul {
@@ -64,7 +66,8 @@
 			color: #f00;
 		}
 		
-	</style>	 	
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	 	
 	<script>	
 		var MARK_INFO = [
 		    '1顆星||1分',
@@ -83,57 +86,66 @@
 				}
 			} ,false);
 		}
-		
+
 		function hasClass(element, className) {
 			return (new RegExp('(^|\\s)' + className + '($|\\s)')).test(element.className);
 		}
-		
+
 		function addClass(element, newClassName) {
 			if (!hasClass(element, newClassName)) {
 				element.className += element.className ? (' ' + newClassName) : newClassName; 
 			}
 		}
-		
-		
+
+		function removeClass(element, oldClassName) {
+			if (hasClass(element, oldClassName)) {
+				element.className = element.className.replace(new RegExp('(^|\\s)' + oldClassName + '($|\\s)'), ' ').trim(); 
+			}
+		}
+
 		function lightenStar(stars, activeIndex) {
 			for (var i = 0; i <= activeIndex; i++) {
 				addClass(stars[i], 'light');
 			}
 		}
-		
+
 		function darkenStar(stars) {
 			for (var i = 0; i < stars.length; i++) {
 				removeClass(stars[i], 'light');
 			}
 		}
-		
+
 		var starMark = document.getElementsByClassName('star-mark')[0];
 		var stars = starMark.getElementsByClassName('star')[0].getElementsByTagName('li');
 		var helpInfo = starMark.getElementsByClassName('help-info')[0];
 		var cnofirmIndex = -1;
-		
+
 		delegateEvent(starMark, 'li', 'click', function (event) {
 			var target = event.target;
 			var markResult = starMark.getElementsByClassName('result')[0];
 			cnofirmIndex = Array.prototype.indexOf.call(stars, target);
 			lightenStar(stars, cnofirmIndex);
-		
+
 			var markNumDiv = markResult.getElementsByClassName('mark')[0];
 			var markDetailDiv = markResult.getElementsByClassName('detail')[0];
 			var infos = MARK_INFO[cnofirmIndex].split('|');
 			markNumDiv.textContent = infos[0];
+			//console.log(starAmount);
+			//console.log(infos[2].substr(0, 1));
+			var starAmount = infos[2].substr(0, 1);
+			$('#starAmount').text(starAmount);
 			markDetailDiv.textContent = '（' +　infos[2] + '）';
 		});
-		
+
 		delegateEvent(starMark, 'li', 'mouseover', function (event) {
 			var target = event.target;
 			hoverIndex = Array.prototype.indexOf.call(stars, target);
 			darkenStar(stars);
 			lightenStar(stars, hoverIndex);
-		
+
 			helpInfo.style.display = 'block';
 			helpInfo.style.left = (hoverIndex + 1) * 25 + 'px';
-		
+
 			var helpMark = helpInfo.getElementsByClassName('mark')[0];
 			var helpDescri = helpInfo.getElementsByClassName('decri')[0];
 			var helpDetail = helpInfo.getElementsByClassName('detail')[0];
@@ -142,11 +154,13 @@
 			helpDescri.textContent = infos[1];
 			helpDetail.textContent = infos[2];
 		});
-		
+
 		delegateEvent(starMark, 'li', 'mouseout', function (event) {
 			var target = event.target;
 			darkenStar(stars);
 			lightenStar(stars, cnofirmIndex);
 			helpInfo.style.display = 'none';
 		});
+
 			</script>
+			

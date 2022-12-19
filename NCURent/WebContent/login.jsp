@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="java.util.*"  %>
+ <%
+ 	if (session.getAttribute("id")!=null){
+    	String redirectURL = "/NCURent/html/index.jsp";
+    	response.sendRedirect(redirectURL);
+ 	}
+  %>
 
 <!DOCTYPE html>
 <html>
@@ -21,8 +27,8 @@
                 	<div class="alert alert-danger" role="alert" style="display:none">
   						登入失敗!!
 					</div>
-                    <input type="text" placeholder="username" name="id"/>
-                    <input type="password" placeholder="password" name="password"/>
+                    <input type="text" placeholder="帳號(請輸入3~12位英數字)" pattern="[0-9||A-z]{3,12}"  name="id" pattern="[0-9A-z]{4,12}"/>
+                    <input type="password" placeholder="密碼(請輸入3~16位英數字)" pattern="[0-9||A-z]{3,16}" name="password"/>
                     <button type="submit" value="登入" class="btn btn-outline-primary">login</button>
                 </form>
                 <p class="message"> <a href="/NCURent/registerchose.jsp">Create an account</a></p>

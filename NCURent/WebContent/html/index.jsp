@@ -28,8 +28,10 @@
           <div class="d-md-flex justify-content-center">
             <ul class="select-box list-unstyled d-md-flex">
               <li>
+              <nobr>坪數</nobr>
                 <select name="size" id="size" style="height:40px; width:120px">
-                  <option value="0-2147483647">坪數</option>
+                
+                  <option value="0-2147483647">選擇坪數</option>
                   <option value="0-5">0-5</option>
                   <option value="6-10">6-10</option>
                   <option value="11-15">11-15</option>
@@ -38,8 +40,10 @@
                 </select>
               </li>
               <li>
+              <nobr>　　屋齡</nobr>
                 <select name="year" id="year" style="height:40px; width:120px">
-                  <option value="0-2147483647">屋齡</option>
+                 
+                  <option value="0-2147483647">選擇屋齡</option>
                   <option value="0-5">0-5</option>
                   <option value="6-10">6-10</option>
                   <option value="11-15">11-15</option>

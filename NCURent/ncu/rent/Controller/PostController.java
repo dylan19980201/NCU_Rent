@@ -1,9 +1,9 @@
 package ncu.rent.Controller;
 
-
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import ncu.rent.DTO.House;
+import ncu.rent.DTO.HouseReview;
 import ncu.rent.DTO.StudentReview;
 import ncu.rent.DTO.User;
 import net.sf.json.JSONArray;
@@ -21,14 +21,14 @@ import ncu.rent.BO.LoginBO;
 import ncu.rent.BO.PostBO;
 import ncu.rent.BO.LoginBO;
 
-
-public class PostController extends SuperController{
-	public JSONObject AddPost(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+public class PostController extends SuperController {
+	public JSONObject AddPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		String type = (session.getAttribute("type")).toString();
-		if(type.equals("landlord")) {
+		if (type.equals("landlord")) {
 			UploadBO UploadBO = new UploadBO();
-			PostBO  PostBO = new PostBO();
+			PostBO PostBO = new PostBO();
 			String userId = (session.getAttribute("id")).toString();
 			String[] house = null;
 			Part filePart = request.getPart("file");
@@ -42,15 +42,16 @@ public class PostController extends SuperController{
 					userId
 			};
 			int id = PostBO.AddPost(house);
-			if(id != 0) {
-				UploadBO.upload(filePart, request.getParts(), "house"+id+".jpg");
-				return DataForFrontend("success","請求刊登成功", null, "/NCURent/post.jsp");
+			if (id != 0) {
+				UploadBO.upload(filePart, request.getParts(), "house" + id + ".jpg");
+				return DataForFrontend("success", "請求刊登成功", null, "/NCURent/post.jsp");
 			}
 		}
 		return DataForFrontend("fail", "請求刊登失敗", null, "/NCURent/Login.jsp");
 	}
-	
-	public JSONObject getAllHouse(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+
+	public JSONObject getAllHouse(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		PostBO PostBO = new PostBO();
 		List<House> house = PostBO.getAllHouse();
 		Gson gson = new Gson();
@@ -58,18 +59,26 @@ public class PostController extends SuperController{
 		JSONArray houseData = JSONArray.fromObject(listJson);
 		return DataForFrontend("success", "", houseData, "/NCURent/result.jsp");
 	}
-	
+
 	public JSONObject GetHouseData(HttpServletRequest request, HttpServletResponse response) {
 		int HID = Integer.parseInt(request.getParameter("HID"));
 		PostBO PostBO = new PostBO();
 		// 取得資料庫的資料
-		
+
 		House house = PostBO.getHouseData(HID);
+		List<HouseReview> houseReview = PostBO.getHouseReview(HID);
 		JSONObject json = new JSONObject(house);
-		String data = json.toString();
-		return DataForFrontend("success", "", data, "/NCURent/html/detail.jsp");
+		String houseData = json.toString();
+		Gson gson = new Gson();
+		String listJson = gson.toJson(houseReview);
+		JSONArray houseReviewData = JSONArray.fromObject(listJson);
+		JSONObject jsonData = new JSONObject();
+		jsonData.put("houseData", houseData);
+		jsonData.put("houseReviewData", houseReviewData);
+		return DataForFrontend("success", "", jsonData, "/NCURent/html/detail.jsp");
 	}
-	//取得留言板資訊
+
+	// 取得留言板資訊
 	public JSONObject GetStudentReview(HttpServletRequest request, HttpServletResponse response) {
 		String SID = request.getParameter("SID");
 		PostBO PostBO = new PostBO();
@@ -87,56 +96,59 @@ public class PostController extends SuperController{
 		jsonData.put("studentReviewData", studentReviewData);
 		return DataForFrontend("success", "", jsonData, "/NCURent/studentMainPage.jsp");
 	}
-	//學生留言要存入資料庫
-	public JSONObject AddStudentReview(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+
+	// 學生留言要存入資料庫
+	public JSONObject AddStudentReview(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		String[] studentReviewContext;
-		String  ReviewTime;
-		ReviewTime =LocalDateTime.now().toString();
+		String SID = request.getParameter("SID");
 		HttpSession session = request.getSession();
 		studentReviewContext = new String[] {
 					//這邊要寫真的星星
-					//request.getParameter("rsStar"),
-					"5",
+					request.getParameter("rsStar"),
 					request.getParameter("rsContent"),
-					ReviewTime,
 					//這邊要寫真的學生ID，到該學生頁面時抓到的ID
-					"aaa871126",
+					SID,
 					//下面這行僅限房東登入時抓取
-					//(session.getAttribute("id")).toString(),
-					"aaa",
+					(session.getAttribute("id")).toString(),
 		};
 		PostBO PostBO = new PostBO();
-		if(PostBO.addStudentReview(studentReviewContext))
+		if (PostBO.addStudentReview(studentReviewContext))
 			return DataForFrontend("success", "發布成功", studentReviewContext, "/NCURent/studentMainPage.jsp");
 		else
-			return DataForFrontend("fail","發布失敗", null, "/NCURent/html/reserve.jsp");
+			return DataForFrontend("fail", "發布失敗", null, "/NCURent/html/reserve.jsp");
 	}
-	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+
+	public JSONObject addReserve(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		String[] reserve;
 		HttpSession session = request.getSession();
 		reserve = new String[] {
-					request.getParameter("hid"),
-					(session.getAttribute("id")).toString(),
-					request.getParameter("reservetime"),
-					"0",
+				request.getParameter("hid"),
+				(session.getAttribute("id")).toString(),
+				request.getParameter("reservetime"),
+				"0",
 		};
 		PostBO PostBO = new PostBO();
-		if(PostBO.addReserve(reserve))
+		if (PostBO.addReserve(reserve))
 			return DataForFrontend("success", "預約成功", null, "/NCURent/html/index.jsp");
 		else {
 			request.setAttribute("error", "預約失敗");
-			return DataForFrontend("fail","預約失敗", null, "/NCURent/html/reserve.jsp");
+			return DataForFrontend("fail", "預約失敗", null, "/NCURent/html/reserve.jsp");
 		}
 	}
+
 	public JSONObject getAllReserve(HttpServletRequest request, HttpServletResponse response) {
 		PostBO PostBO = new PostBO();
 		HttpSession session = request.getSession();
-		List<JSONObject> reserve = PostBO.getAllReserve((session.getAttribute("id")).toString(),(session.getAttribute("type")).toString());
+		List<JSONObject> reserve = PostBO.getAllReserve((session.getAttribute("id")).toString(),
+				(session.getAttribute("type")).toString());
 		Gson gson = new Gson();
 		String listJson = gson.toJson(reserve);
 		JSONArray reserveData = JSONArray.fromObject(listJson);
 		return DataForFrontend("success", "", reserveData, "/NCURent/???.jsp");
 	}
+
 	public JSONObject DeleteStudentReview(HttpServletRequest request, HttpServletResponse response) {
 		//被刪除的流水號 RsID
 		//String Rsid = request.getParameter("id");
@@ -144,7 +156,33 @@ public class PostController extends SuperController{
 		//這邊的12應該要寫流水號RsID
 		boolean success = PostBO.deleteStudentReview(40);
 		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
+
 	}
-	
-	
+
+	public JSONObject checkHouse(HttpServletRequest request, HttpServletResponse response) {
+		int hid = Integer.parseInt(request.getParameter("HID"));
+		HttpSession session = request.getSession();
+		String aid = (session.getAttribute("id")).toString();
+		PostBO PostBO = new PostBO();
+		boolean success = PostBO.checkHouse(hid, aid);
+		if (success) {
+			return DataForFrontend("success", "審核成功", null, "/NCURent/html/check.jsp");
+		} else {
+			// request.setAttribute("error", "錯誤");
+			return DataForFrontend("fail","審核失敗", null, "/NCURent/html/check.jsp");
+		}
+	}
+
+	public JSONObject rejectHouse(HttpServletRequest request, HttpServletResponse response) {
+		int hid = Integer.parseInt(request.getParameter("HID"));
+		PostBO PostBO = new PostBO();
+		boolean success = PostBO.rejectHouse(hid);
+		if (success) {
+			return DataForFrontend("success", "刪除成功", null, "/NCURent/html/check.jsp");
+		} else {
+			// request.setAttribute("error", "錯誤");
+			return DataForFrontend("fail","刪除失敗", null, "/NCURent/html/check.jsp");
+		}
+	}
+
 }
