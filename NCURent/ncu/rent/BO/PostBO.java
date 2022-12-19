@@ -51,7 +51,15 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.addStudentReview(studentReview);
 	}
+	public boolean addHouseReview(String[] houseReview){
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.addHouseReview(houseReview);
+	}
 	
+	public boolean deleteHouseReview(int RlhID) {
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.DeleteHouseReview(RlhID);
+	}
 
 	public List<JSONObject> getAllReserve(String id,String type) {
 		PostDAO PostDAO = new PostDAO();

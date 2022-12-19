@@ -30,6 +30,8 @@
     <url-pattern>/Post/GetStudentReview</url-pattern>
     <url-pattern>/Post/AddStudentReview</url-pattern>
     <url-pattern>/Post/DeleteStudentReview</url-pattern>
+    <url-pattern>/Post/AddHouseReview</url-pattern>
+    <url-pattern>/Post/DeleteHouseReview</url-pattern>
     <url-pattern>/Post/getAllReserve</url-pattern>
   </servlet-mapping>
 </web-app>

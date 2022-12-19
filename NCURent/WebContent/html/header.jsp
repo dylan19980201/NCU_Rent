@@ -11,24 +11,12 @@
             <div>
                 <ul class="nav-link d-flex justify-content-center list-unstyled pt-3">
                     <li>
-                        <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
+                        <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/index.jsp"><i
                                 class="pe-1 mt-1 fas fa-search"></i><span class="nav-name d-none d-md-block">
                                 <center>瀏覽房屋</center>
                             </span></a>
                     </li>
                     <% if((session.getAttribute("type")).equals("student")) {%>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
-                                    class="pe-1 mt-1 fas fa-upload"></i><span
-                                    class="nav-name d-none d-md-block">刊登房東與房屋評價</span></a>
-                        </li>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="#">
-                           <i
-                                    class="pe-1 mt-1 fas fa-eye"></i><span
-                                    class="nav-name d-none d-md-block">查看學生評價</span></a>
-                                    <input type ="submit" class="btn btn-outline-success" onclick="javascript:location.href='../house_ver2.jsp'" value="查看學生評價">
-                        </li>
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/sreservestate.jsp"><i
                                     class="pe-1 mt-1 fas fa-calendar-check"></i><span
@@ -44,17 +32,6 @@
                             <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/housepost.jsp"><i
                                     class="pe-1 mt-1 fas fa-file-upload"></i><span
                                     class="nav-name d-none d-md-block">刊登房屋</span></a>
-                            </li>
-                        <li>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
-                                    class="pe-1 mt-1 fas fa-upload"></i><span
-                                    class="nav-name d-none d-md-block">刊登學生評價</span></a>
-                            </li>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="#"><i
-                                    class="pe-1 mt-1 fas fa-eye"></i><span
-                                    class="nav-name d-none d-md-block">查看房東與房屋評價</span></a>
                         </li>
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/lreservestate.jsp"><i

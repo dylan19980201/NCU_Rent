@@ -38,6 +38,9 @@
 		   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00002</u></a></h5>
 		  <h6>⭐⭐⭐⭐⭐　　　　　　　3天前</h6>
 		  <p>Nice!</p>
+		  <form  method="post" action ='/NCURent/Post/DeleteHouseReview' >
+		   <p class="apply-btn"><input type ="submit" value = "刪除房屋評論" class="bg-primary p-1 px-3 text-white text-decoration-none" href="#"></p>
+		   </form>
 		   <!-- <p class="apply-btn"><a class="bg-primary p-1 px-3 text-white text-decoration-none" href="#">刪除</a></p>-->
 		   	<% if (session.getAttribute("type").equals("administrator")) { %><button type="submit" id="4" class="btn btn-primary deleteBtn">刪除</button><% } %>
 		  <hr>	
