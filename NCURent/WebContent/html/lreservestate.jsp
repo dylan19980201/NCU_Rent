@@ -37,9 +37,10 @@
       var result;
       getData();
       updatePage(result);
-      $(document).on("click", ".confirm_btn", function () {
-        var hid = $(this).attr("hid");
-        updateReserve(hid);
+      $(document).on("click", ".update_btn", function () {
+        var rid = $(this).attr("rid");
+        var checktype = $(this).attr("checktype");
+        updateReserve(rid,checktype);
       });
       function getData() {
         $.ajax({
@@ -63,6 +64,7 @@
         var divBody = "";
         var check = "";
         var btn = "";
+        console.log(items);
         $.each(items, function (i, item) {
           item = item.map;
           check = item.CheckType ? "已確認" : "未確認";
@@ -73,19 +75,20 @@
           divBody += "<div class='card-body'>";
           divBody += "<h5 class='card-title'>" + item.HAddress + "</h5>";
           divBody += "<p class='card-text'>學生：" + item.Name + "<br>電話：" + item.Phone + "<br>預約時間：" + item.RDate + "<br>房屋坪數：" + item.Size + "<br>房屋租金：" + item.Rent + "/月<br>房屋設備：" + item.Equipment + "<br>屋齡:" + item.HYear + "<br>其他備註：" + item.GenderSpecific + "<br>預約通過：" + check + "</p>"
-          divBody += "<a href='../html/details.jsp?id=" + item.HID + "' class='btn btn-primary'>瀏覽</a>";
-          divBody += "<a hid=" + item.HID + " class='btn btn-primary confirm_btn'>" + btn + "</a>";
+          divBody += "<a rid=" + item.RID + " checktype=" + item.CheckType + " class='btn btn-primary update_btn'>" + btn + "</a>";
           divBody += "</div>";
           divBody += "</div>";
           divBody += "</div>";
         });
         $("#Housediv").append(divBody);
       }
-      function updateReserve(hid) {
+      function updateReserve(rid,checktype) {
+        console.log("rid="+rid);
+        console.log("ct="+checktype);
         $.ajax({
           url: '/NCURent/Post/updateReserve',
           method: 'POST',
-          data: "HID=" + hid,
+          data: "RID=" + rid + "&CheckType=" + checktype,
           success: function () {
             alert("更新成功");
             window.location.reload();

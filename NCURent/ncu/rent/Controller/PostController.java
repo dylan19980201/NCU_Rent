@@ -149,16 +149,27 @@ public class PostController extends SuperController {
 		return DataForFrontend("success", "", reserveData, "");
 	}
 
+	public JSONObject updateReserve(HttpServletRequest request, HttpServletResponse response) {
+		PostBO PostBO = new PostBO();
+		System.out.println("controller="+request.getParameter("RID")+" "+request.getParameter("CheckType"));
+		if (PostBO.updateReserve(Integer.parseInt(request.getParameter("HID")),Integer.parseInt(request.getParameter("CheckType"))))
+			return DataForFrontend("success", "預約成功", null, "/NCURent/html/lreservestate.jsp");
+		else {
+			request.setAttribute("error", "預約失敗");
+			return DataForFrontend("fail", "預約失敗", null, "/NCURent/html/lreservestate.jsp");
+		}
+	}
+
 	public JSONObject DeleteStudentReview(HttpServletRequest request, HttpServletResponse response) {
-		//被刪除的流水號 RsID
+		// 被刪除的流水號 RsID
 		int RsID = Integer.parseInt(request.getParameter("RsID"));
 		PostBO PostBO = new PostBO();
-		//這邊的12應該要寫流水號RsID
+		// 這邊的12應該要寫流水號RsID
 		boolean success = PostBO.deleteStudentReview(RsID);
-		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
+		return DataForFrontend("success", "刪除成功", null, "/NCURent/checkReview.jsp");
 
 	}
-	
+
 	public JSONObject DeleteHouseReview(HttpServletRequest request, HttpServletResponse response) {
 		// 被刪除的流水號 RlhID
 		// String Rsid = request.getParameter("id");

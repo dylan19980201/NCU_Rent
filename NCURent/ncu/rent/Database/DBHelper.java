@@ -340,7 +340,8 @@ public class DBHelper {
 			}
 		}
 		return result;
-	}	
+	}
+
 	public int deleteStudentReview(String command, int RsID) {
 		Connection con = null;
 		PreparedStatement statement = null;
@@ -383,8 +384,8 @@ public class DBHelper {
 			}
 		}
 		return result;
-	}	
-	
+	}
+
 	public int deleteHouseReview(String command, int RsID) {
 		Connection con = null;
 		PreparedStatement statement = null;
@@ -405,6 +406,7 @@ public class DBHelper {
 		}
 		return result;
 	}
+
 	public List<JSONObject> getAllReserve(String command, String id) {
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		Connection con = null;
@@ -417,7 +419,7 @@ public class DBHelper {
 			rs = statement.executeQuery();
 			while (rs.next()) {
 				JSONObject data = new JSONObject();
-				data.put("HID", rs.getString("HID"));
+				data.put("RID", rs.getInt("RID"));
 				data.put("Name", rs.getString("Name"));
 				data.put("Phone", rs.getString("Phone"));
 				data.put("RDate", rs.getString("RDate"));
@@ -511,6 +513,28 @@ public class DBHelper {
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+	}
+
+	public int updateReserve(String command, JSONObject condition) {
+		Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("CheckType"));
+			statement.setObject(2, condition.get("RID"));
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
 		} finally {
 			try {
 				con.close();
