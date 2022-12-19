@@ -18,8 +18,8 @@
             </div>
             <form class="register-form" action ="/NCURent/Login/Register" method="post">
                 <input type="hidden" name="type" value="2" required="required"/>
-                <input type="text" name="id" placeholder="帳號(請輸入4~12位英數字)" pattern="[0-9||A-z]{4,12}" required="required"/>
-                <input type="password" name="password" placeholder="密碼(請輸入8~16位英數字)" pattern="[0-9||A-z]{8,16}" required="required"/>
+                <input type="text" name="id" placeholder="帳號(請輸入3~12位英數字)" pattern="[0-9||A-z]{3,12}" required="required"/>
+                <input type="password" name="password" placeholder="密碼(請輸入3~16位英數字)" pattern="[0-9||A-z]{3,16}" required="required"/>
                 <input type="text" name="name" placeholder="姓名" required="required"/>
                 <select class="form-select" name="gender"  style="width:100%;height:40px; margin: 0 0 15px; ;" required="required"  >
                 <option selected>性別</option>
