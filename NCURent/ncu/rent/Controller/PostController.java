@@ -152,7 +152,7 @@ public class PostController extends SuperController {
 	public JSONObject updateReserve(HttpServletRequest request, HttpServletResponse response) {
 		PostBO PostBO = new PostBO();
 		System.out.println("controller="+request.getParameter("RID")+" "+request.getParameter("CheckType"));
-		if (PostBO.updateReserve(Integer.parseInt(request.getParameter("HID")),Integer.parseInt(request.getParameter("CheckType"))))
+		if (PostBO.updateReserve(Integer.parseInt(request.getParameter("RID")),Integer.parseInt(request.getParameter("CheckType"))))
 			return DataForFrontend("success", "預約成功", null, "/NCURent/html/lreservestate.jsp");
 		else {
 			request.setAttribute("error", "預約失敗");
