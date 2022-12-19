@@ -426,6 +426,7 @@ public class DBHelper {
 				data.put("Equipment", rs.getString("Equipment"));
 				data.put("GenderSpecific", rs.getString("GenderSpecific"));
 				data.put("PictureName", rs.getString("PictureName"));
+				data.put("CheckType", rs.getInt("CheckType"));
 				list.add(data);
 			}
 		} catch (Exception e) {

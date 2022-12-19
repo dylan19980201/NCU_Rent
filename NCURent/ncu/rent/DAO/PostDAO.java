@@ -147,15 +147,15 @@ public class PostDAO {
 		String command = "";
 		if(type.equals("student"))
 			command = """
-				select reserve.HID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName
+				select reserve.HID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName,CheckType
 				from reserve,
 				(select house.HID,LName Name,LPhone as Phone,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName from house,landlord
 				where house.LID = landlord.LID) as h
 				where reserve.SID = ? and reserve.HID = h.HID""";
 		else 
 			command = """
-				select r.HID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName
-				from (select HID,SName as Name,SPhone as Phone,RDate from reserve,student
+				select r.HID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName,CheckType
+				from (select HID,SName as Name,SPhone as Phone,RDate,CheckType from reserve,student
 				where reserve.SID = student.SID) as r,
 				(select house.LID,house.HID,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName from house,landlord
 				where house.LID = landlord.LID) as h

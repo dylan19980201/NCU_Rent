@@ -35,9 +35,9 @@
     <script>
       $(function () {
         var result;
-        GetData();
-        update(result);
-        function GetData() {
+        getData();
+        updatePage(result);
+        function getData() {
           console.log("do");
           $.ajax({
             url: '/NCURent/Post/getAllHouse',
@@ -58,7 +58,7 @@
           });
         }
 
-        function update(data) {
+        function updatePage(data) {
           var divBody = "";
           $.each(data, function (i, n) {
             if (match(n)) {
