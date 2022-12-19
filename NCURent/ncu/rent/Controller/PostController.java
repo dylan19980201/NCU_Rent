@@ -159,21 +159,6 @@ public class PostController extends SuperController {
 
 	}
 	
-	/*public JSONObject GetHouseReview(HttpServletRequest request, HttpServletResponse response) {
-		//String SID = request.getParameter("RlhID");
-		PostBO PostBO = new PostBO();
-		// 取得資料庫的資料
-		List<HouseReview> houseReview = PostBO.getStudentReview(6);
-		Gson gson = new Gson();
-		String listJson = gson.toJson(houseReview);
-		JSONArray studentReviewData = JSONArray.fromObject(listJson);
-		JSONObject jsonData = new JSONObject();
-		//jsonData.put("studentData", studentData);
-		jsonData.put("studentReviewData", studentReviewData);
-		return DataForFrontend("success", "", jsonData, "/NCURent/html/details.jsp");
-	}*/
-	
-	
 	public JSONObject DeleteHouseReview(HttpServletRequest request, HttpServletResponse response) {
 		//被刪除的流水號 RlhID
 		//String Rsid = request.getParameter("id");
