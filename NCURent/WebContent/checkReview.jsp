@@ -38,7 +38,8 @@
 		   <h5 class="mb-3"><a class="text-decoration-none text-dark" href="#"><u>L00002</u></a></h5>
 		  <h6>⭐⭐⭐⭐⭐　　　　　　　3天前</h6>
 		  <p>Nice!</p>
-		   <p class="apply-btn"><a class="bg-primary p-1 px-3 text-white text-decoration-none" href="#">刪除</a></p>
+		   <!-- <p class="apply-btn"><a class="bg-primary p-1 px-3 text-white text-decoration-none" href="#">刪除</a></p>-->
+		   	<% if (session.getAttribute("type").equals("administrator")) { %><button type="submit" id="4" class="btn btn-primary deleteBtn">刪除</button><% } %>
 		  <hr>	
         </div>
       </section>
@@ -46,6 +47,29 @@
     <jsp:include page="./html/footer.jsp" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   </body>
-	</body>
-	
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(
+  		$('.deleteBtn').on('click', function(e){
+  		    e.preventDefault();
+  		    console.log(this.id);
+  		  $.ajax({
+              url: '/NCURent/Post/DeleteStudentReview',
+              method: 'POST',
+              dataType: 'json',
+              data: { RsID : this.id},
+              async: false,
+              success: function (res) {
+                if (res.status == "success") {
+                  alert("成功")
+                } else {
+                  $('.alert.alert-danger').css('display', 'block');
+                }
+              },
+              error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus); alert("Error: " + errorThrown);
+              }
+         });
+  }));
+  </script>	
 </html>
