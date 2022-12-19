@@ -276,6 +276,7 @@ public class DBHelper {
 			rs = statement.executeQuery();
 			while (rs.next()) {
 				StudentReview studentReview = new StudentReview();
+				studentReview.setRsID(rs.getInt("RsID"));
 				studentReview.setSID(rs.getString("Sid"));
 				studentReview.setLID(rs.getString("Lid"));
 				studentReview.setRsStar(rs.getInt("rsStar"));
@@ -303,6 +304,7 @@ public class DBHelper {
 			rs = statement.executeQuery();
 			while (rs.next()) {
 				HouseReview houseReview = new HouseReview();
+				houseReview.setRlhID(rs.getInt("RlhID"));
 				houseReview.setSID(rs.getString("SID"));
 				houseReview.setRlContent(rs.getString("RlContent"));
 				houseReview.setRlhStar(rs.getInt("RlhStar"));

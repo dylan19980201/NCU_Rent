@@ -76,7 +76,6 @@
              });
          });
      </script><br>
-
   		<h4 class="text-center my-2">評價一覽</h4>
   		<h5>留言:<label id='RsContent'></label><h5>
       <section>
@@ -90,53 +89,9 @@
 	</body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-	$(document).ready(loadfunction())
-			/*
-		function(){  
-    	let getUrlString = location.href;
-    	let url = new URL(getUrlString);
-    	let id = url.searchParams.get('id'); 
-    	$.ajax({
-            url: '/NCURent/Post/GetStudentReview',
-            method: 'post',
-            dataType: 'json',
-            data: {SID : id},
-            success: function(res){
-                if(res.status == "success"){
-                	var reviewData = $.parseJSON(res.data.studentReviewData);
-                	var studentData = $.parseJSON(res.data.studentData);
-                	$("#name").text(studentData.name);
-                	$("#sid").text(studentData.ID);
-                	$("#department").text(studentData.department);
-                	$("#gender").text(studentData.gender);
-                	$("#birth").text(studentData.birth);
-                	$("#email").text(studentData.email);
-                	$("#star").text(studentData.star ? studentData.star : "尚未評價");
-                	$("#amount").text(studentData.amount ? studentData.amount : "0");
-                	var divBody="";
-                	$.each(reviewData, function(i,n){
-                		divBody += "<h5 class='mb-3'><a class='text-decoration-none text-dark'><u>"+n.LID+"</u></a></h5>";
-                		divBody += "<h5>";
-                		for(let i=0; i < n.RsStar; i++){
-                			divBody += "⭐";
-                		}
-                		divBody += "</h5>";
-                		divBody += "<p>"+n.RsContent+"</p>";
-                		divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>"+n.RsDateTime+"</I></div></h5>"
-                		divBody += "<hr>"
-                	});
-                	$("#studentCommentTable").append(divBody);
-                	getReviewTable(reviewData);
-                }else{
-                    $('.alert.alert-danger').css('display','block')
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-            } 
-        });
-     }
-			);*/
+	$(document).ready(function(){
+		loadfunction();
+	})
 	$('form').on('submit', function(){
 		let getUrlString = location.href;
     	let url = new URL(getUrlString);
@@ -193,7 +148,8 @@
    	                		}
    	                		divBody += "</h5>";
    	                		divBody += "<p>"+n.RsContent+"</p>";
-   	                		divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>"+n.RsDateTime+"</I></div></h5>"
+   	                		divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>"+n.RsDateTime+"</I></div></h5>";
+   	                		<% if (session.getAttribute("type").equals("administrator")) { %> divBody += "<button type='submit' id='"+n.RsID+"' class='btn btn-primary deleteBtn' onclick=initDeleteBtn(this)>刪除</button>"<% } %>
    	                		divBody += "<hr>"
    	                	});
    	                	$("#studentCommentTable").append(divBody);
@@ -206,5 +162,24 @@
    	            } 
    	        });
    	     }
+   	function initDeleteBtn(e){
+		$.ajax({
+	          url: '/NCURent/Post/DeleteStudentReview',
+	          method: 'POST',
+	          dataType: 'json',
+	          data: { RsID : e.id},
+	          async: false,
+	          success: function (res) {
+	            if (res.status == "success") {
+	            	loadfunction();
+	            } else {
+	              $('.alert.alert-danger').css('display', 'block');
+	            }
+	          },
+	          error: function (XMLHttpRequest, textStatus, errorThrown) {
+	            alert("Status: " + textStatus); alert("Error: " + errorThrown);
+	          }
+	     });
+	}
 	</script>
 </html>
