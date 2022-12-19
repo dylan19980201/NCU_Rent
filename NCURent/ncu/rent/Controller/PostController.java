@@ -164,7 +164,7 @@ public class PostController extends SuperController {
 		//被刪除的流水號 RlhID
 		//String Rsid = request.getParameter("id");
 		PostBO PostBO = new PostBO();
-		//這邊的12應該要寫流水號
+		//這邊應該要寫流水號
 		boolean success = PostBO.deleteHouseReview(3);
 		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
 
