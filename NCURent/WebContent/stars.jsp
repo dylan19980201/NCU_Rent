@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+
   <%@ page import="java.util.*" %>
   	<div class="star-mark">
 		<ul class="star">
@@ -14,6 +15,7 @@
 			<span class="mark"></span>&nbsp;<span class="decri"></span><br>
 			<span class="detail"></span>
 		</div>
+		<label id="starAmount" style="display:none"></label>
 	</div>
 	
 	<style>	ul {
@@ -64,7 +66,8 @@
 			color: #f00;
 		}
 		
-	</style>	 	
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	 	
 	<script>	
 		var MARK_INFO = [
 		    '1顆星||1分',
@@ -127,6 +130,10 @@
 			var markDetailDiv = markResult.getElementsByClassName('detail')[0];
 			var infos = MARK_INFO[cnofirmIndex].split('|');
 			markNumDiv.textContent = infos[0];
+			//console.log(starAmount);
+			//console.log(infos[2].substr(0, 1));
+			var starAmount = infos[2].substr(0, 1);
+			$('#starAmount').text(starAmount);
 			markDetailDiv.textContent = '（' +　infos[2] + '）';
 		});
 

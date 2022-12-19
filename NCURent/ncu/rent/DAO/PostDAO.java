@@ -68,7 +68,7 @@ public class PostDAO {
 	public boolean addStudentReview(String[] studentReview) {
 		String command = """
 				insert into reviewstudent (RsStar,RsContent,RsDateTime,SID,LID)
-				VALUES (?,?,?,?,?)""";
+				VALUES (?,?,NOW(),?,?)""";
 		DBHelper db = new DBHelper();
 		if (db.addStudentReview(command, studentReview) == 1)
 			return true;

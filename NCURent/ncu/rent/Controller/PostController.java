@@ -99,19 +99,16 @@ public class PostController extends SuperController{
 	public JSONObject AddStudentReview(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
 		String[] studentReviewContext;
 		String  ReviewTime;
-		ReviewTime =LocalDateTime.now().toString();
+		String SID = request.getParameter("SID");
 		HttpSession session = request.getSession();
 		studentReviewContext = new String[] {
 					//這邊要寫真的星星
-					//request.getParameter("rsStar"),
-					"5",
+					request.getParameter("rsStar"),
 					request.getParameter("rsContent"),
-					ReviewTime,
 					//這邊要寫真的學生ID，到該學生頁面時抓到的ID
-					"aaa871126",
+					SID,
 					//下面這行僅限房東登入時抓取
-					//(session.getAttribute("id")).toString(),
-					"aaa",
+					(session.getAttribute("id")).toString(),
 		};
 		PostBO PostBO = new PostBO();
 		if(PostBO.addStudentReview(studentReviewContext))
