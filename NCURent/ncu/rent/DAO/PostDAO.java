@@ -110,7 +110,7 @@ public class PostDAO {
 	
 	public List<StudentReview> getStudentReview(String Sid) {
 		String command = """
-		SELECT SID as Sid, LID as Lid, RsStar as rsStar, RsContent as rsContent ,
+		SELECT RsID, SID as Sid, LID as Lid, RsStar as rsStar, RsContent as rsContent ,
 		RsDateTime as rsDateTime FROM reviewstudent  WHERE Sid = ?
 		""";
 		List<StudentReview> studentReview = new ArrayList<StudentReview>();
@@ -127,7 +127,7 @@ public class PostDAO {
 	
 	public List<HouseReview> getHouseReview(int HID){
 		String command = """
-				SELECT RlhStar, RlContent, RlhDatetime, SID
+				SELECT RlhID, RlhStar, RlContent, RlhDatetime, SID
 				FROM reviewlandlordandhouse
 				WHERE HID = ?
 				""";

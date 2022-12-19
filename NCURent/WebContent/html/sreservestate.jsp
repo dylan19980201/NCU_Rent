@@ -34,6 +34,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
+<<<<<<< HEAD
       var result;
       getData();
       updatePage(result);
@@ -76,4 +77,37 @@
       }
     </script>
 
+=======
+            $.ajax({
+                url: '/NCURent/Post/getAllReserve',
+                method: 'POST',
+                dataType: 'json',
+                data: $('form').serialize(),
+                success: function(res){
+                    if(res.status == "success"){
+                    	var typeData = $.parseJSON(res.data); // create an object with the key of the array
+                    	var divBody = "";
+                    	$.each(typeData, function(i, n) {
+							 divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
+							 divBody += "<div class='card'>";
+							 divBody += "<img src='/NCURent/upload/"+n.map.PictureName+"' class='card-img-top'  height='285.61' alt='...'>"
+							 divBody += "<div class='card-body'>";
+							 divBody += "<h5 class='card-title'>"+n.map.HAddress+"</h5>";
+							 divBody += "<p class='card-text'>房東："+n.map.Name+"<br>電話："+n.map.Phone+"<br>預約時間："+n.map.RDate+"<br>房屋坪數："+n.map.Size+"<br>房屋租金："+n.map.Rent+"/月<br>房屋設備："+n.map.Equipment+"<br>屋齡:"+n.map.HYear+"<br>其他備註："+n.map.GenderSpecific+"</p>"
+							 divBody +=	"</div>";
+							 divBody +=	"</div>";
+							 divBody +=	"</div>";
+                    	});
+                    	$("#Housediv").append(divBody);
+                    }else{
+                        $('.alert.alert-danger').css('display','block')
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                } 
+            });
+  	</script>
+	
+>>>>>>> bf6e94b59c19594b63118adecb3f0b1ff5e4d569
     </html>
