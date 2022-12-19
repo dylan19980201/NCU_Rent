@@ -67,7 +67,6 @@
           divBody += "<div class='card-body'>";
           divBody += "<h5 class='card-title'>" + item.HAddress + "</h5>";
           divBody += "<p class='card-text'>房東：" + item.Name + "<br>電話：" + item.Phone + "<br>預約時間：" + item.RDate + "<br>房屋坪數：" + item.Size + "<br>房屋租金：" + item.Rent + "/月<br>房屋設備：" + item.Equipment + "<br>屋齡:" + item.HYear + "<br>其他備註：" + item.GenderSpecific + "<br>預約通過：" + check + "</p>"
-          divBody += "<a href='../html/details.jsp?id=" + item.HID + "' class='btn btn-primary'>瀏覽</a>";
           divBody += "</div>";
           divBody += "</div>";
           divBody += "</div>";
