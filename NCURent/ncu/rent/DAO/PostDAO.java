@@ -42,7 +42,6 @@ public class PostDAO {
 		List<House> house = new ArrayList<House>();
 		JSONObject condition = new JSONObject();
 		condition.put("LID", LID);
-		System.out.println("DAO="+LID);
 		try {
 			DBHelper db = new DBHelper();
 			house = db.getAllHouse(command, new JSONObject(condition.toString()));
@@ -61,12 +60,6 @@ public class PostDAO {
 		try {
 			DBHelper db = new DBHelper();
 			house = db.getAllHouse(command);
-			// Gson gson = new Gson();
-			// String json = gson.toJson(house);
-			// String listJson = (JSONArray.fromObject(house)).toString();
-			// System.out.println(listJson);
-			// JSONArray houseData = JSONArray.fromObject(house);
-			// System.out.println(houseData);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

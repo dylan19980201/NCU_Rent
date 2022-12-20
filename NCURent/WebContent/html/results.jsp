@@ -23,6 +23,11 @@
 
     <body>
       <main>
+        <div class="text-center my-2">
+          <a id="unchecked_btn" class="text-dark p-1 btn btn-warning text-decoration-none">未通過</a>
+          <a id="checked_btn" class="text-dark p-1 btn btn-warning text-decoration-none">已通過</a>
+          <a id="all_btn" class="text-dark p-1 btn btn-warning text-decoration-none">全部</a>
+        </div>
         <section>
           <div class="row mx-1 my-4" id="Housediv">
           </div>
@@ -36,7 +41,10 @@
       $(function () {
         var result;
         getData();
-        updatePage(result);
+        updatePage(result, 2);
+        document.querySelector('#unchecked_btn').addEventListener('click', () => updatePage(result, 0));
+        document.querySelector('#checked_btn').addEventListener('click', () => updatePage(result, 1));
+        document.querySelector('#all_btn').addEventListener('click', () => updatePage(result, 2));
         function getData() {
           $.ajax({
             url: '/NCURent/Post/getAllHouse',
@@ -57,17 +65,21 @@
           });
         }
 
-        function updatePage(data) {
+        function updatePage(items, type) {
           var divBody = "";
-          $.each(data, function (i, n) {
-            if (match(n)) {
+          var houseStatus = "";
+          $.each(items, function (i, item) {
+            if (match(item, type)) {
+              houseStatus = item.AID ? "已通過" : "未通過";
               divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
               divBody += "<div class='card'>";
-              divBody += "<img src='/NCURent/upload/" + n.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
+              divBody += "<img src='/NCURent/upload/" + item.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
               divBody += "<div class='card-body'>";
-              divBody += "<h5 class='card-title'>" + n.HAddress + "</h5>";
-              divBody += "<p class='card-text'>房東：" + n.LName + "<br>房屋坪數：" + n.Size + "<br>房屋租金：" + n.Rent + "/月<br>房屋設備：" + n.Equipment + "<br>屋齡:" + n.HYear + "<br>其他備註：" + n.GenderSpecific + "</p>"
-              divBody += "<a href='../html/check.jsp?id=" + n.HID + "' class='btn btn-primary'>審查</a>";
+              divBody += "<h5 class='card-title'>" + item.HAddress + "</h5>";
+              divBody += "<p class='card-text'>房東：" + item.LName + "<br>房屋坪數：" + item.Size + "<br>房屋租金：" + item.Rent + "/月<br>房屋設備：" + item.Equipment + "<br>屋齡:" + item.HYear + "<br>其他備註：" + item.GenderSpecific + "<br>審查狀態：" + houseStatus + "</p>"
+              if(!item.AID) {
+                divBody += "<a href='../html/check.jsp?id=" + item.HID + "' class='btn btn-primary'>審查</a>";
+              }
               divBody += "</div>";
               divBody += "</div>";
               divBody += "</div>";
@@ -76,9 +88,16 @@
           $("#Housediv").html(divBody);
         }
 
-        function match(item) {
-          if (!item.AID) return true;
-          return false;
+        function match(item, type) {
+          if (type == 0) {
+            if (!item.AID) return true;
+            return false;
+          } else if (type == 1) {
+            if (item.AID) return true;
+            return false;
+          } else {
+            return true;
+          }
         }
       });
     </script>
