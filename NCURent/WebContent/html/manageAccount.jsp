@@ -55,7 +55,7 @@
               var type = "";
               $.each(items, function (i, item) {
                 dept = item.Department ? item.Department : "無";
-                type = item.Department ?"學生":"房東";
+                type = item.Department ? "學生" : "房東";
                 divBody += "<tr>";
                 divBody += "<th scope='row'>" + i + "</th>";
                 divBody += "<td>" + type + "</td>";

@@ -1,7 +1,6 @@
 package ncu.rent.BO;
 
 import ncu.rent.DAO.HouseDAO;
-import ncu.rent.DAO.LoginDAO;
 import ncu.rent.DAO.PostDAO;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.json.JSONObject;
 import ncu.rent.DTO.House;
 import ncu.rent.DTO.StudentReview;
 import ncu.rent.DTO.HouseReview;
-import ncu.rent.DTO.User;
 
 public class PostBO {
 	public int AddPost(String[] house) {

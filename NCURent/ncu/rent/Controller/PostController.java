@@ -19,7 +19,6 @@ import java.util.List;
 import ncu.rent.BO.UploadBO;
 import ncu.rent.BO.LoginBO;
 import ncu.rent.BO.PostBO;
-import ncu.rent.BO.LoginBO;
 
 public class PostController extends SuperController {
 	public JSONObject AddPost(HttpServletRequest request, HttpServletResponse response)
