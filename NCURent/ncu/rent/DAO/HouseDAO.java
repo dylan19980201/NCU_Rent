@@ -10,12 +10,6 @@ import ncu.rent.Database.DBHelper;
 
 public class HouseDAO {
 	public List<House> getHouseData(int Hid) {
-		// String command = """
-		// SELECT HAddress as hAddress, HYear as hYear, Rent as rent, Size as size,
-		// Equipment as equipment, GenderSpecific as genderSpecific, AID as aID, LName
-		// ,HID as hID, PictureName as pictureName, PostDatetime as postDatetime
-		// FROM house left join landlord on house.LID = landlord.LID WHERE aID IS NOT
-		// NULL AND Hid = ?""";
 		String command = """
 				SELECT HAddress as hAddress, HYear as hYear, Rent as rent, Size as size, Equipment as equipment, GenderSpecific as genderSpecific, AID as aID, LName ,HID as hID, PictureName as pictureName,  PostDatetime as postDatetime
 				FROM house left join landlord on house.LID = landlord.LID  WHERE Hid = ?""";

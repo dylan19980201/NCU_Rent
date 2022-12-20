@@ -164,7 +164,6 @@ public class PostController extends SuperController {
 		// 被刪除的流水號 RsID
 		int RsID = Integer.parseInt(request.getParameter("RsID"));
 		PostBO PostBO = new PostBO();
-		// 這邊的12應該要寫流水號RsID
 		boolean success = PostBO.deleteStudentReview(RsID);
 		return DataForFrontend("success", "刪除成功", null, "/NCURent/checkReview.jsp");
 
@@ -189,7 +188,6 @@ public class PostController extends SuperController {
 		if (success) {
 			return DataForFrontend("success", "審核成功", null, "/NCURent/html/check.jsp");
 		} else {
-			// request.setAttribute("error", "錯誤");
 			return DataForFrontend("fail", "審核失敗", null, "/NCURent/html/check.jsp");
 		}
 	}
@@ -201,7 +199,6 @@ public class PostController extends SuperController {
 		if (success) {
 			return DataForFrontend("success", "刪除成功", null, "/NCURent/html/check.jsp");
 		} else {
-			// request.setAttribute("error", "錯誤");
 			return DataForFrontend("fail", "刪除失敗", null, "/NCURent/html/check.jsp");
 		}
 	}
@@ -213,7 +210,6 @@ public class PostController extends SuperController {
 		HttpSession session = request.getSession();
 		houseReviewContext = new String[] {
 					//這邊要寫真的星星
-					//request.getParameter("RlhStar"),
 				    request.getParameter("RlhStar"),
 					request.getParameter("RlContent"),
 					//下面這行僅限學生登入時抓取
