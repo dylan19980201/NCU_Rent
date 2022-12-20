@@ -20,13 +20,25 @@
 <body>
     <jsp:include page="./html/header.jsp" />
     <form class="form" enctype="multipart/form-data">
-      <input type="text" name="HAddress" id="HAddress" placeholder="地址:">
+      <p align="left" style="font-size:20px;font-weight:bold;">地址：</p>
+      <input type="text" name="HAddress" id="HAddress" required="required">
    
-      <input type="text" name="Rent" id="Rent" placeholder="租金：">
-      <input type="text" name="Size" id="Size" placeholder="坪數：">
-      <input type="text" name="HYear" id="HYear" placeholder="屋齡：">
-      <input type="text" name="GenderSpecific" id="GenderSpecific" placeholder="性別限制:男/女/無">
-      <input type="text" name="Equipment"  id="Equipment" placeholder="設備：">
+     
+      <p align="left" style="font-size:20px;font-weight:bold;">租金：</p>
+      <input type="text" name="Rent" id="Rent" required="required">
+      <p align="left" style="font-size:20px;font-weight:bold;">坪數：</p>
+      <input type="text" name="Size" id="Size" >
+      <p align="left" style="font-size:20px;font-weight:bold;">屋齡：</p>
+      <input type="text" name="HYear" id="HYear" >
+      <p align="left" style="font-size:20px;font-weight:bold;">性別限制：</p>
+      <select class="form-select" name="GenderSpecific" id="GenderSpecific" style="width:100%;height:40px; margin: 0 0 15px; ;" required="required"  >
+        <option selected></option>
+        <option value="男">男</option>
+        <option value="女">女</option>
+        <option value="無">無</option>
+        </select>
+       <p align="left" style="font-size:20px;font-weight:bold;">設備：</p>
+      <input type="text" name="Equipment"  id="Equipment" >
       <p align="left" style="font-size:20px;font-weight:bold;">上傳照片：</p>
       <input type="file" name="file" id="file"/>
       <p align="center"><img style='display:none'/></p>
@@ -39,7 +51,10 @@
           $('img').attr('src', objectURL);
         });
       </script>
-      <button type="submit" class="btn btn-outline-primary">請求刊登</button>
+      <div class="mx-auto">
+          <button type="submit" class="btn btn-outline-primary" >請求刊登</button>
+      </div>
+     
     </form>
 </body>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

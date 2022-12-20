@@ -44,7 +44,7 @@
 	  <center><jsp:include page="./stars.jsp" /></center>
 	  <p class="text-center my-2">評論</p>
 	  <center><textarea name="rsContent" id="content"style="resize:none;width:800px;height:100px;" ></textarea></center><br>
-	   <center><input type="submit" value="發布"/></center><br>
+	   <center><input type="submit" value="發布" id="submitComment" class="btn btn-primary"/></center><br>
     </form>
    
      </div>
@@ -73,6 +73,10 @@
     <script>
 	$(document).ready(function(){
 		loadfunction();
+		<% if (!session.getAttribute("type").equals("landlord")) {%>
+			$("#submitComment").attr('disabled', 'disabled');
+			$("#submitComment").attr('value', '你沒有此權限');
+		<% }%>
 	})
 	$('form').on('submit', function(){
 		let getUrlString = location.href;
