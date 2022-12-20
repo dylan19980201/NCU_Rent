@@ -161,10 +161,10 @@ public class PostController extends SuperController {
 	
 	public JSONObject DeleteHouseReview(HttpServletRequest request, HttpServletResponse response) {
 		//被刪除的流水號 RlhID
-		//String Rsid = request.getParameter("id");
+		int RlhID = Integer.parseInt(request.getParameter("RlhID"));
 		PostBO PostBO = new PostBO();
 		//這邊應該要寫流水號
-		boolean success = PostBO.deleteHouseReview(3);
+		boolean success = PostBO.deleteHouseReview(RlhID);
 		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
 
 	}
@@ -198,17 +198,16 @@ public class PostController extends SuperController {
 		public JSONObject AddHouseReview(HttpServletRequest request, HttpServletResponse response)
 				throws IOException, ServletException {
 			String[] houseReviewContext;
-			//String SID = request.getParameter("SID");
 			HttpSession session = request.getSession();
 			houseReviewContext = new String[] {
 						//這邊要寫真的星星
 						//request.getParameter("RlhStar"),
-						"5",
+					    request.getParameter("RlhStar"),
 						request.getParameter("RlContent"),
 						//下面這行僅限學生登入時抓取
 						(session.getAttribute("id")).toString(),
 						//這邊要寫真的房屋刊登ID
-						"11144",
+						request.getParameter("HID")
 			};
 			PostBO PostBO = new PostBO();
 			if (PostBO.addHouseReview(houseReviewContext))

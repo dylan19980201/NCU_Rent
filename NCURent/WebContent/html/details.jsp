@@ -65,10 +65,10 @@
            <h4 class="text-center my-2">我要評論</h4>
            
      <div class="map bg-whitesmoke">
+  <form  id="commentForm">
   <p class="text-center my-2">評分</p>
   <center><jsp:include page="../stars.jsp" /></center>
   <p class="text-center my-2">評論</p>
-  <form  method="post" action ='/NCURent/Post/AddHouseReview' >
   <center><textarea name="RlContent" style="resize:none;width:800px;height:100px;" ></textarea></center><br>
    <center><input type="submit" value="發布"/></center><br>
    </form>
@@ -115,7 +115,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
     $(document).ready(function(){  
-    	var getUrlString = location.href;
+    	loadfunction();
+     });
+    $('form').on('submit', function(){
+		let getUrlString = location.href;
+    	let url = new URL(getUrlString);
+    	let id = url.searchParams.get('id');
+    	let star = $("#starAmount").text();
+        console.log(star);
+        $.ajax({
+            url: '/NCURent/Post/AddHouseReview',
+            method: 'POST',
+            dataType: 'json',
+            data: $('form').serialize() + "&HID="+id+"&RlhStar="+star,
+            success: function(res){
+                if(res.status == "success"){
+                	$('#commentForm').trigger("reset");
+                    loadfunction();
+                }else{
+                    $('.alert.alert-danger').css('display','block')
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            } 
+        });
+        return false;
+    });
+	function loadfunction(){
+		var getUrlString = location.href;
     	var url = new URL(getUrlString);
     	var id = url.searchParams.get('id'); 
     	$.ajax({
@@ -138,6 +166,7 @@
                 	$('#PostDatetime').text(typeData.postDateTime);
                 	$('#reservebutton').attr('href', "./reserve.jsp?id="+id)
                 	var divBody="";
+                	$("#houseReview").empty();
                 	$.each(reviewData, function(i,n){
                 		divBody += "<h5 class='mb-3'><a class='text-decoration-none text-dark' href='../studentMainPage.jsp?id="+n.SID+"'><u>"+n.SID+"</u></a></h5>";
                 		divBody += "<h5>";
@@ -146,7 +175,8 @@
                 		}
                 		divBody += "</h5>";
                 		divBody += "<p>"+n.RlContent+"</p>";
-                		divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>"+n.RlhDatetime+"</I></div></h5>"
+                		divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>"+n.RlhDatetime+"</I></div></h5>";
+                		<% if (session.getAttribute("type").equals("administrator")) { %> divBody += "<button type='submit' id='"+n.RlhID+"' class='btn btn-primary deleteBtn' onclick=initDeleteBtn(this)>刪除</button>"<% } %>
                 		divBody += "<hr>"
                 	});
                 	$("#houseReview").append(divBody);
@@ -158,7 +188,25 @@
                 alert("Status: " + textStatus); alert("Error: " + errorThrown); 
             } 
         });
-     });
-
+	}
+	function initDeleteBtn(e){
+		$.ajax({
+	          url: '/NCURent/Post/DeleteHouseReview',
+	          method: 'POST',
+	          dataType: 'json',
+	          data: { RlhID : e.id},
+	          async: false,
+	          success: function (res) {
+	            if (res.status == "success") {
+	            	loadfunction();
+	            } else {
+	              $('.alert.alert-danger').css('display', 'block');
+	            }
+	          },
+	          error: function (XMLHttpRequest, textStatus, errorThrown) {
+	            alert("Status: " + textStatus); alert("Error: " + errorThrown);
+	          }
+	     });
+	}
 	</script>
     </html>
