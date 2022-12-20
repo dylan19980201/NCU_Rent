@@ -18,7 +18,7 @@
 
   		<h3 class="text-center my-2">所有評價</h3>
   		 <div>
-  		  <div class="apply-btn">
+  		  <div class="text-center my-2">
               <a href="#" class="text-dark p-1 btn btn-warning text-decoration-none">房東與房屋評價</a>
               <a href="#" class="text-dark p-1 btn btn-warning text-decoration-none">學生評價</a>
           </div>
