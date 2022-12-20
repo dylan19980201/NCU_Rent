@@ -8,8 +8,6 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.result.BooleanValueFactory;
-
 import ncu.rent.DTO.User;
 import ncu.rent.DTO.House;
 import ncu.rent.DTO.StudentReview;
