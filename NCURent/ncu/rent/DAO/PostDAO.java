@@ -33,6 +33,25 @@ public class PostDAO {
 		return db.AddPost(command, house);
 	}
 
+	public List<House> getAllHouse(String LID) {
+		String command = """
+				SELECT HID, HAddress, LName, Size, Rent, Equipment, HYear, GenderSpecific, PictureName, AID
+				FROM house left join landlord on house.LID = landlord.LID
+				WHERE house.LID = ?
+				ORDER BY PostDatetime DESC""";
+		List<House> house = new ArrayList<House>();
+		JSONObject condition = new JSONObject();
+		condition.put("LID", LID);
+		System.out.println("DAO="+LID);
+		try {
+			DBHelper db = new DBHelper();
+			house = db.getAllHouse(command, new JSONObject(condition.toString()));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return house;
+	}
+
 	public List<House> getAllHouse() {
 		String command = """
 				SELECT HID, HAddress, LName, Size, Rent, Equipment, HYear, GenderSpecific, PictureName, AID
@@ -170,12 +189,12 @@ public class PostDAO {
 				UPDATE reserve SET CheckType = ? WHERE RID = ?""";
 		JSONObject condition = new JSONObject();
 		condition.put("RID", id);
-		condition.put("CheckType", (type+1)%2);
+		condition.put("CheckType", (type + 1) % 2);
 		try {
 			DBHelper db = new DBHelper();
-			if(db.updateReserve(command,new JSONObject(condition.toString()))==1)
+			if (db.updateReserve(command, new JSONObject(condition.toString())) == 1)
 				return true;
-			else 
+			else
 				return false;
 		} catch (Exception e) {
 			System.out.println(e);

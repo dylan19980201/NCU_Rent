@@ -17,6 +17,10 @@ public class PostBO {
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.AddPost(house);
 	}
+	public List<House> getAllHouse(String LID){
+		PostDAO PostDAO = new PostDAO();
+		return PostDAO.getAllHouse(LID);
+	}
 	public List<House> getAllHouse(){
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.getAllHouse();

@@ -28,9 +28,9 @@
           <div class="d-md-flex justify-content-center">
             <ul class="select-box list-unstyled d-md-flex">
               <li>
-              <nobr>坪數</nobr>
+                <nobr>坪數</nobr>
                 <select name="size" id="size" style="height:40px; width:120px">
-                
+
                   <option value="0-2147483647">選擇坪數</option>
                   <option value="0-5">0-5</option>
                   <option value="6-10">6-10</option>
@@ -40,9 +40,9 @@
                 </select>
               </li>
               <li>
-              <nobr>　　屋齡</nobr>
+                <nobr>　　屋齡</nobr>
                 <select name="year" id="year" style="height:40px; width:120px">
-                 
+
                   <option value="0-2147483647">選擇屋齡</option>
                   <option value="0-5">0-5</option>
                   <option value="6-10">6-10</option>
@@ -94,7 +94,7 @@
             url: '/NCURent/Post/getAllHouse',
             method: 'POST',
             dataType: 'json',
-            data: $('form').serialize(),
+            data: "type=" + 0,
             async: false,
             success: function (res) {
               if (res.status == "success") {
@@ -134,7 +134,7 @@
         }
 
         function match(item, size, year, minPrice, maxPrice, keyword) {
-          if(!item.AID) return false;
+          if (!item.AID) return false;
           if (item.Size >= parseInt(size[0]) && item.Size <= parseInt(size[1]) && item.HYear >= parseInt(year[0]) && item.HYear <= parseInt(year[1]) && item.Rent >= parseInt(minPrice) && item.Rent <= parseInt(maxPrice)) {
             if (keyword == "") {
               return true;

@@ -209,6 +209,38 @@ public class DBHelper {
 		return Id;
 	}
 
+	public List<House> getAllHouse(String command, JSONObject condition) throws SQLException {
+		List<House> list = new ArrayList<House>();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("LID"));
+			rs = statement.executeQuery();
+			while (rs.next()) {
+				House house = new House();
+				house.setHID(rs.getString("HID"));
+				house.setHAddress(rs.getString("HAddress"));
+				house.setLName(rs.getString("LName"));
+				house.setSize(rs.getInt("Size"));
+				house.setRent(rs.getInt("Rent"));
+				house.setEquipment(rs.getString("Equipment"));
+				house.setHYear(rs.getString("HYear"));
+				house.setGenderSpecific(rs.getString("GenderSpecific"));
+				house.setPictureName(rs.getString("PictureName"));
+				house.setAID(rs.getString("AID"));
+				list.add(house);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			con.close();
+		}
+		return list;
+	}
+
 	public List<House> getAllHouse(String command) throws SQLException {
 		List<House> list = new ArrayList<House>();
 		Connection con = null;

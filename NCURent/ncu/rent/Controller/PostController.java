@@ -53,11 +53,18 @@ public class PostController extends SuperController {
 	public JSONObject getAllHouse(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		PostBO PostBO = new PostBO();
-		List<House> house = PostBO.getAllHouse();
+		int type = Integer.parseInt(request.getParameter("type"));
+		List<House> house = null;
+		if (type == 1) {
+			HttpSession session = request.getSession();
+			house = PostBO.getAllHouse((session.getAttribute("id")).toString());
+		} else {
+			house = PostBO.getAllHouse();
+		}
 		Gson gson = new Gson();
 		String listJson = gson.toJson(house);
 		JSONArray houseData = JSONArray.fromObject(listJson);
-		return DataForFrontend("success", "", houseData, "/NCURent/result.jsp");
+		return DataForFrontend("success", "", houseData, "");
 	}
 
 	public JSONObject GetHouseData(HttpServletRequest request, HttpServletResponse response) {
@@ -151,7 +158,8 @@ public class PostController extends SuperController {
 
 	public JSONObject updateReserve(HttpServletRequest request, HttpServletResponse response) {
 		PostBO PostBO = new PostBO();
-		if (PostBO.updateReserve(Integer.parseInt(request.getParameter("RID")),Integer.parseInt(request.getParameter("CheckType"))))
+		if (PostBO.updateReserve(Integer.parseInt(request.getParameter("RID")),
+				Integer.parseInt(request.getParameter("CheckType"))))
 			return DataForFrontend("success", "預約成功", null, "/NCURent/html/lreservestate.jsp");
 		else {
 			request.setAttribute("error", "預約失敗");
@@ -169,12 +177,12 @@ public class PostController extends SuperController {
 	}
 
 	public JSONObject DeleteHouseReview(HttpServletRequest request, HttpServletResponse response) {
-		//被刪除的流水號 RlhID
+		// 被刪除的流水號 RlhID
 		int RlhID = Integer.parseInt(request.getParameter("RlhID"));
 		PostBO PostBO = new PostBO();
-		//這邊應該要寫流水號
+		// 這邊應該要寫流水號
 		boolean success = PostBO.deleteHouseReview(RlhID);
-		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
+		return DataForFrontend("success", "刪除成功", null, "/NCURent/checkReview.jsp");
 
 	}
 
@@ -208,13 +216,13 @@ public class PostController extends SuperController {
 		String[] houseReviewContext;
 		HttpSession session = request.getSession();
 		houseReviewContext = new String[] {
-					//這邊要寫真的星星
-				    request.getParameter("RlhStar"),
-					request.getParameter("RlContent"),
-					//下面這行僅限學生登入時抓取
-					(session.getAttribute("id")).toString(),
-					//這邊要寫真的房屋刊登ID
-					request.getParameter("HID")
+				// 這邊要寫真的星星
+				request.getParameter("RlhStar"),
+				request.getParameter("RlContent"),
+				// 下面這行僅限學生登入時抓取
+				(session.getAttribute("id")).toString(),
+				// 這邊要寫真的房屋刊登ID
+				request.getParameter("HID")
 		};
 		PostBO PostBO = new PostBO();
 		if (PostBO.addHouseReview(houseReviewContext))

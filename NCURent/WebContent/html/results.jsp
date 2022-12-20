@@ -38,12 +38,11 @@
         getData();
         updatePage(result);
         function getData() {
-          console.log("do");
           $.ajax({
             url: '/NCURent/Post/getAllHouse',
             method: 'POST',
             dataType: 'json',
-            data: $('form').serialize(),
+            data: "type=" + 0,
             async: false,
             success: function (res) {
               if (res.status == "success") {

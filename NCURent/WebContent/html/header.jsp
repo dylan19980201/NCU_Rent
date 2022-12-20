@@ -40,6 +40,11 @@
                                     class="nav-name d-none d-md-block">刊登房屋</span></a>
                         </li>
                         <li>
+                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/myHouse.jsp"><i
+                                    class="pe-1 mt-1 fas fa-file-upload"></i><span
+                                    class="nav-name d-none d-md-block">我的房屋</span></a>
+                        </li>
+                        <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/lreservestate.jsp"><i
                                     class="pe-1 mt-1 fas fa-calendar-check"></i><span
                                     class="nav-name d-none d-md-block">查看預約資訊</span></a>
