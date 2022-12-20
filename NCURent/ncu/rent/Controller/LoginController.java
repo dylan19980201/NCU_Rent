@@ -12,7 +12,6 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
-import java.io.*;
 
 public class LoginController extends SuperController {
 	public JSONObject Login(HttpServletRequest request, HttpServletResponse response) {
@@ -42,30 +41,29 @@ public class LoginController extends SuperController {
 
 	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {
 		String[] user;
-		if ((request.getParameter("type")).equals("1")) {
-			user = new String[] {
-					request.getParameter("id"),
-					request.getParameter("password"),
-					request.getParameter("name"),
-					request.getParameter("birth"),
-					request.getParameter("gender"),
-					request.getParameter("department"),
-					request.getParameter("phone"),
-					request.getParameter("email") };
-		} else {
-			user = new String[] {
-					request.getParameter("id"),
-					request.getParameter("password"),
-					request.getParameter("name"),
-					request.getParameter("birth"),
-					request.getParameter("gender"),
-					request.getParameter("phone"),
-					request.getParameter("email") };
-		}
 		LoginBO LoginBO = new LoginBO();
-		boolean success = LoginBO.addUser(user, request.getParameter("type"));
-		if (success) {
-			System.out.println("test");
+		if (!LoginBO.idList().contains(request.getParameter("id"))) {
+			if ((request.getParameter("type")).equals("1")) {
+				user = new String[] {
+						request.getParameter("id"),
+						request.getParameter("password"),
+						request.getParameter("name"),
+						request.getParameter("birth"),
+						request.getParameter("gender"),
+						request.getParameter("department"),
+						request.getParameter("phone"),
+						request.getParameter("email") };
+			} else {
+				user = new String[] {
+						request.getParameter("id"),
+						request.getParameter("password"),
+						request.getParameter("name"),
+						request.getParameter("birth"),
+						request.getParameter("gender"),
+						request.getParameter("phone"),
+						request.getParameter("email") };
+			}
+			boolean success = LoginBO.addUser(user, request.getParameter("type"));
 			return DataForFrontend("success","新增成功", null, "/NCURent/login.jsp");
 		} else {
 			request.setAttribute("error", "新增失敗");
@@ -94,9 +92,5 @@ public class LoginController extends SuperController {
 		String listJson = gson.toJson(LoginBO.getAllUser());
 		JSONArray userData = JSONArray.fromObject(listJson);
 		return DataForFrontend("success", "", userData, "/NCURent/html/manageAccount.jsp");
-	}
-
-	public void Hi(String param) {
-		System.out.println("Hi");
 	}
 }
