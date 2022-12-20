@@ -12,7 +12,7 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
       <title>中央大學預約看房網</title>
-      
+
       <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif"
         sizes="16x16">
       <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
@@ -26,7 +26,7 @@
             <div id="userDiv">
             </div>
           </div>
-          
+
         </section>
       </main>
       <jsp:include page="./footer.jsp" />
@@ -40,7 +40,7 @@
           var id = $(this).attr("del_id");
           del(id);
         });
-        
+
         $.ajax({
           url: '/NCURent/Login/getAllUser',
           method: 'POST',
@@ -48,9 +48,12 @@
           success: function (res) {
             if (res.status == "success") {
               typedata = $.parseJSON(res.data);
-              var divBody = "<table><tr><th>帳號</th><th>密碼</th><th>姓名</th><th>生日</th><th>性別</th><th>系所</th><th>電話</th><th>信箱</th><th></th></tr>";
-              $.each(typedata, function (i, n) {
+              var divBody = ""
+              var divBody = "<table class='table'><thead><tr><th scope='col'>#</th><th scope='col'>帳號</th><th scope='col'>密碼</th><th scope='col'>姓名</th><th scope='col'>生日</th><th scope='col'>性別</th><th scope='col'>系所</th><th scope='col'>電話</th><th scope='col'>信箱</th><th scope='col'></th></tr></thread>";
+              divBody += "<tbody>";
+                $.each(typedata, function (i, n) {
                 divBody += "<tr>";
+                divBody += "<th scope='row'>"+i+"</th>";
                 divBody += "<td>" + n.ID + "</td>";
                 divBody += "<td>" + n.Password + "</td>";
                 divBody += "<td>" + n.Name + "</td>";
@@ -59,9 +62,10 @@
                 divBody += "<td>" + n.Department + "</td>";
                 divBody += "<td>" + n.Phone + "</td>";
                 divBody += "<td>" + n.Email + "</td>";
-                divBody += "<th><a del_id=" + n.ID + " class='btn btn-primary del_btn'>刪除</a></th>";
+                divBody += "<td><a del_id=" + n.ID + " class='btn btn-primary del_btn'>刪除</a></th>";
                 divBody += "</tr>";
               });
+              divBody += "</tbody>";
               divBody += "</table>";
               $("#userDiv").html(divBody);
             } else {
@@ -87,8 +91,8 @@
           });
         }
       });
-     
+
     </script>
-    
+
 
     </html>
