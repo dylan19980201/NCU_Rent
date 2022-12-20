@@ -64,7 +64,6 @@
         var divBody = "";
         var check = "";
         var btn = "";
-        console.log(items);
         $.each(items, function (i, item) {
           item = item.map;
           check = item.CheckType ? "已確認" : "未確認";
@@ -83,8 +82,6 @@
         $("#Housediv").append(divBody);
       }
       function updateReserve(rid,checktype) {
-        console.log("rid="+rid);
-        console.log("ct="+checktype);
         $.ajax({
           url: '/NCURent/Post/updateReserve',
           method: 'POST',
