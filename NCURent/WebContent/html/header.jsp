@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*" %>
+
+<%! String ID = "123"; %> 
     <link href="/NCURent/html/style.css" rel="stylesheet" type="text/css">
     <header>
         <nav class="nav-top bg-red p-2 d-md-flex align-items-center">
@@ -23,9 +25,13 @@
                                     class="nav-name d-none d-md-block">查看預約資訊</span></a>
                         </li>
                                                 <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/studentMainPage.jsp"><i
+                            <a class="text-white text-decoration-none d-flex pe-4"  id='myProfile'><i
                                     class="pe-1 mt-1 fas fa-user"></i><span
                                     class="nav-name d-none d-md-block">我的帳戶</span></a>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    						<script>
+    							$("#myProfile").attr("href", "/NCURent/studentMainPage.jsp?id="+"<%= session.getAttribute("id") %>");	
+    						</script>
                         </li>
                     <% } else if((session.getAttribute("type")).equals("landlord")) { %>
                         <li>
