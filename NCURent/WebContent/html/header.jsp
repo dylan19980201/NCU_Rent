@@ -41,7 +41,7 @@
                         </li>
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/myHouse.jsp"><i
-                                    class="pe-1 mt-1 fas fa-file-upload"></i><span
+                                    class="pe-1 mt-1 fas fa-home"></i><span
                                     class="nav-name d-none d-md-block">我的房屋</span></a>
                         </li>
                         <li>
@@ -51,12 +51,7 @@
                         </li>
                                                 
                     <% } else { %>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/checkReview.jsp"><i
-                                    class="pe-1 mt-1 fas fa-eye"></i><span
-                                    class="nav-name d-none d-md-block">查看評價</span></a>
-                        </li>
-          
+                       
                         <li>
                             <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/results.jsp"><i
                                     class="pe-1 mt-1 fas fa-check"></i><span
