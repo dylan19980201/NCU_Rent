@@ -67,10 +67,6 @@ public class PostBO {
 	}
 
 	public boolean updateReserve(int id,int type) {
-		System.out.print("BO=");
-		System.out.print(id);
-		System.out.print(" ");
-		System.out.println(type);
 		PostDAO PostDAO = new PostDAO();
 		return PostDAO.updateReserve(id, type);
 	}

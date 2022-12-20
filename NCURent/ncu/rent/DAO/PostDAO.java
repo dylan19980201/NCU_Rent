@@ -166,12 +166,6 @@ public class PostDAO {
 	}
 
 	public boolean updateReserve(int id, int type) {
-		System.out.print("DAO=");
-		System.out.print(id);
-		System.out.print(" ");
-		System.out.println(type);
-		System.out.print("alchtype=");
-		System.out.println((type+1)%2);
 		String command = """
 				UPDATE reserve SET CheckType = ? WHERE RID = ?""";
 		JSONObject condition = new JSONObject();
