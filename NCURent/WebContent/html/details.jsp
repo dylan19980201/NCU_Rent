@@ -122,7 +122,6 @@
     	let url = new URL(getUrlString);
     	let id = url.searchParams.get('id');
     	let star = $("#starAmount").text();
-        console.log(star);
         $.ajax({
             url: '/NCURent/Post/AddHouseReview',
             method: 'POST',

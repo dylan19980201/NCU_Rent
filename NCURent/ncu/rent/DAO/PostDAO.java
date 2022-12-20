@@ -64,7 +64,7 @@ public class PostDAO {
 		else
 			return false;
 	}
-	
+
 	public boolean addStudentReview(String[] studentReview) {
 		String command = """
 				insert into reviewstudent (RsStar,RsContent,RsDateTime,SID,LID)
@@ -75,7 +75,7 @@ public class PostDAO {
 		else
 			return false;
 	}
-	
+
 	public boolean addHouseReview(String[] studentReview) {
 		String command = """
 				insert into reviewlandlordandhouse (RlhStar,RlContent,RlhDateTime,SID,HID)
@@ -86,7 +86,7 @@ public class PostDAO {
 		else
 			return false;
 	}
-	
+
 	public boolean DeleteHouseReview(int RlhID) {
 		String command = """
 				delete from reviewlandlordandhouse where RlhID=  ? """;
@@ -96,7 +96,7 @@ public class PostDAO {
 		else
 			return false;
 	}
-	
+
 	public boolean DeleteStudentReview(int RsID) {
 		String command = """
 				delete from reviewstudent where RsID=  ? """;
@@ -106,26 +106,25 @@ public class PostDAO {
 		else
 			return false;
 	}
-	
-	
+
 	public List<StudentReview> getStudentReview(String Sid) {
 		String command = """
-		SELECT RsID, SID as Sid, LID as Lid, RsStar as rsStar, RsContent as rsContent ,
-		RsDateTime as rsDateTime FROM reviewstudent  WHERE Sid = ?
-		""";
+				SELECT RsID, SID as Sid, LID as Lid, RsStar as rsStar, RsContent as rsContent ,
+				RsDateTime as rsDateTime FROM reviewstudent  WHERE Sid = ?
+				""";
 		List<StudentReview> studentReview = new ArrayList<StudentReview>();
 		JSONObject condition = new JSONObject();
 		condition.put("Sid", Sid);
 		try {
-		DBHelper db = new DBHelper();
-		studentReview = db.QueryStudentReview(command, new JSONObject(condition.toString()));
+			DBHelper db = new DBHelper();
+			studentReview = db.QueryStudentReview(command, new JSONObject(condition.toString()));
 		} catch (Exception e) {
-		System.out.println(e);
+			System.out.println(e);
 		}
 		return studentReview;
-		}
-	
-	public List<HouseReview> getHouseReview(int HID){
+	}
+
+	public List<HouseReview> getHouseReview(int HID) {
 		String command = """
 				SELECT RlhID, RlhStar, RlContent, RlhDatetime, SID
 				FROM reviewlandlordandhouse
@@ -142,27 +141,51 @@ public class PostDAO {
 		}
 		return houseReview;
 	}
-	
+
 	public List<JSONObject> getAllReserve(String id, String type) {
 		String command = "";
-		if(type.equals("student"))
+		if (type.equals("student"))
 			command = """
-				select reserve.HID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName
-				from reserve,
-				(select house.HID,LName Name,LPhone as Phone,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName from house,landlord
-				where house.LID = landlord.LID) as h
-				where reserve.SID = ? and reserve.HID = h.HID""";
-		else 
+					select RID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName,CheckType
+					from reserve,
+					(select house.HID,LName Name,LPhone as Phone,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName from house,landlord
+					where house.LID = landlord.LID) as h
+					where reserve.SID = ? and reserve.HID = h.HID""";
+		else
 			command = """
-				select r.HID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName
-				from (select HID,SName as Name,SPhone as Phone,RDate from reserve,student
-				where reserve.SID = student.SID) as r,
-				(select house.LID,house.HID,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName from house,landlord
-				where house.LID = landlord.LID) as h
-				where h.LID = ? and r.HID = h.HID""";
+					select RID,Name,Phone,Rdate,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName,CheckType
+					from (select RID,HID,SName as Name,SPhone as Phone,RDate,CheckType from reserve,student
+					where reserve.SID = student.SID) as r,
+					(select house.LID,house.HID,HAddress,HYear,Rent,Size,Equipment,GenderSpecific,PictureName from house,landlord
+					where house.LID = landlord.LID) as h
+					where h.LID = ? and r.HID = h.HID""";
 		List<JSONObject> reserve = new ArrayList<JSONObject>();
 		DBHelper db = new DBHelper();
-		reserve = db.getAllReserve(command,id);
+		reserve = db.getAllReserve(command, id);
 		return reserve;
+	}
+
+	public boolean updateReserve(int id, int type) {
+		System.out.print("DAO=");
+		System.out.print(id);
+		System.out.print(" ");
+		System.out.println(type);
+		System.out.print("alchtype=");
+		System.out.println((type+1)%2);
+		String command = """
+				UPDATE reserve SET CheckType = ? WHERE RID = ?""";
+		JSONObject condition = new JSONObject();
+		condition.put("RID", id);
+		condition.put("CheckType", (type+1)%2);
+		try {
+			DBHelper db = new DBHelper();
+			if(db.updateReserve(command,new JSONObject(condition.toString()))==1)
+				return true;
+			else 
+				return false;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
 	}
 }

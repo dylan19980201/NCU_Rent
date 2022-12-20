@@ -104,13 +104,13 @@ public class PostController extends SuperController {
 		String SID = request.getParameter("SID");
 		HttpSession session = request.getSession();
 		studentReviewContext = new String[] {
-					//這邊要寫真的星星
-					request.getParameter("rsStar"),
-					request.getParameter("rsContent"),
-					//這邊要寫真的學生ID，到該學生頁面時抓到的ID
-					SID,
-					//下面這行僅限房東登入時抓取
-					(session.getAttribute("id")).toString(),
+				// 這邊要寫真的星星
+				request.getParameter("rsStar"),
+				request.getParameter("rsContent"),
+				// 這邊要寫真的學生ID，到該學生頁面時抓到的ID
+				SID,
+				// 下面這行僅限房東登入時抓取
+				(session.getAttribute("id")).toString(),
 		};
 		PostBO PostBO = new PostBO();
 		if (PostBO.addStudentReview(studentReviewContext))
@@ -146,19 +146,30 @@ public class PostController extends SuperController {
 		Gson gson = new Gson();
 		String listJson = gson.toJson(reserve);
 		JSONArray reserveData = JSONArray.fromObject(listJson);
-		return DataForFrontend("success", "", reserveData, "/NCURent/???.jsp");
+		return DataForFrontend("success", "", reserveData, "");
+	}
+
+	public JSONObject updateReserve(HttpServletRequest request, HttpServletResponse response) {
+		PostBO PostBO = new PostBO();
+		System.out.println("controller="+request.getParameter("RID")+" "+request.getParameter("CheckType"));
+		if (PostBO.updateReserve(Integer.parseInt(request.getParameter("RID")),Integer.parseInt(request.getParameter("CheckType"))))
+			return DataForFrontend("success", "預約成功", null, "/NCURent/html/lreservestate.jsp");
+		else {
+			request.setAttribute("error", "預約失敗");
+			return DataForFrontend("fail", "預約失敗", null, "/NCURent/html/lreservestate.jsp");
+		}
 	}
 
 	public JSONObject DeleteStudentReview(HttpServletRequest request, HttpServletResponse response) {
-		//被刪除的流水號 RsID
+		// 被刪除的流水號 RsID
 		int RsID = Integer.parseInt(request.getParameter("RsID"));
 		PostBO PostBO = new PostBO();
-		//這邊的12應該要寫流水號RsID
+		// 這邊的12應該要寫流水號RsID
 		boolean success = PostBO.deleteStudentReview(RsID);
-		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
+		return DataForFrontend("success", "刪除成功", null, "/NCURent/checkReview.jsp");
 
 	}
-	
+
 	public JSONObject DeleteHouseReview(HttpServletRequest request, HttpServletResponse response) {
 		//被刪除的流水號 RlhID
 		int RlhID = Integer.parseInt(request.getParameter("RlhID"));
@@ -168,7 +179,7 @@ public class PostController extends SuperController {
 		return DataForFrontend("success","刪除成功", null, "/NCURent/checkReview.jsp");
 
 	}
-	
+
 	public JSONObject checkHouse(HttpServletRequest request, HttpServletResponse response) {
 		int hid = Integer.parseInt(request.getParameter("HID"));
 		HttpSession session = request.getSession();
@@ -179,7 +190,7 @@ public class PostController extends SuperController {
 			return DataForFrontend("success", "審核成功", null, "/NCURent/html/check.jsp");
 		} else {
 			// request.setAttribute("error", "錯誤");
-			return DataForFrontend("fail","審核失敗", null, "/NCURent/html/check.jsp");
+			return DataForFrontend("fail", "審核失敗", null, "/NCURent/html/check.jsp");
 		}
 	}
 
@@ -191,30 +202,30 @@ public class PostController extends SuperController {
 			return DataForFrontend("success", "刪除成功", null, "/NCURent/html/check.jsp");
 		} else {
 			// request.setAttribute("error", "錯誤");
-			return DataForFrontend("fail","刪除失敗", null, "/NCURent/html/check.jsp");
+			return DataForFrontend("fail", "刪除失敗", null, "/NCURent/html/check.jsp");
 		}
 	}
-	// 房屋留言要存入資料庫
-		public JSONObject AddHouseReview(HttpServletRequest request, HttpServletResponse response)
-				throws IOException, ServletException {
-			String[] houseReviewContext;
-			HttpSession session = request.getSession();
-			houseReviewContext = new String[] {
-						//這邊要寫真的星星
-						//request.getParameter("RlhStar"),
-					    request.getParameter("RlhStar"),
-						request.getParameter("RlContent"),
-						//下面這行僅限學生登入時抓取
-						(session.getAttribute("id")).toString(),
-						//這邊要寫真的房屋刊登ID
-						request.getParameter("HID")
-			};
-			PostBO PostBO = new PostBO();
-			if (PostBO.addHouseReview(houseReviewContext))
-				return DataForFrontend("success", "發布成功", houseReviewContext, "/NCURent/html/details.jsp");
-			else
-				return DataForFrontend("fail", "發布失敗", null, "/NCURent/html/details.jsp");
-		}
 
+	// 房屋留言要存入資料庫
+	public JSONObject AddHouseReview(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		String[] houseReviewContext;
+		HttpSession session = request.getSession();
+		houseReviewContext = new String[] {
+					//這邊要寫真的星星
+					//request.getParameter("RlhStar"),
+				    request.getParameter("RlhStar"),
+					request.getParameter("RlContent"),
+					//下面這行僅限學生登入時抓取
+					(session.getAttribute("id")).toString(),
+					//這邊要寫真的房屋刊登ID
+					request.getParameter("HID")
+		};
+		PostBO PostBO = new PostBO();
+		if (PostBO.addHouseReview(houseReviewContext))
+			return DataForFrontend("success", "發布成功", houseReviewContext, "/NCURent/html/details.jsp");
+		else
+			return DataForFrontend("fail", "發布失敗", null, "/NCURent/html/details.jsp");
+	}
 
 }

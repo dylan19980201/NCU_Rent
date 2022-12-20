@@ -33,5 +33,6 @@
     <url-pattern>/Post/AddHouseReview</url-pattern>
     <url-pattern>/Post/DeleteHouseReview</url-pattern>
     <url-pattern>/Post/getAllReserve</url-pattern>
+    <url-pattern>/Post/updateReserve</url-pattern>
   </servlet-mapping>
 </web-app>
