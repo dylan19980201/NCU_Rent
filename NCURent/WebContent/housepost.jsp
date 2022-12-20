@@ -18,28 +18,29 @@
 
     <br>
     <form class="form" enctype="multipart/form-data">
-      <p align="left" style="font-size:20px;font-weight:bold;">地址：</p>
-      <input type="text" name="HAddress" id="HAddress" required="required">
-   
-     
-      <p align="left" style="font-size:20px;font-weight:bold;">租金：</p>
+    <h4 align="center" style="font-weight:bold">刊登房屋</h4><br>
+      <nobr align="left" style="font-size:20px;font-weight:bold">地址：</nobr>
+      <input type="text" name="HAddress" id="HAddress" required="required">  
+      <nobr align="left" style="font-size:20px;font-weight:bold;">租金：</nobr>
       <input type="text" name="Rent" id="Rent" required="required">
-      <p align="left" style="font-size:20px;font-weight:bold;">坪數：</p>
+      <nobr align="left" style="font-size:20px;font-weight:bold;">坪數：</nobr>
       <input type="text" name="Size" id="Size" >
-      <p align="left" style="font-size:20px;font-weight:bold;">屋齡：</p>
+      <nobr align="left" style="font-size:20px;font-weight:bold;">屋齡：</nobr>
       <input type="text" name="HYear" id="HYear" >
-      <p align="left" style="font-size:20px;font-weight:bold;">性別限制：</p>
-      <select class="form-select" name="GenderSpecific" id="GenderSpecific" style="width:100%;height:40px; margin: 0 0 15px; ;" required="required"  >
+      
+      <div class="news-filter ">
+      <nobr align="left" style="font-size:20px;font-weight:bold;">性別限制：</nobr>
+      <select class="news-filter" name="GenderSpecific" id="GenderSpecific" required="required"  >
         <option selected></option>
         <option value="男">男</option>
         <option value="女">女</option>
         <option value="無">無</option>
-        </select>
-       <p align="left" style="font-size:20px;font-weight:bold;">設備：</p>
+        </select></div></nobr>
+       <nobr align="left" style="font-size:20px;font-weight:bold;">設備：</nobr>
       <input type="text" name="Equipment"  id="Equipment" >
-      <p align="left" style="font-size:20px;font-weight:bold;">上傳照片：</p>
-      <input type="file" name="file" id="file"/>
-      <p align="center"><img style='display:none'/></p>
+      <nobr align="left" style="font-size:20px;font-weight:bold;">上傳照片：</nobr>
+      <input type="file" name="file" id="file" style="width:78%"/>
+      <nobr align="center"><img style='display:none'/></nobr>
       <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
       <script>
         $('input').on('change', function(e){      
@@ -49,7 +50,7 @@
           $('img').attr('src', objectURL);
         });
       </script>
-      <div class="mx-auto">
+      <div class="mx-auto text-center my-2">
           <button type="submit" class="btn btn-outline-primary" >請求刊登</button>
       </div>
      
