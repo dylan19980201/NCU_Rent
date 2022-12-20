@@ -82,24 +82,6 @@
              confirmButtonText: "確定",
              cancelButtonText: "取消"
          });
-  
-         $(function () {
-             $("input:button").click(function () {
-                 swal({
-                     title: "確定發布？",
-                     type: "question",
-                     showCancelButton: true//顯示取消按鈕
-                 }).then(
-                     function (result) {
-                         if (result.value) {
-                           swal("完成!", "評論已發布", "success");
-                         } 
-                         else if (result.dismiss === "cancel"){
-                             swal("取消", "評論尚未發布", "error");
-                         }
-                     });
-             });
-         });
      </script><br>
 
  	  		<h4 class="text-center my-2">評價一覽</h4>
@@ -189,23 +171,36 @@
         });
 	}
 	function initDeleteBtn(e){
-		$.ajax({
-	          url: '/NCURent/Post/DeleteHouseReview',
-	          method: 'POST',
-	          dataType: 'json',
-	          data: { RlhID : e.id},
-	          async: false,
-	          success: function (res) {
-	            if (res.status == "success") {
-	            	loadfunction();
-	            } else {
-	              $('.alert.alert-danger').css('display', 'block');
-	            }
-	          },
-	          error: function (XMLHttpRequest, textStatus, errorThrown) {
-	            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-	          }
-	     });
+		swal({
+            title: "確定要刪除？",
+            type: "question",
+            showCancelButton: true//顯示取消按鈕
+        }).then(
+            function (result) {
+                if (result.value) {
+                	$.ajax({
+          	          url: '/NCURent/Post/DeleteHouseReview',
+          	          method: 'POST',
+          	          dataType: 'json',
+          	          data: { RlhID : e.id},
+          	          async: false,
+          	          success: function (res) {
+          	            if (res.status == "success") {
+          	            	loadfunction();
+          	            	swal("完成!", "留言已刪除", "success");
+          	            } else {
+          	              $('.alert.alert-danger').css('display', 'block');
+          	            }
+          	          },
+          	          error: function (XMLHttpRequest, textStatus, errorThrown) {
+          	            alert("Status: " + textStatus); alert("Error: " + errorThrown);
+          	          }
+          	     	});
+                } 
+                else if (result.dismiss === "cancel"){
+                    swal("取消", "取消刪除", "error");
+                }
+            });	
 	}
 	</script>
     </html>
