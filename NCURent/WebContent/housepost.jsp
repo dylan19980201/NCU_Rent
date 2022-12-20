@@ -1,24 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ page import="java.util.*"  %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="house.css">
-<link href="/NCURent/html/style.css" rel="stylesheet" type="text/css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-<title>中央大學預約看房網</title>
-<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif" sizes="16x16">
-<div class="wrapper">
-
-  
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>中央大學預約看房網</title>
+		    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>中央大學預約看房網</title>
+    <link rel="stylesheet" type="text/css" href="house.css">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif" sizes="16x16">
+    <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
+	</head>
   
 <body>
-    <jsp:include page="./html/header.jsp" />
+	<jsp:include page="./html/header.jsp" />
+
+    <br>
     <form class="form" enctype="multipart/form-data">
       <p align="left" style="font-size:20px;font-weight:bold;">地址：</p>
       <input type="text" name="HAddress" id="HAddress" required="required">
@@ -56,6 +54,8 @@
       </div>
      
     </form>
+
+    <jsp:include page="./html/footer.jsp" />
 </body>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
