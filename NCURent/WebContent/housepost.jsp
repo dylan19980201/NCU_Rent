@@ -20,13 +20,13 @@
     <form class="form" enctype="multipart/form-data">
     <h4 align="center" style="font-weight:bold">刊登房屋</h4><br>
       <nobr align="left" style="font-size:20px;font-weight:bold">地址：</nobr>
-      <input type="text" name="HAddress" id="HAddress" required="required">  
+      <input type="text" name="HAddress" id="HAddress" maxlength="128" required="required">  
       <nobr align="left" style="font-size:20px;font-weight:bold;">租金：</nobr>
-      <input type="text" name="Rent" id="Rent" required="required">
+      <input type="number" name="Rent" id="Rent" required="required">
       <nobr align="left" style="font-size:20px;font-weight:bold;">坪數：</nobr>
-      <input type="text" name="Size" id="Size" >
+      <input type="number" name="Size" id="Size"  max="100" min="1" required="required">
       <nobr align="left" style="font-size:20px;font-weight:bold;">屋齡：</nobr>
-      <input type="text" name="HYear" id="HYear" >
+      <input type="number" name="HYear" id="HYear" max="100" min="1" required="required" >
       
       <div class="news-filter ">
       <nobr align="left" style="font-size:20px;font-weight:bold;">性別限制：</nobr>
@@ -35,9 +35,9 @@
         <option value="男">男</option>
         <option value="女">女</option>
         <option value="無">無</option>
-        </select></div></nobr>
+        </select></div>
        <nobr align="left" style="font-size:20px;font-weight:bold;">設備：</nobr>
-      <input type="text" name="Equipment"  id="Equipment" >
+      <input type="text" name="Equipment"  id="Equipment" maxlength="128" required="required">
       <nobr align="left" style="font-size:20px;font-weight:bold;">上傳照片：</nobr>
       <input type="file" name="file" id="file" style="width:78%"/>
       <nobr align="center"><img style='display:none'/></nobr>
