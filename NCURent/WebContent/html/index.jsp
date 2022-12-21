@@ -59,9 +59,9 @@
               </li>
               <li>
                 <nobr>　　租金</nobr>
-                <input type="search" style="height:40px; width:85px" id="minPrice" value="" placeholder="$ 最小值">
+                <input type="number" style="height:40px; width:85px" id="minPrice" value="" placeholder="$ 最小值">
                 <nobr>——</nobr>
-                <input type="search" style="height:40px; width:85px" id="maxPrice" value="" placeholder="$ 最大值">
+                <input type="number" style="height:40px; width:85px" id="maxPrice" value="" placeholder="$ 最大值">
               </li>
               <nobr>　　</nobr>
               <input type="search" style="height:40px; width:150px" id="keyword" value="" placeholder="請輸入關鍵字">
