@@ -64,7 +64,7 @@
               <a id="search" class="text-white p-1 btn btn-primary text-decoration-none"
                 style="height:35px; width:65px"><i class="fas fa-search"></i>搜尋</a>
               <nobr> </nobr>
-              <a class="text-dark p-1 btn btn-warning text-decoration-none" style="height:35px; width:65px"><i
+              <a id="reset" class="text-dark p-1 btn btn-warning text-decoration-none" style="height:35px; width:65px"><i
                   class="fas fa-trash-alt"></i>清除</a>
             </div>
 
@@ -86,8 +86,9 @@
       $(function () {
         var result;
         GetData();
-        update(result);
-        document.querySelector('#search').addEventListener('click', () => update(result));
+        updatePage(result);
+        document.querySelector('#search').addEventListener('click', () => updatePage(result));
+        document.querySelector('#reset').addEventListener('click', () => resetPage(result));
         function GetData() {
           console.log("do");
           $.ajax({
@@ -109,28 +110,37 @@
           });
         }
 
-        function update(data) {
+        function updatePage(items) {
           var divBody = "";
           var size = document.getElementById("size").value.split('-');
           var year = document.getElementById("year").value.split('-');
           var minPrice = document.getElementById("minPrice").value != "" ? document.getElementById("minPrice").value : 0;
           var maxPrice = document.getElementById("maxPrice").value != "" ? document.getElementById("maxPrice").value : 2147483647;
           var keyword = document.getElementById("keyword").value;
-          $.each(data, function (i, n) {
-            if (match(n, size, year, minPrice, maxPrice, keyword)) {
+          $.each(items, function (i, item) {
+            if (match(item, size, year, minPrice, maxPrice, keyword)) {
               divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
               divBody += "<div class='card'>";
-              divBody += "<img src='/NCURent/upload/" + n.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
+              divBody += "<img src='/NCURent/upload/" + item.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
               divBody += "<div class='card-body'>";
-              divBody += "<h5 class='card-title'>" + n.HAddress + "</h5>";
-              divBody += "<p class='card-text'>房東：" + n.LName + "<br>房屋坪數：" + n.Size + "<br>房屋租金：" + n.Rent + "/月<br>房屋設備：" + n.Equipment + "<br>屋齡:" + n.HYear + "<br>其他備註：" + n.GenderSpecific + "</p>"
-              divBody += "<a href='../html/details.jsp?id=" + n.HID + "' class='btn btn-primary'>瀏覽</a>";
+              divBody += "<h5 class='card-title'>" + item.HAddress + "</h5>";
+              divBody += "<p class='card-text'>房東：" + item.LName + "<br>房屋坪數：" + item.Size + "<br>房屋租金：" + item.Rent + "/月<br>房屋設備：" + item.Equipment + "<br>屋齡:" + item.HYear + "<br>其他備註：" + item.GenderSpecific + "</p>"
+              divBody += "<a href='../html/details.jsp?id=" + item.HID + "' class='btn btn-primary'>瀏覽</a>";
               divBody += "</div>";
               divBody += "</div>";
               divBody += "</div>";
             }
           });
           $("#Housediv").html(divBody);
+        }
+
+        function resetPage(items) {
+          document.querySelector("#size").value = "0-2147483647";
+          document.querySelector("#year").value = "0-2147483647";
+          document.querySelector("#minPrice").value = "";
+          document.querySelector("#maxPrice").value = "";
+          document.querySelector("#keyword").value = "";
+          updatePage(items);
         }
 
         function match(item, size, year, minPrice, maxPrice, keyword) {
