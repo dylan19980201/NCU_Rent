@@ -22,7 +22,7 @@
                 <input type="password" name="password" placeholder="密碼(請輸入3~16位英數字)" pattern="[0-9||A-z]{3,16}" required="required"/>
                 <input type="text" name="name" placeholder="姓名" required="required"/>
                 <select class="form-select" name="gender"  style="width:100%;height:40px; margin: 0 0 15px; ;" required="required"  >
-                <option selected>性別</option>
+                <option value="" selected>性別</option>
                 <option value="男">男</option>
                 <option value="女">女</option>
                 </select>
