@@ -105,28 +105,33 @@
     		$("#submitComment").attr('value', '你沒有此權限');
     	<% }%>
      });
+    setInterval("loadfunction()","1000");
     $('form').on('submit', function(){
 		let getUrlString = location.href;
     	let url = new URL(getUrlString);
     	let id = url.searchParams.get('id');
     	let star = $("#starAmount").text();
-        $.ajax({
-            url: '/NCURent/Post/AddHouseReview',
-            method: 'POST',
-            dataType: 'json',
-            data: $('form').serialize() + "&HID="+id+"&RlhStar="+star,
-            success: function(res){
-                if(res.status == "success"){
-                	$('#commentForm').trigger("reset");
-                    loadfunction();
-                }else{
-                    $('.alert.alert-danger').css('display','block')
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-            } 
-        });
+    	if (star != ''){
+	        $.ajax({
+	            url: '/NCURent/Post/AddHouseReview',
+	            method: 'POST',
+	            dataType: 'json',
+	            data: $('form').serialize() + "&HID="+id+"&RlhStar="+star,
+	            success: function(res){
+	                if(res.status == "success"){
+	                	$('#commentForm').trigger("reset");
+	                    loadfunction();
+	                }else{
+	                    $('.alert.alert-danger').css('display','block')
+	                }
+	            },
+	            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+	                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+	            } 
+	        });
+    	} else {
+    		alert('給個分數吧!');
+    	}
         return false;
     });
 	function loadfunction(){

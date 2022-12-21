@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*" %>
 
-<%! String ID = "123"; %> 
     <link href="/NCURent/html/style.css" rel="stylesheet" type="text/css">
     <header>
         <nav class="nav-top bg-red p-2 d-md-flex align-items-center">
