@@ -83,6 +83,20 @@ public class LoginController extends SuperController {
 		}
 	}
 
+	public JSONObject updateUser(HttpServletRequest request, HttpServletResponse response) {
+		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+		String id = (session.getAttribute("id")).toString(), type = (session.getAttribute("type")).toString();
+		LoginBO LoginBO = new LoginBO();
+		boolean success = LoginBO.updateUser(id,password,type);
+		if (success) {
+			return DataForFrontend("success","刪除成功", null, "/NCURent/html/manageAccount.jsp");
+		} else {
+			request.setAttribute("error", "錯誤");
+			return DataForFrontend("fail", "刪除失敗", null, "/NCURent/html/manageAccount.jsp");
+		}
+	}
+
 	public JSONObject getAllUser(HttpServletRequest request, HttpServletResponse response) {
 		LoginBO LoginBO = new LoginBO();
 		Gson gson = new Gson();

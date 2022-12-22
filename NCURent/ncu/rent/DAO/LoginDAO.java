@@ -33,13 +33,14 @@ public class LoginDAO {
 		}
 		return user;
 	}
+
 	public List<User> getUserData(String id) {
 		String command = """
 				Select s.SID AS ID, SName AS Name, SBirth AS Birth, SGender as Gender, SDepartment AS Department, SPhone as Phone, SEmail as Email, Amount, Star
-				FROM student as s LEFT JOIN 
+				FROM student as s LEFT JOIN
 				(SELECT s.SID AS SID, COUNT(*) AS Amount, AVG(RsStar) AS Star
 				FROM student as s inner join reviewstudent as r on s.SID = r.SID
-				GROUP BY SID) AS r ON s.SID = r.SID 
+				GROUP BY SID) AS r ON s.SID = r.SID
 				WHERE s.SID = ? """;
 		List<User> user = new ArrayList<User>();
 		JSONObject condition = new JSONObject();
@@ -52,6 +53,7 @@ public class LoginDAO {
 		}
 		return user;
 	}
+
 	public boolean addUserData(String[] user, String type) {
 		DBHelper db = new DBHelper();
 		String command = "";
@@ -86,7 +88,32 @@ public class LoginDAO {
 		else
 			return false;
 	}
-	
+
+	public boolean updateUserData(String id, String password, String type) {
+		String command = "";
+		if (type.equals("student")) {
+			command = """
+					UPDATE student SET SPassword = ? WHERE SID = ?""";
+		} else {
+			command = """
+					UPDATE landlord SET LPassword = ? WHERE LID = ?""";
+		}
+		JSONObject condition = new JSONObject();
+		condition.put("id", id);
+		condition.put("password", password);
+		try {
+			DBHelper db = new DBHelper();
+			if (db.updateUserData(command, new JSONObject(condition.toString())) == 1) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+
 	public List<User> getAllUser() {
 		String command = """
 				SELECT ID, Password, Name, Birth, Gender, Department, Phone, Email, Type

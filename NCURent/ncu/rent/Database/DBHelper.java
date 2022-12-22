@@ -575,4 +575,26 @@ public class DBHelper {
 		return result;
 	}
 
+    public int updateUserData(String command, JSONObject condition) {
+        Connection con = null;
+		PreparedStatement statement = null;
+		int result = 0;
+		try {
+			con = this.getConnection();
+			statement = con.prepareStatement(command);
+			statement.setObject(1, condition.get("password"));
+			statement.setObject(2, condition.get("id"));
+			result = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return result;
+    }
+
 }

@@ -19,15 +19,17 @@ public class LoginBO {
 		}
 		return user;
 	}
+
 	public User getUser(String id) {
 		LoginDAO LoginDAO = new LoginDAO();
 		List<User> userList = LoginDAO.getUserData(id);
 		User user = null;
-		if(!userList.isEmpty()) {
+		if (!userList.isEmpty()) {
 			user = userList.get(0);
 		}
 		return user;
 	}
+
 	public boolean addUser(String[] user, String type) {
 		LoginDAO LoginDAO = new LoginDAO();
 		return LoginDAO.addUserData(user, type);
@@ -38,20 +40,25 @@ public class LoginBO {
 		return LoginDAO.deleteUserData(id);
 	}
 
+	public boolean updateUser(String id, String password, String type) {
+		LoginDAO LoginDAO = new LoginDAO();
+		return LoginDAO.updateUserData(id, password, type);
+	}
+
 	public List<User> getAllUser() {
 		LoginDAO LoginDAO = new LoginDAO();
 		return LoginDAO.getAllUser();
 	}
-	public List<String> idList(){
+
+	public List<String> idList() {
 		Gson gson = new Gson();
 		String listJson = gson.toJson(getAllUser());
 		JSONArray userData = JSONArray.fromObject(listJson);
 		List<String> idList = new ArrayList<String>();
-		for(int i=0;i<userData.length();i++)
-        {
-            net.sf.json.JSONObject jsonObject1 = userData.getJSONObject(i);
-            idList.add(jsonObject1.optString("ID"));
-        }
+		for (int i = 0; i < userData.length(); i++) {
+			net.sf.json.JSONObject jsonObject1 = userData.getJSONObject(i);
+			idList.add(jsonObject1.optString("ID"));
+		}
 		return idList;
 	}
 }
