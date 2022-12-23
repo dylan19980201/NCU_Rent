@@ -30,6 +30,7 @@ public class LoginController extends SuperController {
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("type", user.getType());
+			data.put("sessionId", session.getId());
 			return DataForFrontend("success", "", data, "/NCURent/html/index.jsp");
 		}
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
