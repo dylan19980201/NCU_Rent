@@ -4,6 +4,12 @@
 		<html>
 
 		<head>
+		    <%
+			 	if (session.getAttribute("id")==null){
+			    	String redirectURL = "/NCURent/login.jsp";
+			    	response.sendRedirect(redirectURL);
+			 	}
+			%>
 			<meta charset="UTF-8">
 			<title>中央大學預約看房網</title>
 			<!-- Bootstrap CSS -->
@@ -18,7 +24,7 @@
 		</head>
 
 		<body>
-			<jsp:include page="./header.jsp" />
+			<% if(session.getAttribute("id")!=null) {%><jsp:include page="./header.jsp" /><% } %>
 			<main>
 				<h3 class="text-center my-2">我的刊登</h3>
 				<div>

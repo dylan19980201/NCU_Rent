@@ -6,6 +6,12 @@
     <html lang="en">
 
     <head>
+      <%
+	 	if (session.getAttribute("id")==null){
+	    	String redirectURL = "/NCURent/login.jsp";
+	    	response.sendRedirect(redirectURL);
+	 	}
+	  %>
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +26,7 @@
     </head>
 
     <body>
-      <jsp:include page="./header.jsp" />
+      <% if(session.getAttribute("id")!=null) {%><jsp:include page="./header.jsp" /><% } %>
       <style>
         .button1 {
           background-color: #008CBA;
