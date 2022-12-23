@@ -14,6 +14,7 @@
     <url-pattern>/Login/Register</url-pattern>
     <url-pattern>/Login/deleteUser</url-pattern>
     <url-pattern>/Login/getAllUser</url-pattern>
+    <url-pattern>/Login/updateUser</url-pattern>
   </servlet-mapping>
   <servlet>
   	<servlet-name>ActionServlet</servlet-name>
@@ -26,7 +27,7 @@
     <url-pattern>/Post/getAllHouse</url-pattern>
     <url-pattern>/Post/GetHouseData</url-pattern>
     <url-pattern>/Post/checkHouse</url-pattern>
-    <url-pattern>/Post/rejectHouse</url-pattern>
+    <url-pattern>/Post/deleteHouse</url-pattern>
     <url-pattern>/Post/GetStudentReview</url-pattern>
     <url-pattern>/Post/AddStudentReview</url-pattern>
     <url-pattern>/Post/DeleteStudentReview</url-pattern>

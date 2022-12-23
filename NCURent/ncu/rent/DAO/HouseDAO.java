@@ -44,7 +44,7 @@ public class HouseDAO {
 		return false;
 	}
 
-	public boolean rejectHouse(int hid) {
+	public boolean deleteHouse(int hid) {
 		String command = """
 				Delete From house
 				WHERE HID = ?""";
@@ -52,7 +52,7 @@ public class HouseDAO {
 		condition.put("HID", hid);
 		try {
 			DBHelper db = new DBHelper();
-			if (db.rejectHouse(command, new JSONObject(condition.toString())) == 1) {
+			if (db.deleteHouse(command, new JSONObject(condition.toString())) == 1) {
 				return true;
 			} else {
 				return false;

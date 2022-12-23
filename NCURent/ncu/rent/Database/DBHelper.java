@@ -532,7 +532,7 @@ public class DBHelper {
 		return result;
 	}
 
-	public int rejectHouse(String command, JSONObject condition) {
+	public int deleteHouse(String command, JSONObject condition) {
 		Connection con = null;
 		PreparedStatement statement = null;
 		int result = 0;

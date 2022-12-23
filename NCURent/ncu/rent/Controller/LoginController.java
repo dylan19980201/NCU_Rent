@@ -90,10 +90,10 @@ public class LoginController extends SuperController {
 		LoginBO LoginBO = new LoginBO();
 		boolean success = LoginBO.updateUser(id,password,type);
 		if (success) {
-			return DataForFrontend("success","刪除成功", null, "/NCURent/html/manageAccount.jsp");
+			return DataForFrontend("success","更改成功", null, "");
 		} else {
 			request.setAttribute("error", "錯誤");
-			return DataForFrontend("fail", "刪除失敗", null, "/NCURent/html/manageAccount.jsp");
+			return DataForFrontend("fail", "更改失敗", null, "");
 		}
 	}
 

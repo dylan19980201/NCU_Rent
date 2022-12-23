@@ -82,9 +82,9 @@ public class PostBO {
 		HouseDAO HouseDAO = new HouseDAO();
 		return HouseDAO.checkHouse(hid,aid);
 	}
-	public boolean rejectHouse(int hid) {
+	public boolean deleteHouse(int hid) {
 		HouseDAO HouseDAO = new HouseDAO();
-		return HouseDAO.rejectHouse(hid);
+		return HouseDAO.deleteHouse(hid);
 	}
 
 }

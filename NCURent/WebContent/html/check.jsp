@@ -124,7 +124,6 @@
         }
 
         function update(data) {
-          console.log(data);
           $("#housePicture").attr("src", "/NCURent/upload/" + data.pictureName);
           $('#HAddress').text(data.HAddress);
           $('#LName').text(data.LName);
@@ -154,7 +153,7 @@
 
         function reject(hid) {
           $.ajax({
-            url: '/NCURent/Post/rejectHouse',
+            url: '/NCURent/Post/deleteHouse',
             method: 'POST',
             data: "HID=" + hid,
             success: function () {

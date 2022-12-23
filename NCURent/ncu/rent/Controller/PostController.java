@@ -198,14 +198,14 @@ public class PostController extends SuperController {
 		}
 	}
 
-	public JSONObject rejectHouse(HttpServletRequest request, HttpServletResponse response) {
+	public JSONObject deleteHouse(HttpServletRequest request, HttpServletResponse response) {
 		int hid = Integer.parseInt(request.getParameter("HID"));
 		PostBO PostBO = new PostBO();
-		boolean success = PostBO.rejectHouse(hid);
+		boolean success = PostBO.deleteHouse(hid);
 		if (success) {
-			return DataForFrontend("success", "刪除成功", null, "/NCURent/html/check.jsp");
+			return DataForFrontend("success", "刪除成功", null, "");
 		} else {
-			return DataForFrontend("fail", "刪除失敗", null, "/NCURent/html/check.jsp");
+			return DataForFrontend("fail", "刪除失敗", null, "");
 		}
 	}
 

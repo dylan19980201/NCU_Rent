@@ -95,15 +95,9 @@
         }
 
         function match(item, type) {
-          if (type == 0) {
-            if (!item.AID) return true;
-            return false;
-          } else if (type == 1) {
-            if (item.AID) return true;
-            return false;
-          } else {
-            return true;
-          }
+          if (type==2) return true;
+					else if((type==0)^(item.AID!=null)) return true;
+					else return false;
         }
       });
     </script>
