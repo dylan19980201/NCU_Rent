@@ -26,7 +26,7 @@ public class DBHelper {
 
 	public Connection getConnection() throws SQLException {
 		Connection con = null;
-		con = DriverManager.getConnection("jdbc:mysql://140.115.82.113:3306/ncu_rent", "ncu_person1", "ncuperson5");
+		con = DriverManager.getConnection("jdbc:mysql://140.115.82.113:3306/test", "ncu_person1", "ncuperson5");
 		return con;
 	}
 
