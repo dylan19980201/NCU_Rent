@@ -131,8 +131,7 @@ public class PostController extends SuperController {
 		HttpSession session = request.getSession();
 		String GenderSpecific = request.getParameter("GenderSpecific");
 		if (!GenderSpecific.equals("無") && !((session.getAttribute("gender")).toString()).equals(GenderSpecific)) {
-			request.setAttribute("msg", "性別限制不符合");
-			return DataForFrontend("fail", "", null, "");
+			return DataForFrontend("fail", "與性別限制不相符!", null, "");
 		}
 		reserve = new String[] {
 				request.getParameter("HID"),
@@ -142,11 +141,9 @@ public class PostController extends SuperController {
 		};
 		PostBO PostBO = new PostBO();
 		if (PostBO.addReserve(reserve)) {
-			request.setAttribute("msg", "預約成功");
-			return DataForFrontend("success", "", null, "");
+			return DataForFrontend("success", "預約成功!", null, "");
 		} else {
-			request.setAttribute("msg", "預約失敗");
-			return DataForFrontend("fail", "", null, "");
+			return DataForFrontend("fail", "預約失敗!", null, "");
 		}
 	}
 

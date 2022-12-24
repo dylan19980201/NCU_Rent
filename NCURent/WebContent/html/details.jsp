@@ -272,13 +272,12 @@
             method: 'POST',
             data: "HID=" + HID + "&RDate=" + RDate + "&GenderSpecific=" + typeData.genderSpecific,
             success: function (res) {
-              const msg = '<% request.getAttribute("msg"); %>';
               if (res.status == "success") {
-                alert(msg);
+                alert(res.message);
                 modal.style.display = "none";
                 document.getElementById("reservetime").value = "";
               } else {
-                alert(msg);
+                alert(res.message);
               }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
