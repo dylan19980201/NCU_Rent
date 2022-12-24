@@ -1,6 +1,4 @@
 package ncu.rent.DTO;
-import com.google.gson.Gson;
-import java.util.List;
 
 public class User {
 	private String ID;
