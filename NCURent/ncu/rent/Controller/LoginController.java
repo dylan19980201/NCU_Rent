@@ -12,7 +12,6 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
-
 public class LoginController extends SuperController {
 	public JSONObject Login(HttpServletRequest request, HttpServletResponse response) {
 		LoginBO LoginBO = new LoginBO();
@@ -30,11 +29,12 @@ public class LoginController extends SuperController {
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("type", user.getType());
+			session.setAttribute("gender", user.getGender());
 			data.put("sessionId", session.getId());
 			return DataForFrontend("success", "", data, "/NCURent/html/index.jsp");
 		}
 		// 傳給前端資料(request資料, response資料, 要跳轉的頁面)
-		return DataForFrontend("fail","",data, "/NCURent/login.jsp");
+		return DataForFrontend("fail", "", data, "/NCURent/login.jsp");
 	}
 
 	public JSONObject Register(HttpServletRequest request, HttpServletResponse response) {
@@ -62,13 +62,13 @@ public class LoginController extends SuperController {
 						request.getParameter("email") };
 			}
 			boolean success = LoginBO.addUser(user, request.getParameter("type"));
-			return DataForFrontend("success","新增成功", null, "/NCURent/login.jsp");
+			return DataForFrontend("success", "新增成功", null, "/NCURent/login.jsp");
 		} else {
 			request.setAttribute("error", "新增失敗");
 			if ((request.getParameter("type")).equals("1"))
-				return DataForFrontend("fail","帳號名稱已存在", null, "/NCURent/registerforlandlord.jsp");
-			else 
-				return DataForFrontend("fail","帳號名稱已存在",null, "/NCURent/registerforstudent.jsp");
+				return DataForFrontend("fail", "帳號名稱已存在", null, "/NCURent/registerforlandlord.jsp");
+			else
+				return DataForFrontend("fail", "帳號名稱已存在", null, "/NCURent/registerforstudent.jsp");
 		}
 	}
 
@@ -77,7 +77,7 @@ public class LoginController extends SuperController {
 		LoginBO LoginBO = new LoginBO();
 		boolean success = LoginBO.deleteUser(id);
 		if (success) {
-			return DataForFrontend("success","刪除成功", null, "/NCURent/html/manageAccount.jsp");
+			return DataForFrontend("success", "刪除成功", null, "/NCURent/html/manageAccount.jsp");
 		} else {
 			request.setAttribute("error", "錯誤");
 			return DataForFrontend("fail", "刪除失敗", null, "/NCURent/html/manageAccount.jsp");
@@ -89,9 +89,9 @@ public class LoginController extends SuperController {
 		HttpSession session = request.getSession();
 		String id = (session.getAttribute("id")).toString(), type = (session.getAttribute("type")).toString();
 		LoginBO LoginBO = new LoginBO();
-		boolean success = LoginBO.updateUser(id,password,type);
+		boolean success = LoginBO.updateUser(id, password, type);
 		if (success) {
-			return DataForFrontend("success","更改成功", null, "");
+			return DataForFrontend("success", "更改成功", null, "");
 		} else {
 			request.setAttribute("error", "錯誤");
 			return DataForFrontend("fail", "更改失敗", null, "");

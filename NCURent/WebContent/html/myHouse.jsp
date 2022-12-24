@@ -46,7 +46,6 @@
 				var result;
 				getData();
 				updatePage(result, 2);
-				console.log(result);
 				document.querySelector('#unchecked_btn').addEventListener('click', () => updatePage(result, 0));
 				document.querySelector('#checked_btn').addEventListener('click', () => updatePage(result, 1));
 				document.querySelector('#all_btn').addEventListener('click', () => updatePage(result, 2));

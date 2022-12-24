@@ -1,75 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.*" %>
+    <%@ page import="java.util.*" %>
 
-    <link href="/NCURent/html/style.css" rel="stylesheet" type="text/css">
-    <header>
-        <nav class="nav-top bg-red p-2 d-md-flex align-items-center">
-            <div class="d-flex justify-content-center ps-md-2">
-                <a href="#"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" alt=""></a>
-                <h1 class="fs-4"><a class="text-decoration-none text-white" href="/NCURent/html/index.jsp">中央大學預約看房網</a>
-                </h1>
-            </div>
-            <div>
-                <ul class="nav-link d-flex justify-content-center list-unstyled pt-3">
-                    <li>
-                        <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/index.jsp"><i
-                                class="pe-1 mt-1 fas fa-search"></i><span class="nav-name d-none d-md-block">
-                                <center>瀏覽房屋</center>
-                            </span></a>
-                    </li>
-                    <% if((session.getAttribute("type")).equals("student")) {%>
+        <link href="/NCURent/html/style.css" rel="stylesheet" type="text/css">
+        <header>
+            <nav class="nav-top bg-red p-2 d-md-flex align-items-center">
+                <div class="d-flex justify-content-center ps-md-2">
+                    <a href="#"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg"
+                            alt=""></a>
+                    <h1 class="fs-4"><a class="text-decoration-none text-white"
+                            href="/NCURent/html/index.jsp">中央大學預約看房網</a>
+                    </h1>
+                </div>
+                <div>
+                    <ul class="nav-link d-flex justify-content-center list-unstyled pt-3">
                         <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/sreservestate.jsp"><i
-                                    class="pe-1 mt-1 fas fa-calendar-check"></i><span
-                                    class="nav-name d-none d-md-block">查看預約資訊</span></a>
+                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/index.jsp"><i
+                                    class="pe-1 mt-1 fas fa-search"></i><span class="nav-name d-none d-md-block">
+                                    <center>瀏覽房屋</center>
+                                </span></a>
                         </li>
-                                                <li>
-                            <a class="text-white text-decoration-none d-flex pe-4"  id='myProfile'><i
-                                    class="pe-1 mt-1 fas fa-user"></i><span
-                                    class="nav-name d-none d-md-block">我的帳戶</span></a>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    						<script>
-    							$("#myProfile").attr("href", "/NCURent/studentMainPage.jsp?id="+"<%= session.getAttribute("id") %>");	
-    						</script>
-                        </li>
-                    <% } else if((session.getAttribute("type")).equals("landlord")) { %>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/housepost.jsp"><i
-                                    class="pe-1 mt-1 fas fa-file-upload"></i><span
-                                    class="nav-name d-none d-md-block">刊登房屋</span></a>
-                        </li>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/myHouse.jsp"><i
-                                    class="pe-1 mt-1 fas fa-home"></i><span
-                                    class="nav-name d-none d-md-block">我的房屋</span></a>
-                        </li>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/lreservestate.jsp"><i
-                                    class="pe-1 mt-1 fas fa-calendar-check"></i><span
-                                    class="nav-name d-none d-md-block">查看預約資訊</span></a>
-                        </li>
-                                                
-                    <% } else { %>
-                       
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/results.jsp"><i
-                                    class="pe-1 mt-1 fas fa-check"></i><span
-                                    class="nav-name d-none d-md-block">審查刊登</span></a>
+                        <% if((session.getAttribute("type")).equals("student")) {%>
+                            <li>
+                                <a class="text-white text-decoration-none d-flex pe-4"
+                                    href="/NCURent/html/sreservestate.jsp"><i
+                                        class="pe-1 mt-1 fas fa-calendar-check"></i><span
+                                        class="nav-name d-none d-md-block">查看預約資訊</span></a>
                             </li>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4" href="/NCURent/html/manageAccount.jsp"><i
-                                    class="pe-1 mt-1 fas fa-user-check"></i><span
-                                    class="nav-name d-none d-md-block">管理會員帳號</span></a>
+                            <li>
+                                <a class="text-white text-decoration-none d-flex pe-4" id='myProfile'><i
+                                        class="pe-1 mt-1 fas fa-user"></i><span
+                                        class="nav-name d-none d-md-block">我的帳戶</span></a>
+                                <script
+                                    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                <script>
+                                    $("#myProfile").attr("href", "/NCURent/studentMainPage.jsp?id=" + "<%= session.getAttribute("id") %>");	
+                                </script>
                             </li>
-                    <% } %>
-                        <li>
-                            <a class="text-white text-decoration-none d-flex pe-4"
-                                    href="/NCURent/logout.jsp"><i class="pe-1 mt-1 fas fa-sign-out-alt"></i><span
-                                    class="nav-name d-none d-md-block">
-                                    <center>登出</center>
-                            </span></a>
-                        </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+                            <% } else if((session.getAttribute("type")).equals("landlord")) { %>
+                                <li>
+                                    <a class="text-white text-decoration-none d-flex pe-4"
+                                        href="/NCURent/housepost.jsp"><i class="pe-1 mt-1 fas fa-file-upload"></i><span
+                                            class="nav-name d-none d-md-block">刊登房屋</span></a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-decoration-none d-flex pe-4"
+                                        href="/NCURent/html/myHouse.jsp"><i class="pe-1 mt-1 fas fa-home"></i><span
+                                            class="nav-name d-none d-md-block">我的房屋</span></a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-decoration-none d-flex pe-4"
+                                        href="/NCURent/html/lreservestate.jsp"><i
+                                            class="pe-1 mt-1 fas fa-calendar-check"></i><span
+                                            class="nav-name d-none d-md-block">查看預約資訊</span></a>
+                                </li>
+
+                                <% } else { %>
+
+                                    <li>
+                                        <a class="text-white text-decoration-none d-flex pe-4"
+                                            href="/NCURent/html/results.jsp"><i class="pe-1 mt-1 fas fa-check"></i><span
+                                                class="nav-name d-none d-md-block">審查刊登</span></a>
+                                    </li>
+                                    <li>
+                                        <a class="text-white text-decoration-none d-flex pe-4"
+                                            href="/NCURent/html/manageAccount.jsp"><i
+                                                class="pe-1 mt-1 fas fa-user-check"></i><span
+                                                class="nav-name d-none d-md-block">管理會員帳號</span></a>
+                                    </li>
+                                    <% } %>
+                                        <li>
+                                            <a class="text-white text-decoration-none d-flex pe-4"
+                                                href="/NCURent/logout.jsp"><i
+                                                    class="pe-1 mt-1 fas fa-sign-out-alt"></i><span
+                                                    class="nav-name d-none d-md-block">
+                                                    <center>登出</center>
+                                                </span></a>
+                                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>

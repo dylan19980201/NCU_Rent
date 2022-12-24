@@ -575,8 +575,8 @@ public class DBHelper {
 		return result;
 	}
 
-    public int updateUserData(String command, JSONObject condition) {
-        Connection con = null;
+	public int updateUserData(String command, JSONObject condition) {
+		Connection con = null;
 		PreparedStatement statement = null;
 		int result = 0;
 		try {
@@ -595,6 +595,6 @@ public class DBHelper {
 			}
 		}
 		return result;
-    }
+	}
 
 }

@@ -7,18 +7,54 @@ public class HouseReview {
 	private String RlhDatetime;
 	private String SID;
 	private int HID;
+
 	// GET Method
-	public int getRlhID() {return RlhID;}
-	public int getRlhStar() {return RlhStar;}
-	public String RlContent() {return RlContent;}
-	public String RlhDatetime() {return RlhDatetime;}
-	public String SID() {return SID;}
-	public int HID() {return HID;}
+	public int getRlhID() {
+		return RlhID;
+	}
+
+	public int getRlhStar() {
+		return RlhStar;
+	}
+
+	public String RlContent() {
+		return RlContent;
+	}
+
+	public String RlhDatetime() {
+		return RlhDatetime;
+	}
+
+	public String SID() {
+		return SID;
+	}
+
+	public int HID() {
+		return HID;
+	}
+
 	// POST Method
-	public void setRlhID(int RlhID) {this.RlhID = RlhID;}
-	public void setRlhStar(int RlhStar) {this.RlhStar = RlhStar;}
-	public void setRlContent(String RlContent) {this.RlContent = RlContent;}
-	public void setRlhDatetime(String RlhDatetime) {this.RlhDatetime = RlhDatetime;}
-	public void setSID(String SID) {this.SID = SID;}
-	public void setHID(int HID) {this.HID = HID;}
+	public void setRlhID(int RlhID) {
+		this.RlhID = RlhID;
+	}
+
+	public void setRlhStar(int RlhStar) {
+		this.RlhStar = RlhStar;
+	}
+
+	public void setRlContent(String RlContent) {
+		this.RlContent = RlContent;
+	}
+
+	public void setRlhDatetime(String RlhDatetime) {
+		this.RlhDatetime = RlhDatetime;
+	}
+
+	public void setSID(String SID) {
+		this.SID = SID;
+	}
+
+	public void setHID(int HID) {
+		this.HID = HID;
+	}
 }

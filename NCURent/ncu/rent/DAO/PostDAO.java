@@ -14,11 +14,12 @@ import ncu.rent.DTO.HouseReview;
 
 public class PostDAO {
 	// private int getHouse(String HID) {
-	// 	String command = """
-	// 			SELECT HAdress, HYear, Rent, Size, Equipment, GenderSpecific  FROM house WHERE HID = 'H0001';
-	// 			""";
-	// 	HouseDetail house = new HouseDetail();
-	// 	return 0;
+	// String command = """
+	// SELECT HAdress, HYear, Rent, Size, Equipment, GenderSpecific FROM house WHERE
+	// HID = 'H0001';
+	// """;
+	// HouseDetail house = new HouseDetail();
+	// return 0;
 	// }
 
 	public int AddPost(String[] house) {

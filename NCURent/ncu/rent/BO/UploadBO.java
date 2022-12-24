@@ -12,22 +12,22 @@ import java.util.List;
 import jakarta.servlet.http.Part;
 
 public class UploadBO {
-	public void upload(Part filePart, Collection<Part> collection, String fileName) throws IOException{
-		for(Part part : collection) {
-			part.write(path()+fileName);
+	public void upload(Part filePart, Collection<Part> collection, String fileName) throws IOException {
+		for (Part part : collection) {
+			part.write(path() + fileName);
 		}
-		
+
 	}
-	private String path(){
+
+	private String path() {
 		String path = getClass().getResource("/").getPath();
-		path = path.substring(1, path.indexOf(".metadata"))+"\\NCURent\\WebContent\\upload\\";
+		path = path.substring(1, path.indexOf(".metadata")) + "\\NCURent\\WebContent\\upload\\";
 		Path p = Paths.get(path);
 		try {
-			if(!Files.exists(p)) {
+			if (!Files.exists(p)) {
 				Files.createDirectories(p);
 			}
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return path;

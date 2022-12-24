@@ -1,32 +1,37 @@
-input:hover{
-    color: #FFFFFF;
-    background: rgb(34, 135, 230);
-  }
-  input {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 20px;
-  }
-  body {
-    background: rgb(230, 230, 230); /* fallback for old browsers */
-    background: rgb(230, 230, 230);
-    background: linear-gradient(90deg, rgb(230, 230, 230) 0%,rgb(232, 232, 232) 50%);
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;  
-  }
-  .login-page {
-    width: 360px;
-    padding: 8% 0 0;
-    margin: auto;
-  }
-  radio{
-    display: inline-block;
+input:hover {
+  color: #FFFFFF;
+  background: rgb(34, 135, 230);
+}
 
-  }
+input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+body {
+  background: rgb(230, 230, 230);
+  /* fallback for old browsers */
+  background: rgb(230, 230, 230);
+  background: linear-gradient(90deg, rgb(230, 230, 230) 0%, rgb(232, 232, 232) 50%);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+radio {
+  display: inline-block;
+
+}

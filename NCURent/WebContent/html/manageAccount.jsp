@@ -46,7 +46,7 @@
             $(document).on("click", ".del_btn", function () {
               var id = $(this).attr("delID");
               var index = $(this).attr("index");
-              deleteUser(id,index);
+              deleteUser(id, index);
             });
             function getData() {
               $.ajax({
@@ -94,7 +94,7 @@
               $("#userDiv").html(divBody);
             }
 
-            function deleteUser(id,index) {
+            function deleteUser(id, index) {
               $.ajax({
                 url: '/NCURent/Login/deleteUser',
                 method: 'POST',

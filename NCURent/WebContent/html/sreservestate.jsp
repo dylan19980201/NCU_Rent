@@ -5,36 +5,34 @@
     <html lang="en">
 
     <head>
-      <%
-	 	if (session.getAttribute("id")==null){
-	    	String redirectURL = "/NCURent/login.jsp";
-	    	response.sendRedirect(redirectURL);
-	 	}
-	  %>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <% if (session.getAttribute("id")==null){ String redirectURL="/NCURent/login.jsp" ;
+        response.sendRedirect(redirectURL); } %>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Bootstrap CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-      <title>中央大學預約看房網</title>
-      <link rel="stylesheet" href="/NCURent/html/style.css">
-      <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif"
-        sizes="16x16">
-      <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <title>中央大學預約看房網</title>
+        <link rel="stylesheet" href="/NCURent/html/style.css">
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif"
+          sizes="16x16">
+        <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
-      <% if(session.getAttribute("id")!=null) {%><jsp:include page="./header.jsp" /><% } %>
-      <main>
-        <!-- ........search results......... -->
-        <section>
-          <div class="row mx-1 my-4" id="Housediv">
-          </div>
-        </section>
-      </main>
-      <jsp:include page="./footer.jsp" />
+      <% if(session.getAttribute("id")!=null) {%>
+        <jsp:include page="./header.jsp" />
+        <% } %>
+          <main>
+            <!-- ........search results......... -->
+            <section>
+              <div class="row mx-1 my-4" id="Housediv">
+              </div>
+            </section>
+          </main>
+          <jsp:include page="./footer.jsp" />
     </body>
 
 

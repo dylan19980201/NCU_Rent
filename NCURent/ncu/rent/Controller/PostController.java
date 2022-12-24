@@ -130,9 +130,9 @@ public class PostController extends SuperController {
 		String[] reserve;
 		HttpSession session = request.getSession();
 		reserve = new String[] {
-				request.getParameter("hid"),
+				request.getParameter("HID"),
 				(session.getAttribute("id")).toString(),
-				request.getParameter("reservetime"),
+				request.getParameter("RDate"),
 				"0",
 		};
 		PostBO PostBO = new PostBO();
