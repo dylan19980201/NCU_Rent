@@ -19,11 +19,6 @@
             <body>
                 <div class="login-page">
                     <div class="form">
-                        <p>
-                            <%if(request.getAttribute("error")!=null) {%>
-                                <%= (request.getAttribute("error")) %>
-                                    <% } %>
-                        </p>
                         <label>登入</label>
                         <form class="login-form" action="/NCURent/Login/Login" method="post">
                             <div class="alert alert-danger" role="alert" style="display:none">

@@ -104,10 +104,8 @@
                 success: function (res) {
                   if (res.status == "success") {
                     result = ($.parseJSON(res.data)).filter(function (item) {
-                      return item.AID != null && (gender == item.GenderSpecific || item.GenderSpecific == "無");
+                      return item.AID != null;
                     });
-                  } else {
-                    $('.alert.alert-danger').css('display', 'block');
                   }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {

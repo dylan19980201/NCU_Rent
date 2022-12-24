@@ -17,6 +17,7 @@
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <title>中央大學預約看房網</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="modal.css">
         <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif"
           sizes="16x16">
         <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
@@ -69,41 +70,31 @@
                     </ul>
                     <% if((session.getAttribute("type")).equals("student")) {%>
                       <p class="text-center my-2">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reserveModal">
-                          預約看房
-                        </button>
-                      </p>
-                      <!-- Modal -->
-                      <div class="modal fade" id="reserveModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title">預約時間</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <li class="row-line">
-                                <h5><label for="checkIn" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">看房時間</label>
-                                  <input type="datetime-local" id="reservetime" class="form-control"
-                                    aria-describedby="textHelp" value="" required="required">
-                                </h5>
-                              </li>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                              <button id = "reserve_btn" type="button" class="btn btn-primary">預約</button>
-                            </div>
+                        <!-- Button trigger modal -->
+                        <button id="modalBtn" class="btn btn-primary">預約看房</button>
+                      <div id="reserveModal" class="modal">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h2>預約時間</h2>
+                            <span class="close">&times;</span>
+                          </div>
+                          <div class="modal-body">
+                            <h5><label for="checkIn" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">看房時間</label>
+                              <input type="datetime-local" id="reservetime" class="form-control"
+                                aria-describedby="textHelp" value="">
+                            </h5>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" id="cancelBtn" class="btn btn-secondary">取消</button>
+                            <button type="button" id="reserveBtn" class="btn btn-primary">預約</button>
                           </div>
                         </div>
                       </div>
+                      </p>
                       <% } %>
                   </div>
                 </div>
               </div>
-            </section>
             </section>
 
             <h4 class="text-center my-2">我要評論</h4>
@@ -150,8 +141,25 @@
           $("#submitComment").attr('value', '你沒有此權限');
     	<% }%>
      });
+      var typeData;
+      var reviewData;
       setInterval("loadfunction()", "1000");
-      document.querySelector('#reserve_btn').addEventListener('click', () => reserve);
+      var modal = document.getElementById("reserveModal");
+      var btn = document.getElementById("modalBtn");
+      var span = document.getElementsByClassName("close")[0];
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      document.querySelector('#reserveBtn').addEventListener('click', () => addReserve());
+      document.querySelector('#cancelBtn').addEventListener('click', () => { modal.style.display = "none"; });
       $('form').on('submit', function () {
         let getUrlString = location.href;
         let url = new URL(getUrlString);
@@ -167,8 +175,6 @@
               if (res.status == "success") {
                 $('#commentForm').trigger("reset");
                 loadfunction();
-              } else {
-                $('.alert.alert-danger').css('display', 'block')
               }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -189,10 +195,11 @@
           method: 'post',
           dataType: 'json',
           data: { HID: id },
+          async: false,
           success: function (res) {
             if (res.status == "success") {
-              var typeData = $.parseJSON(res.data.houseData);
-              var reviewData = $.parseJSON(res.data.houseReviewData);
+              typeData = $.parseJSON(res.data.houseData);
+              reviewData = $.parseJSON(res.data.houseReviewData);
               $("#housePicture").attr("src", "/NCURent/upload/" + typeData.pictureName);
               $('#HAddress').text(typeData.HAddress);
               $('#LName').text(typeData.LName);
@@ -202,7 +209,6 @@
               $('#Equipment').text(typeData.equipment);
               $('#GenderSpecific').text(typeData.genderSpecific);
               $('#PostDatetime').text(typeData.postDateTime);
-              // $('#reservebutton').attr('href', "./reserve.jsp?id=" + id)
               var divBody = "";
               $("#houseReview").empty();
               $.each(reviewData, function (i, n) {
@@ -218,8 +224,6 @@
                   divBody += "<hr>"
               });
               $("#houseReview").append(divBody);
-            } else {
-              $('.alert.alert-danger').css('display', 'block')
             }
           },
           error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -245,8 +249,6 @@
                   if (res.status == "success") {
                     loadfunction();
                     swal("完成!", "留言已刪除", "success");
-                  } else {
-                    $('.alert.alert-danger').css('display', 'block');
                   }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -259,24 +261,33 @@
             }
           });
       }
-      function reserve() {
-        const id = url.searchParams.get('id');
+      function addReserve() {
+        var getUrlString = location.href;
+        var url = new URL(getUrlString);
+        const HID = url.searchParams.get('id');
         const RDate = document.getElementById("reservetime").value;
-        $.ajax({
-          url: '/NCURent/Post/addReserve',
-          method: 'POST',
-          data: "HID=" + HID + "&RDate=" + RDate,
-          success: function (res) {
-            if (res.status == "success") {
-              alert("預約成功");
-            } else {
-              $('.alert.alert-danger').css('display', 'block');
+        if (RDate) {
+          $.ajax({
+            url: '/NCURent/Post/addReserve',
+            method: 'POST',
+            data: "HID=" + HID + "&RDate=" + RDate + "&GenderSpecific=" + typeData.genderSpecific,
+            success: function (res) {
+              const msg = '<% request.getAttribute("msg"); %>';
+              if (res.status == "success") {
+                alert(msg);
+                modal.style.display = "none";
+                document.getElementById("reservetime").value = "";
+              } else {
+                alert(msg);
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert("Status: " + textStatus); alert("Error: " + errorThrown);
             }
-          },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-          }
-        });
+          });
+        } else {
+          alert("請輸入預約時間");
+        }
       }
     </script>
 

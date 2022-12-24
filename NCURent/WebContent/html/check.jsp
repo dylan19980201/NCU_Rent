@@ -109,8 +109,6 @@
             success: function (res) {
               if (res.status == "success") {
                 result = $.parseJSON(res.data.houseData);
-              } else {
-                $('.alert.alert-danger').css('display', 'block');
               }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

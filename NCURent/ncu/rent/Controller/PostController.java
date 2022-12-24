@@ -129,6 +129,11 @@ public class PostController extends SuperController {
 			throws IOException, ServletException {
 		String[] reserve;
 		HttpSession session = request.getSession();
+		String GenderSpecific = request.getParameter("GenderSpecific");
+		if (!GenderSpecific.equals("無") && !((session.getAttribute("gender")).toString()).equals(GenderSpecific)) {
+			request.setAttribute("msg", "性別限制不符合");
+			return DataForFrontend("fail", "", null, "");
+		}
 		reserve = new String[] {
 				request.getParameter("HID"),
 				(session.getAttribute("id")).toString(),
@@ -136,11 +141,12 @@ public class PostController extends SuperController {
 				"0",
 		};
 		PostBO PostBO = new PostBO();
-		if (PostBO.addReserve(reserve))
-			return DataForFrontend("success", "預約成功", null, "/NCURent/html/index.jsp");
-		else {
-			request.setAttribute("error", "預約失敗");
-			return DataForFrontend("fail", "預約失敗", null, "/NCURent/html/reserve.jsp");
+		if (PostBO.addReserve(reserve)) {
+			request.setAttribute("msg", "預約成功");
+			return DataForFrontend("success", "", null, "");
+		} else {
+			request.setAttribute("msg", "預約失敗");
+			return DataForFrontend("fail", "", null, "");
 		}
 	}
 
@@ -158,9 +164,9 @@ public class PostController extends SuperController {
 	public JSONObject updateReserve(HttpServletRequest request, HttpServletResponse response) {
 		PostBO PostBO = new PostBO();
 		if (PostBO.updateReserve(Integer.parseInt(request.getParameter("RID")),
-				Integer.parseInt(request.getParameter("CheckType"))))
+				Integer.parseInt(request.getParameter("CheckType")))) {
 			return DataForFrontend("success", "預約成功", null, "/NCURent/html/lreservestate.jsp");
-		else {
+		} else {
 			request.setAttribute("error", "預約失敗");
 			return DataForFrontend("fail", "預約失敗", null, "/NCURent/html/lreservestate.jsp");
 		}
