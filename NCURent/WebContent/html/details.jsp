@@ -35,15 +35,15 @@
                   <div class="table-column">
                     <ul class="list-unstyled">
                       <li class="row-line">
-                        <h5>房屋地址:<label id='HAddress'></label>
+                        <h5>房屋地址：<label id='HAddress'></label>
                           <h5>
                       </li>
                       <li class="row-line">
-                        <h5>房東:<label id='LName'></label>
+                        <h5>房東：<label id='LName'></label>
                           <h5>
                       </li>
                       <li class="row-line">
-                        <h5>房屋租金(每月):<label id='Rent'></label>
+                        <h5>房屋租金(每月)：<label id='Rent'></label>
                           <h5>
                       </li>
                       <li class="row-line">
@@ -51,19 +51,19 @@
                           <h5>
                       </li>
                       <li class="row-line">
-                        <h5>房屋年齡:<label id='HYear'></label>
+                        <h5>房屋年齡：<label id='HYear'></label>
                           <h5>
                       </li>
                       <li class="row-line">
-                        <h5>設備:<label id='Equipment'></label>
+                        <h5>設備：<label id='Equipment'></label>
                           <h5>
                       </li>
                       <li class="row-line">
-                        <h5>男/女限制:<label id='GenderSpecific'></label>
+                        <h5>性別限制：<label id='GenderSpecific'></label>
                           <h5>
                       </li>
                       <li class="row-line">
-                        <h5>刊登時間:<label id='PostDatetime'></label>
+                        <h5>刊登時間：<label id='PostDatetime'></label>
                           <h5>
                       </li>
                     </ul>
