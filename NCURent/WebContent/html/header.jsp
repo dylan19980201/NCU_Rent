@@ -70,6 +70,14 @@
                                     <% } %>
                                         <li>
                                             <a class="text-white text-decoration-none d-flex pe-4"
+                                                href="/NCURent/html/changePassword.jsp"><i
+                                                    class="pe-1 mt-1 fas fa-sign-out-alt"></i><span
+                                                    class="nav-name d-none d-md-block">
+                                                    修改密碼
+                                                </span></a>
+                                        </li>
+                                        <li>
+                                            <a class="text-white text-decoration-none d-flex pe-4"
                                                 href="/NCURent/logout.jsp"><i
                                                     class="pe-1 mt-1 fas fa-sign-out-alt"></i><span
                                                     class="nav-name d-none d-md-block">

@@ -41,9 +41,6 @@
 								</ul>
 							</div>
 						</div>
-						<div class="mx-auto text-center my-2">
-							<a class='btn btn-primary' href="/NCURent/html/changePassword.jsp">修改密碼</a>
-						</div>
 					</div>
 				</section>
 				<h4 class="text-center my-2">我要評論</h4>
