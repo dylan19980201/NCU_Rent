@@ -118,9 +118,13 @@
               var divBody = "";
               const size = document.getElementById("size").value.split('-');
               const year = document.getElementById("year").value.split('-');
-              const minPrice = document.getElementById("minPrice").value != "" ? document.getElementById("minPrice").value : 0;
-              const maxPrice = document.getElementById("maxPrice").value != "" ? document.getElementById("maxPrice").value : 2147483647;
+              const minPrice = document.getElementById("minPrice").value != "" ? parseInt(document.getElementById("minPrice").value) : 0;
+              const maxPrice = document.getElementById("maxPrice").value != "" ? parseInt(document.getElementById("maxPrice").value) : 2147483647;
               const keyword = document.getElementById("keyword").value;
+              if(minPrice>maxPrice) {
+                alert("最低租金不可高於最高租金");
+                return;
+              }
               $.each(items, function (i, item) {
                 if (match(item, size, year, minPrice, maxPrice, keyword)) {
                   divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
