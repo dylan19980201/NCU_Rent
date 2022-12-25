@@ -79,9 +79,7 @@
                   divBody += "<div class='card-body'>";
                   divBody += "<h5 class='card-title'>" + item.HAddress + "</h5>";
                   divBody += "<p class='card-text'>房東：" + item.LName + "<br>房屋坪數：" + item.Size + "<br>房屋租金：" + item.Rent + "/月<br>房屋設備：" + item.Equipment + "<br>屋齡:" + item.HYear + "<br>其他備註：" + item.GenderSpecific + "<br>審查狀態：" + houseStatus + "</p>"
-                  if (!item.AID) {
-                    divBody += "<a href='../html/check.jsp?id=" + item.HID + "' class='btn btn-primary'>審查</a>";
-                  }
+                  divBody += "<a href='../html/check.jsp?id=" + item.HID + "' class='btn btn-primary'>審查</a>";
                   divBody += "</div>";
                   divBody += "</div>";
                   divBody += "</div>";
