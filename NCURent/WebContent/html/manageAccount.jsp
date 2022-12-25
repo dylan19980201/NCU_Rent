@@ -43,7 +43,7 @@
             var result;
             getData();
             updatePage(result);
-            $(document).on("click", ".del_btn", function () {
+            $(document).on("click", ".delBtn", function () {
               var id = $(this).attr("delID");
               var index = $(this).attr("index");
               deleteUser(id, index);
@@ -84,7 +84,7 @@
                 divBody += "<td>" + dept + "</td>";
                 divBody += "<td>" + item.Phone + "</td>";
                 divBody += "<td>" + item.Email + "</td>";
-                divBody += "<td><a delID=" + item.ID + " index=" + i + " class='btn btn-primary del_btn'>刪除</a></th>";
+                divBody += "<td><a delID=" + item.ID + " index=" + i + " class='btn btn-primary delBtn'>刪除</a></th>";
                 divBody += "</tr>";
               });
               divBody += "</tbody>";
