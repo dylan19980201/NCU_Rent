@@ -171,7 +171,7 @@
                 } else {
                   const words = keyword.split(' ');
                   for (const word of words) {
-                    if (item.HAddress.includes(word) > 0 || item.LName.includes(word) || item.Equipment.includes(word))
+                    if (item.HAddress.includes(word) > 0 || item.LName.includes(word) > 0 || item.Equipment.includes(word) > 0)
                       return true;
                   }
                 }
