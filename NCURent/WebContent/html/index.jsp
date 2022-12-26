@@ -82,7 +82,9 @@
             <section>
               <div class="row mx-1 my-4 wrapper" id="Housediv">
               </div>
-              <div id="pagination"></div>
+              <div class="d-md-flex justify-content-center">
+              	<div id="pagination"></div>
+              </div>
             </section>
           </main>
           <jsp:include page="./footer.jsp" />

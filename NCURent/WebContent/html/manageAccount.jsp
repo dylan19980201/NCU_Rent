@@ -30,22 +30,28 @@
                 <div id="userDiv">
                 </div>
               </div>
-
+              <div class="d-md-flex justify-content-center">
+              	<div id="pagination"></div>
+              </div>
             </section>
           </main>
           <jsp:include page="./footer.jsp" />
         </body>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
 
         <script>
           $(function () {
             var result;
             getData();
+            var container = $('#pagination');
             updatePage(result);
             $(document).on("click", ".delBtn", function () {
               var id = $(this).attr("delID");
-              var index = $(this).attr("index");
+              var index = $(this).attr("index")-1;
               deleteUser(id, index);
             });
             function getData() {
@@ -66,30 +72,38 @@
             }
             function updatePage(items) {
               var divBody = ""
-              var divBody = "<table class='table'><thead><tr><th scope='col'>#</th><th scope='col'>身分</th><th scope='col'>帳號</th><th scope='col'>密碼</th><th scope='col'>姓名</th><th scope='col'>生日</th><th scope='col'>性別</th><th scope='col'>系所</th><th scope='col'>電話</th><th scope='col'>信箱</th><th scope='col'></th></tr></thread>";
-              divBody += "<tbody>";
               var dept = "";
               var type = "";
-              $.each(items, function (i, item) {
-                dept = item.Department ? item.Department : "無";
-                type = item.Department ? "學生" : "房東";
-                divBody += "<tr>";
-                divBody += "<th scope='row'>" + i + "</th>";
-                divBody += "<td>" + type + "</td>";
-                divBody += "<td>" + item.ID + "</td>";
-                divBody += "<td>" + item.Password + "</td>";
-                divBody += "<td>" + item.Name + "</td>";
-                divBody += "<td>" + item.Birth + "</td>";
-                divBody += "<td>" + item.Gender + "</td>";
-                divBody += "<td>" + dept + "</td>";
-                divBody += "<td>" + item.Phone + "</td>";
-                divBody += "<td>" + item.Email + "</td>";
-                divBody += "<td><a delID=" + item.ID + " index=" + i + " class='btn btn-primary delBtn'>刪除</a></th>";
-                divBody += "</tr>";
-              });
-              divBody += "</tbody>";
-              divBody += "</table>";
-              $("#userDiv").html(divBody);
+              container.pagination({
+                  dataSource:items,
+                  pageSize: 6,
+                  callback: function (data, pagination) {
+                	//console.log(((pagination.pageNumber)-1)*(pagination.pageSize)+i);
+                	var divBody = "<table class='table'><thead><tr><th scope='col'>#</th><th scope='col'>身分</th><th scope='col'>帳號</th><th scope='col'>密碼</th><th scope='col'>姓名</th><th scope='col'>生日</th><th scope='col'>性別</th><th scope='col'>系所</th><th scope='col'>電話</th><th scope='col'>信箱</th><th scope='col'></th></tr></thread>";
+                    divBody += "<tbody>";
+                    $.each(data, function (i, item) {
+                    	let index = ((pagination.pageNumber)-1)*(pagination.pageSize)+i+1;
+                        dept = item.Department ? item.Department : "無";
+                        type = item.Department ? "學生" : "房東";
+                        divBody += "<tr>";
+                        divBody += "<th scope='row'>" + index + "</th>";
+                        divBody += "<td>" + type + "</td>";
+                        divBody += "<td>" + item.ID + "</td>";
+                        divBody += "<td>" + item.Password + "</td>";
+                        divBody += "<td>" + item.Name + "</td>";
+                        divBody += "<td>" + item.Birth + "</td>";
+                        divBody += "<td>" + item.Gender + "</td>";
+                        divBody += "<td>" + dept + "</td>";
+                        divBody += "<td>" + item.Phone + "</td>";
+                        divBody += "<td>" + item.Email + "</td>";
+                        divBody += "<td><a delID=" + item.ID + " index=" + index + " class='btn btn-primary delBtn'>刪除</a></th>";
+                        divBody += "</tr>";
+                      });
+                      divBody += "</tbody>";
+                      divBody += "</table>";
+                      $("#userDiv").html(divBody);
+                  }
+                })
             }
 
             function deleteUser(id, index) {
