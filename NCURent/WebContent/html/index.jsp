@@ -169,10 +169,8 @@
                 if (keyword == "") {
                   return true;
                 } else {
-                  for (const c of keyword) {
-                    if (item.HAddress.includes(c) > 0)
-                      return true;
-                  }
+                  if (item.HAddress.includes(keyword) > 0 || item.LName.includes(keyword) || item.Equipment.includes(keyword))
+                    return true;
                 }
               }
               return false;
