@@ -169,8 +169,11 @@
                 if (keyword == "") {
                   return true;
                 } else {
-                  if (item.HAddress.includes(keyword) > 0 || item.LName.includes(keyword) || item.Equipment.includes(keyword))
-                    return true;
+                  const words = keyword.split(' ');
+                  for (const word of words) {
+                    if (item.HAddress.includes(word) > 0 || item.LName.includes(word) || item.Equipment.includes(word))
+                      return true;
+                  }
                 }
               }
               return false;
