@@ -20,8 +20,6 @@
           sizes="16x16">
         <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
 
-        <!-- paginationjs Jquery CSS -->
-
     </head>
     <% if(session.getAttribute("id")!=null) {%>
       <jsp:include page="./header.jsp" />
@@ -80,25 +78,24 @@
             <!-- ........search results......... -->
 
             <section>
-              <div class="row mx-1 my-4 wrapper" id="Housediv">
-              </div>
+              <div class="row mx-1 my-4 wrapper" id="Housediv"></div>
               <div class="d-md-flex justify-content-center">
-              	<div id="pagination"></div>
+                <div id="pagination"></div>
               </div>
             </section>
           </main>
           <jsp:include page="./footer.jsp" />
         </body>
+
+        <!-- paginationjs Jquery CSS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
         <script>
           $(function () {
             var result;
             const gender = '<%=session.getAttribute("gender")%>';
             GetData();
-            var container = $('#pagination');
             updatePage(result);
             document.querySelector('#search').addEventListener('click', () => updatePage(result));
             document.querySelector('#reset').addEventListener('click', () => resetPage(result));
@@ -132,7 +129,7 @@
                 alert("最低租金不可高於最高租金");
                 return;
               }
-              container.pagination({
+              $('#pagination').pagination({
                 dataSource:
                   items.filter(function (item) {
                     return match(item, size, year, minPrice, maxPrice, keyword);
@@ -173,7 +170,7 @@
                 } else {
                   const words = keyword.split(' ');
                   for (const word of words) {
-                    if (item.HAddress.includes(word) > 0 || item.LName.includes(word) > 0 || item.Equipment.includes(word) > 0)
+                    if ((item.HAddress + item.LName + item.Equipment).includes(word) > 0)
                       return true;
                   }
                 }

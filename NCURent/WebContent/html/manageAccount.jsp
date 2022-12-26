@@ -25,13 +25,16 @@
 
         <body>
           <main>
+            <div class="text-center my-2">
+              <a id="selectStudent" class="text-dark p-1 btn btn-warning text-decoration-none">學生</a>
+              <a id="selectLandlord" class="text-dark p-1 btn btn-warning text-decoration-none">房東</a>
+            </div>
             <section>
               <div class="d-md-flex justify-content-center">
-                <div id="userDiv">
-                </div>
+                <div id="userDiv"></div>
               </div>
               <div class="d-md-flex justify-content-center">
-              	<div id="pagination"></div>
+                <div id="pagination"></div>
               </div>
             </section>
           </main>
@@ -45,15 +48,17 @@
 
         <script>
           $(function () {
-            var result;
+            var student = [], landlord = [];
             getData();
-            var container = $('#pagination');
-            updatePage(result);
+            updatePage(student, 0);
             $(document).on("click", ".delBtn", function () {
               var id = $(this).attr("delID");
-              var index = $(this).attr("index")-1;
-              deleteUser(id, index);
+              var index = $(this).attr("index") - 1;
+              var type = $(this).attr("type");
+              deleteUser(id, index, type);
             });
+            document.querySelector('#selectStudent').addEventListener('click', () => updatePage(student, 0));
+            document.querySelector('#selectLandlord').addEventListener('click', () => updatePage(landlord, 1));
             function getData() {
               $.ajax({
                 url: '/NCURent/Login/getAllUser',
@@ -62,7 +67,16 @@
                 async: false,
                 success: function (res) {
                   if (res.status == "success") {
-                    result = $.parseJSON(res.data);
+                    let i = 0;
+                    const data = $.parseJSON(res.data);
+                    const n = data.length;
+                    for (; i < n; ++i) {
+                      if (!data[i].Department) break;
+                      student.push(data[i]);
+                    }
+                    for (; i < n; ++i) {
+                      landlord.push(data[i]);
+                    }
                   }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -70,51 +84,52 @@
                 }
               });
             }
-            function updatePage(items) {
+            function updatePage(items, type) {
               var divBody = ""
               var dept = "";
-              var type = "";
-              container.pagination({
-                  dataSource:items,
-                  pageSize: 10,
-                  callback: function (data, pagination) {
-                	//console.log(((pagination.pageNumber)-1)*(pagination.pageSize)+i);
-                	var divBody = "<table class='table'><thead><tr><th scope='col'>#</th><th scope='col'>身分</th><th scope='col'>帳號</th><th scope='col'>密碼</th><th scope='col'>姓名</th><th scope='col'>生日</th><th scope='col'>性別</th><th scope='col'>系所</th><th scope='col'>電話</th><th scope='col'>信箱</th><th scope='col'></th></tr></thread>";
-                    divBody += "<tbody>";
-                    $.each(data, function (i, item) {
-                    	let index = ((pagination.pageNumber)-1)*(pagination.pageSize)+i+1;
-                        dept = item.Department ? item.Department : "無";
-                        type = item.Department ? "學生" : "房東";
-                        divBody += "<tr>";
-                        divBody += "<th scope='row'>" + index + "</th>";
-                        divBody += "<td>" + type + "</td>";
-                        divBody += "<td>" + item.ID + "</td>";
-                        divBody += "<td>" + item.Password + "</td>";
-                        divBody += "<td>" + item.Name + "</td>";
-                        divBody += "<td>" + item.Birth + "</td>";
-                        divBody += "<td>" + item.Gender + "</td>";
-                        divBody += "<td>" + dept + "</td>";
-                        divBody += "<td>" + item.Phone + "</td>";
-                        divBody += "<td>" + item.Email + "</td>";
-                        divBody += "<td><a delID=" + item.ID + " index=" + index + " class='btn btn-primary delBtn'>刪除</a></th>";
-                        divBody += "</tr>";
-                      });
-                      divBody += "</tbody>";
-                      divBody += "</table>";
-                      $("#userDiv").html(divBody);
-                  }
-                })
+              $('#pagination').pagination({
+                dataSource: items,
+                pageSize: 10,
+                callback: function (data, pagination) {
+                  var divBody = "<table class='table'><thead><tr><th scope='col'>#</th><th scope='col'>帳號</th><th scope='col'>密碼</th><th scope='col'>姓名</th><th scope='col'>生日</th><th scope='col'>性別</th><th scope='col'>系所</th><th scope='col'>電話</th><th scope='col'>信箱</th><th scope='col'></th></tr></thread>";
+                  divBody += "<tbody>";
+                  $.each(data, function (i, item) {
+                    let index = ((pagination.pageNumber) - 1) * (pagination.pageSize) + i + 1;
+                    dept = item.Department ? item.Department : "無";
+                    divBody += "<tr>";
+                    divBody += "<th scope='row'>" + index + "</th>";
+                    divBody += "<td>" + item.ID + "</td>";
+                    divBody += "<td>" + item.Password + "</td>";
+                    divBody += "<td>" + item.Name + "</td>";
+                    divBody += "<td>" + item.Birth + "</td>";
+                    divBody += "<td>" + item.Gender + "</td>";
+                    divBody += "<td>" + dept + "</td>";
+                    divBody += "<td>" + item.Phone + "</td>";
+                    divBody += "<td>" + item.Email + "</td>";
+                    divBody += "<td><a delID=" + item.ID + " index=" + index + " type=" + type + " class='btn btn-primary delBtn'>刪除</a></th>";
+                    divBody += "</tr>";
+                  });
+                  divBody += "</tbody>";
+                  divBody += "</table>";
+                  $("#userDiv").html(divBody);
+                }
+              })
             }
 
-            function deleteUser(id, index) {
+            function deleteUser(id, index, type) {
               $.ajax({
                 url: '/NCURent/Login/deleteUser',
                 method: 'POST',
                 data: "delID=" + id,
                 success: function () {
                   alert("刪除成功");
-                  result.splice(index, 1);
-                  updatePage(result);
+                  if (type == 0) {
+                    student.splice(index, 1);
+                    updatePage(student, type);
+                  } else {
+                    landlord.splice(index, 1);
+                    updatePage(landlord, type);
+                  }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                   alert("Status: " + textStatus); alert("Error: " + errorThrown);
