@@ -19,6 +19,9 @@
         <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif"
           sizes="16x16">
         <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
+
+        <!-- paginationjs Jquery CSS -->
+
     </head>
     <% if(session.getAttribute("id")!=null) {%>
       <jsp:include page="./header.jsp" />
@@ -77,20 +80,23 @@
             <!-- ........search results......... -->
 
             <section>
-              <div class="row mx-1 my-4" id="Housediv">
+              <div class="row mx-1 my-4 wrapper" id="Housediv">
               </div>
+              <div id="pagination"></div>
             </section>
           </main>
           <jsp:include page="./footer.jsp" />
         </body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
         <script>
           $(function () {
             var result;
             const gender = '<%=session.getAttribute("gender")%>';
             GetData();
+            var container = $('#pagination');
             updatePage(result);
             document.querySelector('#search').addEventListener('click', () => updatePage(result));
             document.querySelector('#reset').addEventListener('click', () => resetPage(result));
@@ -115,31 +121,38 @@
             }
 
             function updatePage(items) {
-              var divBody = "";
               const size = document.getElementById("size").value.split('-');
               const year = document.getElementById("year").value.split('-');
               const minPrice = document.getElementById("minPrice").value != "" ? parseInt(document.getElementById("minPrice").value) : 0;
               const maxPrice = document.getElementById("maxPrice").value != "" ? parseInt(document.getElementById("maxPrice").value) : 2147483647;
               const keyword = document.getElementById("keyword").value;
-              if(minPrice>maxPrice) {
+              if (minPrice > maxPrice) {
                 alert("最低租金不可高於最高租金");
                 return;
               }
-              $.each(items, function (i, item) {
-                if (match(item, size, year, minPrice, maxPrice, keyword)) {
-                  divBody += "<div class='col-sm-12 col-md-6 col-lg-4'>";
-                  divBody += "<div class='card'>";
-                  divBody += "<img src='/NCURent/upload/" + item.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
-                  divBody += "<div class='card-body'>";
-                  divBody += "<h5 class='card-title'>" + item.HAddress + "</h5>";
-                  divBody += "<p class='card-text'>房東：" + item.LName + "<br>房屋坪數：" + item.Size + "<br>房屋租金：" + item.Rent + "/月<br>房屋設備：" + item.Equipment + "<br>屋齡:" + item.HYear + "<br>其他備註：" + item.GenderSpecific + "</p>"
-                  divBody += "<a href='../html/details.jsp?id=" + item.HID + "' class='btn btn-primary'>瀏覽</a>";
-                  divBody += "</div>";
-                  divBody += "</div>";
-                  divBody += "</div>";
+              container.pagination({
+                dataSource:
+                  items.filter(function (item) {
+                    return match(item, size, year, minPrice, maxPrice, keyword);
+                  }),
+                pageSize: 6,
+                callback: function (data, pagination) {
+                  var divBody = "";
+                  $.each(data, function (i, item) {
+                    divBody += "<div class='col-sm-12 col-md-6 col-lg-4 item'>";
+                    divBody += "<div class='card'>";
+                    divBody += "<img src='/NCURent/upload/" + item.PictureName + "' class='card-img-top'  height='285.61' alt='...'>"
+                    divBody += "<div class='card-body'>";
+                    divBody += "<h5 class='card-title'>" + item.HAddress + "</h5>";
+                    divBody += "<p class='card-text'>房東：" + item.LName + "<br>房屋坪數：" + item.Size + "<br>房屋租金：" + item.Rent + "/月<br>房屋設備：" + item.Equipment + "<br>屋齡:" + item.HYear + "<br>其他備註：" + item.GenderSpecific + "</p>"
+                    divBody += "<a href='../html/details.jsp?id=" + item.HID + "' class='btn btn-primary'>瀏覽</a>";
+                    divBody += "</div>";
+                    divBody += "</div>";
+                    divBody += "</div>";
+                  });
+                  $("#Housediv").html(divBody);
                 }
-              });
-              $("#Housediv").html(divBody);
+              })
             }
 
             function resetPage(items) {
