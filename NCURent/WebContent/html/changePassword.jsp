@@ -35,9 +35,14 @@
                                 <div class="d-md-flex justify-content-center">
                                     <a>請輸入新的密碼：</a><input id="inputPassword" type="password" value=""
                                         placeholder="密碼(請輸入3~16位英數字)" pattern="[0-9||A-z]{3,16}" required />
+                                </div><br> 
+                                <div class="d-md-flex justify-content-center">
                                     <a>請再次確認密碼：</a><input id="verifyPassword" type="password" value=""
                                         placeholder="密碼(請輸入3~16位英數字)" pattern="[0-9||A-z]{3,16}" required />
+                                </div><br>
+                                <div class="text-center my-2">
                                     <a id='submit' class='btn btn-primary'>更正密碼</a>
+								</div>
                                 </div>
                         </section>
                     </main>
