@@ -14,6 +14,22 @@
                 <title>中央大學預約看房網</title>
                 <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif"
                     sizes="16x16">
+                <style>
+                	.loadingWrap {
+						position:fixed;
+						top:0;
+						left:0;
+						width:100%;
+						height:100%;
+						z-index:300;
+						background-image:url(/NCURent/html/images/loading.gif);
+						background-repeat:no-repeat;
+						background-position:center center;
+						background-color:#000;
+						background-color:rgba(0,0,0,0.5);
+						filter:alpha(opacity=50);
+					}
+                </style>
             </head>
 
             <body>
@@ -52,6 +68,12 @@
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        },
+                        beforeSend: function(){  
+                            $("<div class='loadingWrap'></div>").appendTo("body");  
+                        }, 
+                        complete: function(){  
+                            $(".loadingWrap").remove();  
                         }
                     });
                     return false;
