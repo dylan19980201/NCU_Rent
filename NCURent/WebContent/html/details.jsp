@@ -21,6 +21,13 @@
         <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif"
           sizes="16x16">
         <script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+          .checked {
+            color: orange;
+          }
+        </style>
     </head>
 
     <body>
@@ -209,21 +216,25 @@
               $('#Equipment').text(typeData.equipment);
               $('#GenderSpecific').text(typeData.genderSpecific);
               $('#PostDatetime').text(typeData.postDateTime);
-              var divBody = "";
               $("#houseReview").empty();
-              $.each(reviewData, function (i, n) {
-                divBody += "<h5 class='mb-3'><a class='text-decoration-none text-dark' href='../studentMainPage.jsp?id=" + n.SID + "'><u>" + n.SID + "</u></a></h5>";
+              $.each(reviewData, function (index, n) {
+                var divBody = "<h5 class='mb-3'><a class='text-decoration-none text-dark' href='../studentMainPage.jsp?id=" + n.SID + "'><u>" + n.SID + "</u></a></h5>";
                 divBody += "<h5>";
-                for (let i = 0; i < n.RlhStar; i++) {
-                  divBody += "⭐";
+                let i = 0;
+                for (; i < n.RlhStar; ++i) {
+                  divBody += "<span class='fa fa-star checked'></span>";
+                }
+                for (; i < 5; ++i) {
+                  divBody += "<span class='fa fa-star'></span>";
                 }
                 divBody += "</h5>";
-                divBody += "<p>" + n.RlContent + "</p>";
+                divBody += "<label id =" + n.RlhID + ">" + "</label>";
                 divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>" + n.RlhDatetime + "</I></div></h5>";
                 		<% if (session.getAttribute("type").equals("administrator")) { %> divBody += "<button type='submit' id='" + n.RlhID + "' class='btn btn-primary deleteBtn' onclick=initDeleteBtn(this)>刪除</button>" <% } %>
                   divBody += "<hr>"
+                $("#houseReview").append(divBody);
+                $('#' + n.RlhID).text(n.RlContent);
               });
-              $("#houseReview").append(divBody);
             }
           },
           error: function (XMLHttpRequest, textStatus, errorThrown) {
