@@ -16,6 +16,13 @@
 			<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/NCULogo.svg" type="image/gif"
 				sizes="16x16">
 			<script src="https://kit.fontawesome.com/b435954bf0.js" crossorigin="anonymous"></script>
+			<link rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<style>
+				.checked {
+					color: orange;
+				}
+			</style>
 		</head>
 
 		<body>
@@ -141,21 +148,26 @@
 							$("#email").text(studentData.email);
 							$("#star").text(studentData.star ? studentData.star : "尚未評價");
 							$("#amount").text(studentData.amount ? studentData.amount : "0");
-							let divBody = "";
 							$("#studentCommentTable").empty();
-							$.each(reviewData, function (i, n) {
-								divBody += "<h5 class='mb-3'><a class='text-decoration-none text-dark'><u>" + n.LID + "</u></a></h5>";
+							$.each(reviewData, function (index, n) {
+								let divBody = "<h5 class='mb-3'><a class='text-decoration-none text-dark'><u>" + n.LID + "</u></a></h5>";
 								divBody += "<h5>";
-								for (let i = 0; i < n.RsStar; i++) {
-									divBody += "⭐";
+								let i = 0;
+								for (; i < n.RsStar; ++i) {
+									divBody += "<span class='fa fa-star checked'></span>";
+								}
+								for (; i < 5; ++i) {
+									divBody += "<span class='fa fa-star'></span>";
 								}
 								divBody += "</h5>";
-								divBody += "<p>" + n.RsContent + "</p>";
+								divBody += "<label id =" + n.RsID + ">" + "</label>";
 								divBody += "<h5><div style='text-align:right;font-size:15px;margin:0px 10px 0px 0px;color:grey;'><I>" + n.RsDateTime + "</I></div></h5>";
    	                		<% if (session.getAttribute("type").equals("administrator")) { %> divBody += "<button type='submit' id='" + n.RsID + "' class='btn btn-primary deleteBtn' onclick=initDeleteBtn(this)>刪除</button>" <% } %>
 									divBody += "<hr>"
+								$("#studentCommentTable").append(divBody);
+								$('#' + n.RsID).text(n.RsContent);
 							});
-							$("#studentCommentTable").append(divBody);
+
 						} else {
 							$('.alert.alert-danger').css('display', 'block')
 						}

@@ -218,7 +218,7 @@
               $('#PostDatetime').text(typeData.postDateTime);
               $("#houseReview").empty();
               $.each(reviewData, function (index, n) {
-                var divBody = "<h5 class='mb-3'><a class='text-decoration-none text-dark' href='../studentMainPage.jsp?id=" + n.SID + "'><u>" + n.SID + "</u></a></h5>";
+                let divBody = "<h5 class='mb-3'><a class='text-decoration-none text-dark' href='../studentMainPage.jsp?id=" + n.SID + "'><u>" + n.SID + "</u></a></h5>";
                 divBody += "<h5>";
                 let i = 0;
                 for (; i < n.RlhStar; ++i) {
