@@ -24,5 +24,4 @@ This is an example of how an admin can approve rental listings (accessible only 
 
 ## Note
 
-The current system is unavailable as the server being decommissioned. Additionally, due to security concerns, the database credentials on GitHub are not authentic. <br />
-To further understand the system functionalities, please refer to the files located in the 'Testing Documentation' folder.
+The current system is unavailable as the server being decommissioned. Additionally, due to security concerns, the database credentials on GitHub are not authentic. To further understand the system functionalities, please refer to the files located in the 'Testing Documentation' folder.
